@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Контакты — Пётр Алексеев</title>
+  <meta name="description" content="Телефон, почта и Telegram Петра Алексеева. Бесплатная 30-минутная консультация по операционке, франшизе и запуску.">
+  <meta name="theme-color" content="#121612">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Unbounded:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="contacts">
+  <a class="skip" href="#main">К содержанию</a>
+  <header class="header">
+    <div class="header-inner">
+      <a class="logo" href="index.html"><span class="logo-mark">ПА</span><span class="logo-text"><strong>Пётр Алексеев</strong><small>Операционный директор</small></span></a>
+      <a class="btn btn-small header-cta" href="#consult">Консультация</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню"><span></span></button>
+      <nav id="nav" class="nav">
+        <a data-nav="services" href="services.html">Услуги</a>
+        <a data-nav="cases" href="cases.html">Кейсы</a>
+        <a data-nav="about" href="about.html">Обо мне</a>
+        <a data-nav="blog" href="blog/index.html">Блог</a>
+        <a data-nav="contacts" href="contacts.html">Контакты</a>
+        <a class="btn btn-small" href="#consult">30 минут бесплатно</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-hero">
+      <div class="container">
+        <p class="eyebrow"><span>Контакты</span> Москва</p>
+        <h1>Напишите задачу — предложу время в рабочий день</h1>
+        <p class="lead">Удобнее всего Telegram. Если нужен звонок, оставьте телефон в форме.</p>
+      </div>
+    </div>
+    <section>
+      <div class="container grid-2">
+        <div class="grid-2" style="grid-template-columns:1fr">
+          <a class="card" href="tel:+79269232929"><p class="who">Телефон</p><h3 style="margin-top:8px">+7 (926) 923-29-29</h3></a>
+          <a class="card" href="mailto:alekseev.pa50@yandex.ru"><p class="who">Почта</p><h3 style="margin-top:8px">alekseev.pa50@yandex.ru</h3></a>
+          <a class="card" href="https://t.me/PetroAlekseev"><p class="who">Telegram</p><h3 style="margin-top:8px">@PetroAlekseev</h3></a>
+          <article class="card"><p class="who">Формат</p><h3 style="margin-top:8px">Удалённо и с выездом</h3><p>Москва. Командировки по России возможны.</p></article>
+        </div>
+        <div id="consult">
+          <form class="form lead-form">
+            <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" name="source" value="Контакты">
+            <label class="field"><span>Имя</span><input name="name" required autocomplete="name"></label>
+            <label class="field"><span>Компания</span><input name="company" autocomplete="organization"></label>
+            <div class="form-row">
+              <label class="field"><span>Телефон</span><input name="phone" type="tel" required autocomplete="tel"></label>
+              <label class="field"><span>Email</span><input name="email" type="email" required autocomplete="email"></label>
+            </div>
+            <label class="field"><span>Задача</span>
+              <select name="service" required>
+                <option value="" selected>Выберите</option>
+                <option>Операционный аудит</option>
+                <option>Запуск направления</option>
+                <option>Франчайзинг</option>
+                <option>Затраты и логистика</option>
+                <option>KPI и мотивация</option>
+                <option>Временный COO</option>
+                <option>Менторство</option>
+                <option>Пока не знаю</option>
+              </select>
+            </label>
+            <label class="field"><span>Коротко о ситуации</span><textarea name="message" placeholder="Что болит: маржа, запуск, франшиза, команда"></textarea></label>
+            <label class="check"><input type="checkbox" name="consent" required><span>Согласен на обработку имени, телефона и почты, чтобы получить ответ на заявку.</span></label>
+            <button class="btn" type="submit">Записаться на консультацию</button>
+            <p class="form-note">30 минут бесплатно. Ответ в рабочий день.</p>
+            <p class="error" hidden></p>
+          </form>
+          <div class="form-success" hidden>
+            <h3>Заявка отправлена</h3>
+            <p>Напишу или позвоню в рабочий день. Срочное — в Telegram.</p>
+            <a class="btn" href="https://t.me/PetroAlekseev">Открыть Telegram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="padding-top:0">
+      <div class="container" id="booking" data-calendly="">
+        <div class="booking-fallback card">
+          <p class="who">Календарь</p>
+          <h2 style="margin:8px 0 10px">Слот на 30 минут</h2>
+          <p>Напишите в Telegram удобные окна. Подтвержу одно из них в ответ.</p>
+          <p style="margin-top:16px"><a class="btn" href="https://t.me/PetroAlekseev?text=%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%2030-%D0%BC%D0%B8%D0%BD%D1%83%D1%82%D0%BD%D1%83%D1%8E%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E">Записаться в Telegram</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="logo" href="index.html"><span class="logo-mark">ПА</span><span class="logo-text"><strong>Пётр Алексеев</strong><small>COO на аутсорсе</small></span></a>
+        <p class="footer-intro">Запускаю направления, собираю операционку и масштабирую франшизу. Москва, удалённо и с выездом.</p>
+      </div>
+      <div><h2>Навигация</h2><ul><li><a href="services.html">Услуги и цены</a></li><li><a href="cases.html">Кейсы</a></li><li><a href="about.html">Обо мне</a></li><li><a href="blog/index.html">Блог</a></li><li><a href="materials.html">Чек-листы</a></li></ul></div>
+      <div><h2>Связь</h2><ul><li><a href="tel:+79269232929">+7 (926) 923-29-29</a></li><li><a href="mailto:alekseev.pa50@yandex.ru">alekseev.pa50@yandex.ru</a></li><li><a href="https://t.me/PetroAlekseev">Telegram</a></li><li>Москва</li></ul></div>
+    </div>
+    <div class="container legal"><p>© <span data-year>2026</span> Пётр Алексеев. Цифры на сайте — результаты проектов, где я отвечал за операционное управление или запуск. Состав работ и метрику успеха фиксируем до старта.</p></div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
