@@ -7,6 +7,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      clean_slate:
+        description: Полная перезаливка (сброс состояния FTP-Deploy)
+        type: boolean
+        default: false
 
 concurrency:
   group: deploy-ftp
@@ -39,6 +44,7 @@ jobs:
           local-dir: ./
           server-dir: ${{ steps.ftpdir.outputs.path }}
           log-level: verbose
+          dangerous-clean-slate: ${{ github.event_name == 'workflow_dispatch' && inputs.clean_slate }}
           exclude: |
             **/.git*
             **/.git/**
@@ -47,3 +53,18 @@ jobs:
             **/_preview/**
             **/assets/images/draft/**
             **/README.md
+
+      - name: Verify live homepage
+        run: |
+          expected=$(wc -c < index.html | tr -d ' ')
+          for attempt in 1 2 3; do
+            actual=$(curl -fsSIL "https://petr-alekseev.ru/index.html" | awk 'tolower($1)=="content-length:" {print $2}' | tr -d '\r')
+            if [ "$actual" = "$expected" ]; then
+              echo "OK: index.html on site is ${actual} bytes"
+              exit 0
+            fi
+            echo "Attempt ${attempt}: expected ${expected}, got ${actual:-unknown}; retry in 15s"
+            sleep 15
+          done
+          echo "::error::Сайт не обновился. Проверьте секрет FTP_SERVER_DIR (корень сайта в ISPmanager, обычно www/petr-alekseev.ru/)."
+          exit 1
