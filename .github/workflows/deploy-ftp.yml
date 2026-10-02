@@ -36,4 +36,6 @@ jobs:
             **/.git/**
             **/.github/**
             **/.cursor/**
+            **/_preview/**
+            **/assets/images/draft/**
             **/README.md
