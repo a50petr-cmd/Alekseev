@@ -19,6 +19,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Normalize FTP server directory
+        id: ftpdir
+        env:
+          SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          dir="$SERVER_DIR"
+          case "$dir" in */) ;; *) dir="${dir}/" ;; esac
+          echo "path=$dir" >> "$GITHUB_OUTPUT"
+
       - name: Upload site to hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -28,7 +37,7 @@ jobs:
           protocol: ftp
           port: 21
           local-dir: ./
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ${{ steps.ftpdir.outputs.path }}
           log-level: minimal
           exclude: |
             **/.git*
