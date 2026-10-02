@@ -25,8 +25,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # Если деплой падает с ошибкой SSL — смените на ftp (см. README в комментарии ниже)
-          protocol: ftps
+          protocol: ftp
           port: 21
           local-dir: ./
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
