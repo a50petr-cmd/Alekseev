@@ -1,0 +1,39 @@
+# Автодеплой статического сайта на хостинг Рег.ру по FTP/FTPS.
+# Секреты: Settings → Secrets and variables → Actions → New repository secret
+
+name: Deploy to Reg.ru (FTP)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-ftp
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload site to hosting
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Если деплой падает с ошибкой SSL — смените на ftp (см. README в комментарии ниже)
+          protocol: ftps
+          port: 21
+          local-dir: ./
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          log-level: minimal
+          exclude: |
+            **/.git*
+            **/.git/**
+            **/.github/**
+            **/.cursor/**
+            **/README.md
