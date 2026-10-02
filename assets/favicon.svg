@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#121612"/>
-  <text x="32" y="40" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#f3efe6"></text>
-  <rect x="14" y="50" width="36" height="3" fill="#c2410c"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <clipPath id="r"><rect width="32" height="32" rx="8"/></clipPath>
+  </defs>
+  <image href="images/petr-alekseev.jpg" x="0" y="0" width="32" height="32" preserveAspectRatio="xMidYMin slice" clip-path="url(#r)"/>
 </svg>

@@ -187,10 +187,11 @@ a { color: inherit; }
 .float-chat {
   position: fixed; right: 18px; bottom: 18px; z-index: 90;
   display: grid; place-items: center; width: 56px; height: 56px; border-radius: 999px;
-  background: var(--orange-deep); color: #fff !important; font-weight: 800; font-size: 12px;
-  box-shadow: 0 12px 32px rgba(194,65,12,.35);
+  background: #229ed9 url("../icons/telegram-plane.svg") center / 28px no-repeat;
+  color: transparent !important; font-size: 0;
+  box-shadow: 0 12px 32px rgba(34, 158, 217, 0.45);
 }
-.float-chat:hover { filter: brightness(1.06); }
+.float-chat:hover { filter: brightness(1.08); }
 .case-story { display: grid; gap: 8px; margin: 12px 0 0; font-size: 15px; color: var(--ink-soft); }
 .case-story strong { color: var(--ink); }
 .eyebrow {
