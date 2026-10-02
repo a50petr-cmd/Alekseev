@@ -38,7 +38,7 @@ jobs:
           port: 21
           local-dir: ./
           server-dir: ${{ steps.ftpdir.outputs.path }}
-          log-level: minimal
+          log-level: verbose
           exclude: |
             **/.git*
             **/.git/**
