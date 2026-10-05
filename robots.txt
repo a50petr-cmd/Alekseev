@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Черновики и служебное — не для индекса
+Disallow: /_preview/
+
+Sitemap: https://petr-alekseev.ru/sitemap.xml

@@ -34,6 +34,27 @@
     });
   }
 
+  function metrikaGoal(name) {
+    if (typeof ym === "function") {
+      ym(113335579, "reachGoal", name);
+    }
+  }
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+    link.addEventListener("click", function () {
+      metrikaGoal("click_phone");
+    });
+  });
+  document.querySelectorAll('a[href*="t.me/"]').forEach(function (link) {
+    link.addEventListener("click", function () {
+      metrikaGoal("click_telegram");
+    });
+  });
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+    link.addEventListener("click", function () {
+      metrikaGoal("click_email");
+    });
+  });
+
   var booking = document.querySelector("#booking");
   var calendly = booking && booking.dataset.calendly ? booking.dataset.calendly.trim() : "";
   if (booking && calendly) {
