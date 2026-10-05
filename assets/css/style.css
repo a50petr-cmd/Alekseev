@@ -270,7 +270,10 @@ section { padding: 84px 0; }
 .service-card p { margin-top: auto; }
 .tag { letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--sans); font-weight: 800; }
 
-.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+@media (min-width: 960px) {
+  .case-grid { grid-template-columns: repeat(4, 1fr); }
+}
 .case-card {
   display: flex; flex-direction: column; min-height: 290px; padding: 26px; text-decoration: none;
   background: var(--dark); color: #f6f3ec; border-radius: 22px;
@@ -316,6 +319,43 @@ section { padding: 84px 0; }
 .philosophy { color: var(--ink-soft); font-size: 1.05rem; }
 
 .lead-band { background: linear-gradient(180deg, rgba(194,65,12,.08), transparent 30%), var(--cream); border-block: 1px solid var(--line); }
+.lead-band .container--contact { max-width: 52rem; }
+.contact-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+.contact-strip__item {
+  display: grid; gap: 6px; padding: 20px 18px; border-radius: 18px; text-decoration: none;
+  background: var(--paper); border: 1px solid var(--line); transition: transform .18s ease, box-shadow .18s ease;
+}
+.contact-strip__item:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.contact-strip__item--tg { background: #229ed9; border-color: #1a8fc4; color: #fff; }
+.contact-strip__item--tg .contact-strip__label { color: rgba(255,255,255,.78); }
+.contact-strip__item--tg strong { color: #fff; }
+.contact-strip__label { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.contact-strip__item strong { font-size: clamp(1rem, 2.2vw, 1.2rem); font-weight: 800; color: var(--ink); line-height: 1.25; }
+.contact-strip__item--phone strong { font-family: var(--serif); font-size: clamp(1.15rem, 2.5vw, 1.45rem); letter-spacing: -0.02em; }
+.contact-cards { display: grid; gap: 12px; }
+.contact-cards .card { text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }
+.contact-cards .card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.contact-cards .card h3 { font-size: clamp(1.2rem, 2.5vw, 1.55rem); }
+.contact-cards .card--tg { background: #229ed9; border-color: #1a8fc4; color: #fff; }
+.contact-cards .card--tg .who { color: rgba(255,255,255,.75); }
+.contact-cards .card--tg h3 { color: #fff; }
+.header-phone--desk {
+  display: none; margin-right: 4px; font-weight: 800; font-size: 15px; letter-spacing: -0.02em; color: var(--ink);
+}
+.header-phone--desk:hover { color: var(--orange-deep); }
+@media (min-width: 960px) {
+  .header-phone--desk { display: inline-flex; align-items: center; }
+}
+.case-block-brand {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+  padding: 10px 16px; margin-bottom: 14px; background: var(--cream); border: 1px solid var(--line); border-radius: 14px;
+}
+.case-block-brand img { display: block; height: 32px; width: auto; max-width: 140px; object-fit: contain; }
+.case-card-logo {
+  display: inline-flex; align-items: center; padding: 8px 12px; margin-bottom: 4px;
+  background: rgba(255,255,255,.94); border-radius: 10px;
+}
+.case-card-logo img { height: 26px; width: auto; max-width: 110px; object-fit: contain; display: block; }
 .form-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: start; }
 .form, .form-success { background: var(--paper); border: 1px solid var(--line); border-radius: 22px; padding: 18px; }
 .form { display: grid; gap: 12px; }
@@ -447,7 +487,7 @@ details p { margin-top: 8px; color: var(--ink-soft); }
   .lead-magnet-inner { flex-direction: column; align-items: flex-start; }
   .lead-magnet .btn { width: 100%; }
   .hero-grid, .stats, .grid-2, .grid-3, .case-grid, .steps, .price-grid, .quote-grid,
-  .pull-wrap, .form-grid, .footer-grid, .split, .case-block, .service-detail, .problems li, .timeline article, .form-row {
+  .pull-wrap, .form-grid, .footer-grid, .split, .case-block, .service-detail, .problems li, .timeline article, .form-row, .contact-strip {
     grid-template-columns: 1fr;
   }
   .hero-rail { display: none; }
