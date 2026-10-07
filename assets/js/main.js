@@ -54,6 +54,11 @@
       metrikaGoal("click_email");
     });
   });
+  document.querySelectorAll('a[href*="linkedin.com/"]').forEach(function (link) {
+    link.addEventListener("click", function () {
+      metrikaGoal("click_linkedin");
+    });
+  });
 
   var booking = document.querySelector("#booking");
   var calendly = booking && booking.dataset.calendly ? booking.dataset.calendly.trim() : "";

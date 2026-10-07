@@ -357,7 +357,7 @@ section { padding: 84px 0; }
 
 .lead-band { background: linear-gradient(180deg, rgba(194,65,12,.08), transparent 30%), var(--cream); border-block: 1px solid var(--line); }
 .lead-band .container--contact { max-width: 52rem; }
-.contact-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+.contact-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
 .contact-strip__item {
   display: grid; gap: 6px; padding: 20px 18px; border-radius: 18px; text-decoration: none;
   background: var(--paper); border: 1px solid var(--line); transition: transform .18s ease, box-shadow .18s ease;
@@ -366,6 +366,9 @@ section { padding: 84px 0; }
 .contact-strip__item--tg { background: #229ed9; border-color: #1a8fc4; color: #fff; }
 .contact-strip__item--tg .contact-strip__label { color: rgba(255,255,255,.78); }
 .contact-strip__item--tg strong { color: #fff; }
+.contact-strip__item--li { background: #0a66c2; border-color: #004182; color: #fff; }
+.contact-strip__item--li .contact-strip__label { color: rgba(255,255,255,.78); }
+.contact-strip__item--li strong { color: #fff; font-size: clamp(0.95rem, 2vw, 1.08rem); }
 .contact-strip__label { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
 .contact-strip__item strong { font-size: clamp(1rem, 2.2vw, 1.2rem); font-weight: 800; color: var(--ink); line-height: 1.25; }
 .contact-strip__item--phone strong { font-family: var(--serif); font-size: clamp(1.15rem, 2.5vw, 1.45rem); letter-spacing: -0.02em; }
