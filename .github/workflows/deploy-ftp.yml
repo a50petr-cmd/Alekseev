@@ -52,6 +52,8 @@ jobs:
             **/.cursor/**
             **/_preview/**
             **/assets/images/draft/**
+            **/blog/_article-template.html
+            **/blog/КАК-ДОБАВИТЬ-СТАТЬЮ.txt
             **/README.md
 
       - name: Verify live homepage

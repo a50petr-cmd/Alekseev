@@ -1,0 +1,28 @@
+Как опубликовать новую статью (без админки и без Cursor)
+
+1. Скопируйте файл _article-template.html → новое имя, например moya-statya.html
+   (латиница в имени файла, без пробелов)
+
+2. В новом файле замените все SLUG на moya-statya, заголовки и текст статьи.
+
+3. Откройте posts.json — добавьте объект В НАЧАЛО массива:
+   {
+     "slug": "moya-statya",
+     "tag": "Тема",
+     "title": "Заголовок на странице списка",
+     "description": "Короткий анонс",
+     "readTime": "6 минут",
+     "date": "2026-10-07"
+   }
+
+4. В sitemap.xml добавьте строку:
+   <url><loc>https://petr-alekseev.ru/blog/moya-statya.html</loc><lastmod>2026-10-07</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+
+5. Залейте на GitHub (см. ниже) — сайт обновится сам через 1–2 минуты.
+
+Публикация через сайт GitHub (бесплатно, с телефона или браузера):
+  github.com → репозиторий Alekseev → нужная папка → Add file / Upload files
+  или Edit у posts.json → Commit changes
+
+Админка на Reg.ru для статического сайта не нужна: PHP/БД = отдельная поддержка и риски.
+Если позже понадобится «как в WordPress» — можно подключить Decap CMS к GitHub (редактор в браузере, без ИИ).
