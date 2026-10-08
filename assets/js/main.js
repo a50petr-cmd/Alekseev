@@ -59,6 +59,31 @@
       metrikaGoal("click_linkedin");
     });
   });
+  document.querySelectorAll("[data-goal]").forEach(function (element) {
+    element.addEventListener("click", function () {
+      metrikaGoal(element.dataset.goal);
+    });
+  });
+
+  if ("IntersectionObserver" in window) {
+    var observedGoals = [
+      { selector: "#team", goal: "view_team" },
+      { selector: "#contact", goal: "reach_contact" },
+    ];
+    observedGoals.forEach(function (item) {
+      var element = document.querySelector(item.selector);
+      if (!element) return;
+      var observer = new IntersectionObserver(
+        function (entries) {
+          if (!entries[0].isIntersecting) return;
+          metrikaGoal(item.goal);
+          observer.disconnect();
+        },
+        { threshold: 0.35 }
+      );
+      observer.observe(element);
+    });
+  }
 
   var booking = document.querySelector("#booking");
   var calendly = booking && booking.dataset.calendly ? booking.dataset.calendly.trim() : "";
