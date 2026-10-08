@@ -4,243 +4,469 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="assets/js/yandex-metrika.js"></script>
-  <!-- Yandex.Metrika counter -->
-  <noscript><div><img src="https://mc.yandex.ru/watch/113335579" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
-  <title>Консультант по запуску даркстора и доставки продуктов | Пётр Алексеев</title>
-  <meta name="description" content="Консалтинг по запуску даркстора и онлайн-доставки продуктов с нуля, франшиза, аудит и логистика. 18 лет в ритейле, 400+ дарксторов. Москва и удалённо.">
-  <meta property="og:title" content="Консультант по запуску даркстора | Пётр Алексеев">
-  <meta property="og:description" content="Консалтинг по запуску даркстора и доставки продуктов, франшиза. Кейсы Евроопт, Яндекс Лавка, Комус, X5.">
+  <title>Пётр Алексеев — бизнес-процессы, автоматизация и внедрение</title>
+  <meta name="description" content="Аудит и перестройка бизнес-процессов: от AS IS до TO BE, автоматизации, выбора программного обеспечения и внедрения изменений.">
+  <link rel="canonical" href="https://petr-alekseev.ru/">
+  <meta property="og:title" content="Пётр Алексеев — бизнес-процессы, автоматизация и внедрение">
+  <meta property="og:description" content="Диагностируем бизнес-процессы, проектируем целевую модель и внедряем изменения с подходящим ПО, автоматизацией и ИИ.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="Пётр Алексеев">
   <meta property="og:url" content="https://petr-alekseev.ru/">
   <meta property="og:image" content="https://petr-alekseev.ru/assets/images/petr-alekseev.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://petr-alekseev.ru/">
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
   <meta name="theme-color" content="#121612">
   <link rel="icon" href="assets/favicon.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Unbounded:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    :root { --preview-blue: #a8c7b5; }
+    .preview-hero { padding-bottom: 0; }
+    .preview-hero .hero-copy { padding-bottom: 8px; }
+    .preview-hero h1 { max-width: 12em; }
+    .preview-hero .lead { max-width: 45rem; font-size: clamp(1.08rem, 2vw, 1.3rem); }
+    .preview-hero .stats { grid-template-columns: repeat(3, 1fr); }
+    .preview-hero .stats b { color: var(--orange-deep); }
+    main [id] { scroll-margin-top: 92px; }
+    .process-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--line); border: 1px solid var(--line); border-radius: 22px; overflow: hidden;
+    }
+    .process-strip article { padding: 30px; background: var(--cream); }
+    .process-strip .phase {
+      display: inline-flex; margin-bottom: 22px; padding: 7px 10px; border-radius: 999px;
+      background: var(--ink); color: #fff; font: 500 11px/1 var(--display); letter-spacing: .08em;
+    }
+    .process-strip article:nth-child(2) .phase { background: var(--orange); }
+    .process-strip article:nth-child(3) .phase { background: #416254; }
+    .process-strip h3 { margin-bottom: 10px; font-size: 1.55rem; }
+    .process-strip p { color: var(--ink-soft); }
+    .capability-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .capability {
+      min-height: 220px; padding: 28px; border: 1px solid var(--line); border-radius: 22px;
+      background: var(--cream); display: flex; flex-direction: column;
+    }
+    .capability h3 { margin: 16px 0 10px; font-size: 1.55rem; }
+    .capability p { color: var(--ink-soft); }
+    .capability .num { margin-top: auto; padding-top: 22px; }
+    .euroopt-story {
+      display: grid; grid-template-columns: .8fr 1.45fr; gap: 42px; padding: 42px;
+      background: var(--dark); color: #f6f3ec; border-radius: 26px;
+    }
+    .euroopt-story .eyebrow { color: rgba(246,243,236,.62); }
+    .euroopt-story h2 { font-size: clamp(2.2rem, 4vw, 3.6rem); }
+    .euroopt-story .lead { color: rgba(246,243,236,.75); }
+    .case-brands { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; margin: 0 0 24px; }
+    .case-brand {
+      min-height: 66px; padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+      border-radius: 14px; background: #fff; color: var(--ink);
+    }
+    .case-brand img { width: auto; height: 40px; max-width: 132px; object-fit: contain; }
+    .case-brand--yamigom img { width: 42px; height: 42px; border-radius: 8px; }
+    .case-brand span { font-weight: 850; letter-spacing: .04em; font-size: 13px; }
+    .case-flow { display: grid; gap: 0; counter-reset: case-step; }
+    .case-flow article {
+      position: relative; padding: 4px 0 26px 56px; border-left: 1px solid rgba(255,255,255,.18);
+    }
+    .case-flow article:last-child { padding-bottom: 0; border-color: transparent; }
+    .case-flow article::before {
+      counter-increment: case-step; content: counter(case-step);
+      position: absolute; left: -17px; top: 0; width: 32px; height: 32px; display: grid; place-items: center;
+      border-radius: 50%; background: var(--orange); color: #fff; font: 500 11px/1 var(--display);
+    }
+    .case-flow h3 { margin-bottom: 7px; font-size: 1.35rem; }
+    .case-flow p { color: rgba(246,243,236,.68); font-size: 15px; }
+    .outcomes {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 30px;
+    }
+    .outcomes div { padding: 18px; border: 1px solid rgba(255,255,255,.13); border-radius: 16px; }
+    .outcomes strong { display: block; font-family: var(--display); font-size: 1.35rem; color: #fff; }
+    .outcomes span { display: block; margin-top: 5px; color: rgba(246,243,236,.62); font-size: 13px; }
+    .recommendation {
+      display: grid; grid-template-columns: minmax(260px, .72fr) 1.28fr; gap: 34px; align-items: start;
+      margin-top: 16px; padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: var(--cream);
+    }
+    .recommendation-scan {
+      display: block; padding: 10px; border-radius: 16px; background: #e8e4d9;
+      box-shadow: 0 16px 38px rgba(18,22,18,.12); text-decoration: none;
+    }
+    .recommendation-scan img {
+      width: 100%; border-radius: 9px; filter: contrast(1.12) brightness(1.04);
+    }
+    .recommendation-scan span {
+      display: block; padding: 10px 4px 2px; text-align: center; color: var(--ink-soft);
+      font-size: 13px; font-weight: 750;
+    }
+    .recommendation-copy h3 { margin: 8px 0 15px; font-size: clamp(1.65rem, 3vw, 2.25rem); }
+    .recommendation-quote {
+      margin: 0 0 20px; padding-left: 18px; border-left: 3px solid var(--orange);
+      font-family: var(--serif); font-size: clamp(1.22rem, 2.2vw, 1.55rem); line-height: 1.38;
+    }
+    .recommendation-copy .detail-list { margin: 0 0 20px; font-size: 15px; }
+    .recommendation-author { color: var(--ink-soft); font-size: 14px; }
+    .recommendation-author strong { display: block; color: var(--ink); font-size: 16px; }
+    .scope-list {
+      display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line);
+    }
+    .scope-list article { padding: 24px 22px; border-bottom: 1px solid var(--line); }
+    .scope-list article:not(:nth-child(3n)) { border-right: 1px solid var(--line); }
+    .scope-logo {
+      width: 100%; height: 58px; display: flex; align-items: center; justify-content: flex-start;
+      margin-bottom: 18px;
+    }
+    .scope-logo img { width: auto; height: 34px; max-width: 142px; object-fit: contain; object-position: left center; }
+    .scope-logo--kuper img { width: 44px; height: 44px; }
+    .scope-logo--euroopt img { height: 38px; }
+    .scope-list h3 { margin-bottom: 7px; font-size: 1.25rem; }
+    .scope-list p { color: var(--ink-soft); font-size: 15px; }
+    .experience-note { margin-top: 13px; color: var(--muted); font-size: 12px; }
+    .team-panel {
+      display: grid; grid-template-columns: .85fr 1.4fr; gap: 44px; align-items: start;
+      padding: 40px; border: 1px solid var(--line); border-radius: 26px; background: var(--cream);
+    }
+    .team-panel h2 { font-size: clamp(2.1rem, 4vw, 3.4rem); }
+    .team-panel .lead { font-size: 1.05rem; }
+    .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .team-card {
+      min-height: 190px; padding: 22px; border-radius: 18px; background: var(--paper);
+      border: 1px solid var(--line); display: flex; flex-direction: column;
+    }
+    .team-card h3 { margin: 13px 0 8px; font-size: 1.3rem; }
+    .team-card p { color: var(--ink-soft); font-size: 14.5px; }
+    .team-card .num { margin-top: auto; padding-top: 16px; }
+    .continuity {
+      margin-top: 14px; padding: 18px 20px; border-radius: 16px; background: var(--dark);
+      color: rgba(246,243,236,.78); font-size: 14.5px;
+    }
+    .continuity strong { color: #fff; }
+    .contact-pitch { max-width: 46rem; }
+    @media (max-width: 980px) {
+      .process-strip, .capability-grid, .euroopt-story, .outcomes, .scope-list, .team-panel, .team-grid, .recommendation { grid-template-columns: 1fr; }
+      .scope-list article { border-right: 0 !important; }
+      .preview-hero .stats { grid-template-columns: 1fr; }
+      .euroopt-story, .team-panel { padding: 28px 22px; }
+      .recommendation-copy { order: -1; }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Пётр Алексеев — операционный директор на аутсорсе",
-    "description": "Операционный консалтинг ритейла: запуск даркстора и доставки продуктов, франшиза, аудит, логистика, временный COO.",
+    "name": "Пётр Алексеев — бизнес-процессы, автоматизация и внедрение",
+    "description": "Аудит и перестройка бизнес-процессов: AS IS, TO BE, автоматизация, подбор программного обеспечения и внедрение ИИ.",
     "telephone": "+7-926-923-29-29",
     "email": "a50petr@yandex.ru",
-    "address": { "@type": "PostalAddress", "addressLocality": "Москва", "addressCountry": "RU" },
+    "address": {"@type": "PostalAddress", "addressLocality": "Москва", "addressCountry": "RU"},
     "url": "https://petr-alekseev.ru/",
     "image": "https://petr-alekseev.ru/assets/images/petr-alekseev.jpg",
     "areaServed": "RU",
-    "sameAs": ["https://t.me/PetroAlekseev", "https://www.linkedin.com/in/%D0%BF%D0%B5%D1%82%D1%80-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2-265a56225/"]
+    "sameAs": [
+      "https://t.me/PetroAlekseev",
+      "https://t.me/+i5epN8cjG_pkOGE6",
+      "https://www.linkedin.com/in/%D0%BF%D0%B5%D1%82%D1%80-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2-265a56225/"
+    ]
   }
   </script>
 </head>
 <body data-page="home">
+  <noscript><div><img src="https://mc.yandex.ru/watch/113335579" style="position:absolute;left:-9999px" alt=""></div></noscript>
   <a class="skip" href="#main">К содержанию</a>
   <header class="header">
     <div class="header-inner">
-      <a class="logo" href="index.html">
+      <a class="logo" href="#main">
         <span class="logo-mark">ПА</span>
-        <span class="logo-text"><strong>Пётр Алексеев</strong><small>Доставка · операции · франшиза</small></span>
+        <span class="logo-text"><strong>Пётр Алексеев</strong><small>Бизнес-процессы · автоматизация · внедрение</small></span>
       </a>
       <a class="btn btn-small header-cta" href="#contact">Связаться</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню"><span></span></button>
       <nav id="nav" class="nav">
-        <a data-nav="services" href="services.html">Услуги</a>
-        <a data-nav="cases" href="cases.html">Кейсы</a>
-        <a data-nav="about" href="about.html">Обо мне</a>
-        <a data-nav="blog" href="blog/index.html">Статьи</a>
-        <a data-nav="reviews" href="#reviews">Отзывы</a>
-        <a data-nav="contacts" href="contacts.html">Контакты</a>
+        <a href="#approach">Подход</a>
+        <a href="#expertise">Что делаем</a>
+        <a href="#team">Команда</a>
+        <a href="#case">Кейс</a>
+        <a href="#experience">Опыт</a>
+        <a href="#contact">Контакты</a>
         <div class="header-contact header-contact--menu">
           <a class="header-phone" href="tel:+79269232929">+7 (926) 923-29-29</a>
-          <span class="header-contact-note">30&nbsp;мин бесплатно</span>
+          <span class="header-contact-note">30&nbsp;мин на знакомство</span>
         </div>
       </nav>
       <div class="header-contact header-contact--bar" aria-label="Телефон">
         <a class="header-phone" href="tel:+79269232929">+7 (926) 923-29-29</a>
-        <span class="header-contact-note">30&nbsp;мин бесплатно</span>
+        <span class="header-contact-note">30&nbsp;мин на знакомство</span>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero">
+    <section class="hero preview-hero">
       <div class="container hero-grid hero-grid--photo">
         <div class="hero-copy">
-          <p class="eyebrow">Консалтинг · Москва и удалённо</p>
-          <h1>Со мной вы спокойно запустите доставку любой сложности</h1>
-          <p class="lead">Консультант по запуску даркстора и доставки продуктов: от MVP до операционной прибыли. Настрою процессы, команду и KPI; помогу <a class="link hero-link" href="franchise.html">упаковать франшизу</a> — для сети и для первого направления.</p>
+          <p class="eyebrow">Операционный консультант · Москва и удалённо</p>
+          <h1>Превращаем сложные бизнес-процессы в работающую систему</h1>
+          <p class="lead">Погружаемся в работу компании, находим, где теряются деньги и время, проектируем целевую модель и доводим изменения до результата — с автоматизацией, подходящим программным обеспечением и ИИ там, где они экономически оправданы.</p>
           <div class="hero-actions">
-            <a class="btn" href="https://t.me/PetroAlekseev">Telegram</a>
-            <a class="btn btn-ghost" href="tel:+79269232929">Позвонить</a>
+            <a class="btn" href="#contact">Обсудить задачу</a>
+            <a class="btn btn-ghost" href="#case">Посмотреть кейс</a>
           </div>
-          <p class="hero-result">Типичный запрос: направление в минусе или без процессов → выход в плюс за 3–4 месяца — как <a class="link hero-link" href="cases.html#komus">запуск доставки продуктов в Комус</a> и <a class="link hero-link" href="cases.html#euroopt">даркстор в Евроопт</a>. Нужен <a class="link hero-link" href="services.html#audit">операционный аудит</a> — от 20&nbsp;000&nbsp;₽.</p>
-          <p class="hero-note"><a class="link hero-link" href="tel:+79269232929">+7 (926) 923-29-29</a> · <a class="link hero-link" href="mailto:a50petr@yandex.ru">a50petr@yandex.ru</a> · <a class="link hero-link" href="services.html">услуги и цены</a></p>
+          <p class="hero-result">Не продаём технологию ради технологии. Сначала определяем проблему и ожидаемый эффект, затем подключаем нужную экспертизу: изменение процесса, программное решение, автоматизацию, ИИ или их комбинацию.</p>
         </div>
         <figure class="hero-photo">
-          <img src="assets/images/petr-alekseev.jpg" width="260" height="325" alt="Пётр Алексеев, консультант по запуску даркстора">
+          <img src="assets/images/petr-alekseev.jpg" width="260" height="325" alt="Пётр Алексеев, консультант по бизнес-процессам">
           <figcaption>Пётр Алексеев</figcaption>
         </figure>
-        <div class="stats" style="grid-column: 1 / -1">
-          <div><b>400+</b><span>открытых дарксторов</span></div>
-          <div><b>18</b><span>лет в ритейле и e-commerce</span></div>
-          <div><b>25</b><span>магазинов франшизы «Фасоль»</span></div>
+        <div class="stats" style="grid-column:1/-1">
+          <div><b>18 лет</b><span>в операционном управлении и развитии бизнеса</span></div>
+          <div><b>От AS IS</b><span>диагностика процессов и причин потерь</span></div>
+          <div><b>До результата</b><span>проектирование, внедрение и передача команде</span></div>
         </div>
       </div>
     </section>
 
-    <div class="logo-bar">
+    <section id="approach">
       <div class="container">
-        <p class="kicker">Операционные проекты</p>
-        <ul class="logos">
-          <li>X5 Group<small>оптовый импорт</small></li>
-          <li>Купер<small>экс-СберМаркет</small></li>
-          <li>Комус<small>доставка продуктов</small></li>
-          <li>Яндекс Лавка<small>дарксторы</small></li>
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>Подход</span> От проблемы к устойчивому процессу</p>
+            <h2>Смотрим на бизнес как на единую систему</h2>
+          </div>
+          <p>Не оптимизируем один участок в отрыве от остальных. Проверяем весь путь: от решения собственника и работы команды до IT-системы и результата для клиента.</p>
+        </div>
+        <div class="process-strip">
+          <article>
+            <span class="phase">AS IS</span>
+            <h3>Понять, как всё работает сейчас</h3>
+            <p>Интервью, данные, P&amp;L, роли, информационные потоки и наблюдение за процессом. Фиксируем не регламент, а реальную работу компании.</p>
+          </article>
+          <article>
+            <span class="phase">TO BE</span>
+            <h3>Спроектировать целевую модель</h3>
+            <p>Определяем, что изменить в процессе, ответственности и показателях. Считаем эффект и выбираем приоритеты, которые дадут бизнесу результат.</p>
+          </article>
+          <article>
+            <span class="phase">IMPLEMENT</span>
+            <h3>Внедрить и закрепить</h3>
+            <p>Собираем план, подбираем ПО и инструменты автоматизации, ставим задачи команде, контролируем метрики и доводим процесс до стабильной работы.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="expertise" style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>Что делаем</span></p>
+            <h2>Не просто рекомендации — рабочая модель и её реализация</h2>
+          </div>
+        </div>
+        <div class="capability-grid">
+          <article class="capability">
+            <p class="tag">Диагностика</p>
+            <h3>Находим настоящую причину сбоев</h3>
+            <p>Разбираем сквозной процесс, экономику, роли и ограничения. Отделяем симптомы от причин и показываем, где именно компания теряет ресурс.</p>
+            <p class="num">01</p>
+          </article>
+          <article class="capability">
+            <p class="tag">Проектирование</p>
+            <h3>Собираем TO BE и план изменений</h3>
+            <p>Описываем новый процесс, зоны ответственности, контрольные точки и показатели. Формируем очередь инициатив с оценкой эффекта и сложности.</p>
+            <p class="num">02</p>
+          </article>
+          <article class="capability">
+            <p class="tag">Технологии</p>
+            <h3>Подбираем автоматизацию, ПО и ИИ</h3>
+            <p>Вместе с технологическими партнёрами определяем требования, сравниваем решения и организуем внедрение. ИИ и автоматизация появляются только там, где сокращают затраты, ошибки или время цикла.</p>
+            <p class="num">03</p>
+          </article>
+          <article class="capability">
+            <p class="tag">Внедрение</p>
+            <h3>Доводим изменения до работающей системы</h3>
+            <p>Организуем проект, синхронизируем бизнес и IT, запускаем пилот, контролируем метрики и передаём команде процесс, который работает без ручного управления.</p>
+            <p class="num">04</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" style="padding-top:0">
+      <div class="container">
+        <div class="team-panel">
+          <div>
+            <p class="eyebrow"><span>Команда и партнёры</span></p>
+            <h2>Один ответственный — не один исполнитель</h2>
+            <p class="lead">Пётр лично погружается в бизнес, проектирует изменения и отвечает перед клиентом за общий результат. Для реализации мы подключаем проверенных специалистов и компании-партнёры с нужной компетенцией.</p>
+            <p class="continuity"><strong>Проект не зависит от одного человека.</strong> Решения, задачи, регламенты и метрики фиксируются в общей системе. Команда клиента и партнёры сохраняют контекст, а созданные процессы продолжают работать после завершения проекта.</p>
+          </div>
+          <div class="team-grid">
+            <article class="team-card">
+              <p class="tag">Управление</p>
+              <h3>Единая точка ответственности</h3>
+              <p>Клиент работает со мной по целям, приоритетам и результату — без необходимости самостоятельно координировать нескольких подрядчиков.</p>
+              <p class="num">01</p>
+            </article>
+            <article class="team-card">
+              <p class="tag">Бизнес</p>
+              <h3>Профильные эксперты</h3>
+              <p>Подключаем специалистов по процессам, данным, финансам и управлению изменениями в зависимости от масштаба и содержания задачи.</p>
+              <p class="num">02</p>
+            </article>
+            <article class="team-card">
+              <p class="tag">Технологии</p>
+              <h3>Компании-партнёры</h3>
+              <p>Партнёры помогают подобрать, настроить и внедрить программное обеспечение, интеграции, автоматизацию и решения на основе ИИ.</p>
+              <p class="num">03</p>
+            </article>
+            <article class="team-card">
+              <p class="tag">Устойчивость</p>
+              <h3>Знания остаются в компании</h3>
+              <p>Документируем целевую модель, роли, настройки и показатели. Обучаем команду клиента, чтобы система не держалась на внешнем консультанте.</p>
+              <p class="num">04</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="case" style="padding-top:0">
+      <div class="container">
+        <div class="euroopt-story">
+          <div>
+            <p class="eyebrow"><span>Кейс</span> Евроопт · Минск</p>
+            <div class="case-brands" aria-label="Евроопт и ЯМИГОМ">
+              <div class="case-brand">
+                <img src="assets/images/logos/euroopt.png" width="132" height="42" alt="Евроопт">
+              </div>
+              <div class="case-brand case-brand--yamigom">
+                <img src="assets/images/logos/yamigom.jpg" width="42" height="42" alt="">
+                <span>ЯМИГОМ</span>
+              </div>
+            </div>
+            <h2>Из убыточной быстрой доставки — в устойчивую операционную модель</h2>
+            <p class="lead">После покупки сервиса быстрой доставки у компании было четыре даркстора и экономика, которая не сходилась. Было непонятно, какие процессы создают убытки и что менять в первую очередь.</p>
+            <div class="outcomes">
+              <div><strong>×2</strong><span>ниже операционные затраты</span></div>
+              <div><strong>2:37</strong><span>сборка вместо 5 минут</span></div>
+              <div><strong>1,4%</strong><span>списания вместо 7%</span></div>
+            </div>
+          </div>
+          <div class="case-flow">
+            <article>
+              <h3>Погрузился во всю цепочку</h3>
+              <p>Разобрал работу направления от маркетинга и ассортимента до склада, сборки, логистики и передачи заказа клиенту.</p>
+            </article>
+            <article>
+              <h3>Нашёл системные потери</h3>
+              <p>Связал экономику с реальными операциями: списаниями, производительностью сборки, ФОТ, маршрутизацией, поставками и мотивацией курьеров.</p>
+            </article>
+            <article>
+              <h3>Спроектировал целевую модель</h3>
+              <p>Собрал план изменений по процессам, команде, показателям и стандартам работы. Для каждого мероприятия зафиксировал ожидаемый эффект.</p>
+            </article>
+            <article>
+              <h3>Внедрил изменения вместе с командой</h3>
+              <p>Перестроил сборку и логистику, внедрил стандарты планировки и мотивацию курьеров, сократил списания и операционные расходы.</p>
+            </article>
+            <article>
+              <h3>Вывел направление на операционный ноль</h3>
+              <p>За шесть месяцев проектной работы убыточная модель стала управляемой системой с прозрачными показателями и устойчивыми процессами.</p>
+            </article>
+          </div>
+        </div>
+        <div class="recommendation">
+          <a class="recommendation-scan" href="assets/images/euroopt-recommendation.jpg" target="_blank" rel="noopener" aria-label="Открыть рекомендательное письмо Евроопт в полном размере">
+            <img src="assets/images/euroopt-recommendation.jpg" width="768" height="1024" alt="Рекомендательное письмо компании Евроопт о работе Петра Алексеева над сервисом ЯМИГОМ" loading="lazy">
+            <span>Нажмите, чтобы открыть письмо в полном размере</span>
+          </a>
+          <div class="recommendation-copy">
+            <p class="eyebrow"><span>Подтверждение</span> Рекомендательное письмо</p>
+            <h3>Евроопт о результатах проекта</h3>
+            <p class="recommendation-quote">«Результаты его деятельности до сих пор приносят неоспоримую пользу нашему бизнесу».</p>
+            <ul class="detail-list">
+              <li>Выстроены коммуникации между операционным блоком, маркетингом, IT и коммерческим блоком</li>
+              <li>Внедрены технологии найма курьеров и мотивация персонала дарксторов</li>
+              <li>Разработаны IT-решения для снижения человеческого фактора</li>
+              <li>Совместно с IT разработана собственная WMS для товародвижения</li>
+              <li>Увеличена скорость сборки заказов</li>
+            </ul>
+            <p class="recommendation-author"><strong>Евгений Жигимонт</strong>Первый заместитель генерального директора ООО «Евроторг»</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>Опыт</span> Разные задачи — один системный подход</p>
+            <h2>Кейсы — это примеры задач, а не границы экспертизы</h2>
+          </div>
+          <p>Ритейл, доставка, импорт и франчайзинг дали опыт работы со сложными сквозными процессами, большой операционной нагрузкой и кросс-функциональными командами.</p>
+        </div>
+        <div class="scope-list">
+          <article>
+            <div class="scope-logo"><img src="assets/images/logos/x5.svg" width="142" height="43" alt="X5 Group" loading="lazy"></div>
+            <h3>X5 Group</h3><p>Операционная модель импорта: закупки, порт, склад, логистика, качество и продажи.</p>
+          </article>
+          <article>
+            <div class="scope-logo"><img src="assets/images/logos/komus.svg" width="142" height="56" alt="Комус" loading="lazy"></div>
+            <h3>Комус</h3><p>Запуск нового e-commerce-направления с нуля: процессы, ассортимент, партнёры и MVP.</p>
+          </article>
+          <article>
+            <div class="scope-logo scope-logo--kuper"><img src="assets/images/logos/kuper.png" width="44" height="44" alt="Купер" loading="lazy"></div>
+            <h3>Купер</h3><p>Рост B2B-направления через гипотезы, метрики и управление кросс-функциональной командой.</p>
+          </article>
+          <article>
+            <div class="scope-logo"><img src="assets/images/logos/yandex-lavka.svg" width="142" height="35" alt="Яндекс Лавка" loading="lazy"></div>
+            <h3>Яндекс Лавка</h3><p>Масштабирование операционной модели на десять объектов в новом регионе.</p>
+          </article>
+          <article>
+            <div class="scope-logo"><img src="assets/images/logos/metro.svg" width="142" height="22" alt="METRO" loading="lazy"></div>
+            <h3>METRO</h3><p>Стандартизация открытия магазинов, тендеры и снижение капитальных затрат партнёров.</p>
+          </article>
+          <article>
+            <div class="scope-logo scope-logo--euroopt"><img src="assets/images/logos/euroopt.png" width="142" height="45" alt="Евроопт" loading="lazy"></div>
+            <h3>Евроопт</h3><p>Комплексная перестройка убыточного направления — от диагностики до внедрения.</p>
+          </article>
+        </div>
+        <p class="experience-note">Логотипы являются товарными знаками соответствующих компаний и используются для обозначения опыта работы с проектами брендов.</p>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>Когда обращаться</span></p>
+            <h2>Когда бизнесу нужен не отчёт, а изменения</h2>
+          </div>
+        </div>
+        <ul class="problems">
+          <li><b>01</b><strong>Процесс работает нестабильно</strong><span>Результат зависит от ручного контроля, отдельных сотрудников и постоянного тушения пожаров.</span></li>
+          <li><b>02</b><strong>Экономика не сходится</strong><span>Выручка есть, но потери распределены по разным участкам и причина не видна в общей отчётности.</span></li>
+          <li><b>03</b><strong>Компания выросла из старых правил</strong><span>Роли, системы и регламенты не соответствуют масштабу, а скорость решений падает.</span></li>
+          <li><b>04</b><strong>Нужна автоматизация или ИИ</strong><span>Есть желание внедрить технологию, но нет ясности, какой процесс менять и как посчитать отдачу.</span></li>
+          <li><b>05</b><strong>Изменения некому довести до конца</strong><span>Команде нужен человек, который соберёт проект, свяжет бизнес и IT и возьмёт ответственность за внедрение.</span></li>
         </ul>
-      </div>
-    </div>
-
-    <section id="formats">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Форматы</p>
-            <h2>Выберите, с чего начать</h2>
-          </div>
-          <a class="link" href="services.html">Операционный консалтинг и цены</a>
-        </div>
-        <div class="service-offer-grid service-offer-grid--3">
-          <article class="service-offer format-offer">
-            <p class="format-num">01</p>
-            <h3>Диагностика</h3>
-            <ul class="format-meta">
-              <li><strong>Срок:</strong> 30 минут, онлайн или очно</li>
-              <li><strong>Результат:</strong> понятно, ваш ли кейс и с чего начать</li>
-              <li><strong>Что будет:</strong> разберём задачу; если не мой профиль — скажу сразу</li>
-            </ul>
-            <p class="price">бесплатно</p>
-            <a class="btn" href="#contact">Связаться</a>
-          </article>
-          <article class="service-offer format-offer">
-            <p class="format-num">02</p>
-            <h3>Запуск доставки</h3>
-            <ul class="format-meta">
-              <li><strong>Срок:</strong> проект 3–4 месяца</li>
-              <li><strong>Результат:</strong> даркстор или доставка продуктов до первых заказов и unit-экономики</li>
-              <li><strong>Что будет:</strong> локация, процессы, команда, вывод в операционный плюс</li>
-            </ul>
-            <p class="price">от 400&nbsp;000 ₽<small> / проект</small></p>
-            <a class="btn btn-line" href="dark-store.html">Консалтинг по запуску даркстора</a>
-          </article>
-          <article class="service-offer format-offer">
-            <p class="format-num">03</p>
-            <h3>Франшиза и операции</h3>
-            <ul class="format-meta">
-              <li><strong>Срок:</strong> 4–6 недель или аудит 5–7 дней</li>
-              <li><strong>Результат:</strong> упакованная франшиза или план снижения расходов</li>
-              <li><strong>Что будет:</strong> финмодель, стандарты, KPI — опыт «Фасоль» и «Пятёрочка»</li>
-            </ul>
-            <p class="price">от 100&nbsp;000 ₽</p>
-            <a class="btn btn-line" href="franchise.html">Франшиза под ключ</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <div class="lead-magnet">
-      <div class="container lead-magnet-inner">
-        <div>
-          <p class="kicker">Материалы</p>
-          <h2 class="lead-magnet-title">Чек-листы по запуску и операциям</h2>
-          <p class="lead-magnet-text">Франшиза, логистика, KPI директора, импорт — короткие списки для команды. Открыты на странице материалов, можно распечатать.</p>
-        </div>
-        <a class="btn btn-dark" href="materials.html">Скачать чек-листы</a>
-      </div>
-    </div>
-
-    <section style="padding-top:0">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Кейсы</p>
-            <h2>Результат в цифрах</h2>
-          </div>
-          <a class="link" href="cases.html">Кейсы запуска даркстора и доставки</a>
-        </div>
-        <div class="case-grid">
-          <a class="case-card" href="cases.html#euroopt"><span class="case-card-logo"><img src="assets/images/logos/euroopt.png" alt="" width="100" height="32" loading="lazy" decoding="async"></span><p class="metric">2:37<span>сборка заказа</span></p><h3>Евроопт, Минск</h3><p>Даркстор из минуса: затраты ×2 ниже, списания 1,4%.</p><span class="more">Разбор кейса</span></a>
-          <a class="case-card" href="cases.html#lavka"><span class="case-card-logo"><img src="assets/images/logos/yandex-lavka.svg" alt="" width="110" height="28" loading="lazy" decoding="async"></span><p class="metric">10<span>дарксторов · Иркутск</span></p><h3>Яндекс Лавка</h3><p>Франшиза: 10 точек, оборот 120 млн ₽/мес.</p><span class="more">Разбор кейса</span></a>
-          <a class="case-card" href="cases.html#kuper"><span class="case-card-logo"><img src="assets/images/logos/kuper.png" alt="" width="100" height="32" loading="lazy" decoding="async"></span><p class="metric">+15%<span>GMV B2B</span></p><h3>Купер</h3><p>B2B: nonfood и средний чек +50% за три месяца.</p><span class="more">Разбор кейса</span></a>
-          <a class="case-card" href="cases.html#komus"><span class="case-card-logo"><img src="assets/images/logos/komus.svg" alt="" width="100" height="28" loading="lazy" decoding="async"></span><p class="metric">4 мес.<span>MVP доставки</span></p><h3>Комус</h3><p>Запуск доставки с нуля: 700 → 3&nbsp;500 SKU, конверсия 0,3% → 1,3%.</p><span class="more">Разбор кейса</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section style="padding-top:0">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Как работаем</p>
-            <h2>Сначала цифры, потом объём работ</h2>
-          </div>
-        </div>
-        <div class="steps">
-          <article><b>01</b><h3>30 минут</h3><p>Бесплатно разбираем задачу. Если профиль не мой — говорю сразу.</p></article>
-          <article><b>02</b><h3>Диагностика</h3><p>Смотрим P&amp;L, процессы и узкое место: маржа, запуск, франшиза или команда.</p></article>
-          <article><b>03</b><h3>План на 90 дней</h3><p>Гипотезы, ответственные, метрика успеха и что не трогаем.</p></article>
-          <article><b>04</b><h3>Внедрение</h3><p>Веду проект сам или как временный COO, пока результат не держится без меня.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="reviews">
-      <div class="container container-s">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Отзыв</p>
-            <h2>О работе с командой</h2>
-          </div>
-        </div>
-        <article class="quote">
-          <p>«По быстрой доставке Евроопт в Минске Пётр перестроил сборку и логистику: затраты направления ниже в два раза, сборка заказа — с пяти минут до 2:37, списания — с 7% до 1,4%. Работал на результат в цифрах, а не в отчётах.»</p>
-          <h3>Евгений Жигимонт</h3>
-          <p class="role">Заместитель генерального директора, Евроторг</p>
-        </article>
-        <p style="margin-top:18px;text-align:center"><a class="link" href="about.html">Обо мне и карьера →</a></p>
       </div>
     </section>
 
     <section class="lead-band" id="contact">
       <div class="container container--contact">
-        <p class="eyebrow">Связь</p>
-        <h2>Напишите или позвоните</h2>
-        <p class="lead">30 минут бесплатно — разберём задачу в Telegram, по телефону или почте. Формы на сайте нет: отвечаю лично в рабочий день. Цены и форматы — на странице <a class="link" href="services.html">услуг</a>.</p>
+        <p class="eyebrow">Первый шаг</p>
+        <h2>Расскажите, какой процесс не даёт бизнесу расти</h2>
+        <p class="lead contact-pitch">На первой встрече разберём ситуацию, ожидаемый бизнес-результат и поймём, нужна ли глубокая диагностика. Если задача вне нашей компетенции, скажем об этом прямо.</p>
+        <p style="margin-top:22px"><a class="btn btn-dark" href="https://t.me/+i5epN8cjG_pkOGE6" target="_blank" rel="noopener">Личный Telegram-канал Петра</a></p>
         <div class="contact-strip">
-          <a class="contact-strip__item contact-strip__item--phone" href="tel:+79269232929">
-            <span class="contact-strip__label">Телефон</span>
-            <strong>+7 (926) 923-29-29</strong>
-          </a>
-          <a class="contact-strip__item contact-strip__item--tg" href="https://t.me/PetroAlekseev">
-            <span class="contact-strip__label">Telegram</span>
-            <strong>@PetroAlekseev</strong>
-          </a>
-          <a class="contact-strip__item contact-strip__item--mail" href="mailto:a50petr@yandex.ru">
-            <span class="contact-strip__label">Почта</span>
-            <strong>a50petr@yandex.ru</strong>
-          </a>
-          <a class="contact-strip__item contact-strip__item--li" href="https://www.linkedin.com/in/%D0%BF%D0%B5%D1%82%D1%80-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2-265a56225/" rel="noopener noreferrer" target="_blank">
-            <span class="contact-strip__label">LinkedIn</span>
-            <strong>Пётр Алексеев</strong>
-          </a>
+          <a class="contact-strip__item contact-strip__item--phone" href="tel:+79269232929"><span class="contact-strip__label">Телефон</span><strong>+7 (926) 923-29-29</strong></a>
+          <a class="contact-strip__item contact-strip__item--tg" href="https://t.me/PetroAlekseev"><span class="contact-strip__label">Telegram</span><strong>@PetroAlekseev</strong></a>
+          <a class="contact-strip__item contact-strip__item--mail" href="mailto:a50petr@yandex.ru"><span class="contact-strip__label">Почта</span><strong>a50petr@yandex.ru</strong></a>
+          <a class="contact-strip__item contact-strip__item--li" href="https://www.linkedin.com/in/%D0%BF%D0%B5%D1%82%D1%80-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2-265a56225/" rel="noopener noreferrer" target="_blank"><span class="contact-strip__label">LinkedIn</span><strong>Пётр Алексеев</strong></a>
         </div>
       </div>
     </section>
@@ -249,31 +475,13 @@
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <a class="logo" href="index.html"><span class="logo-mark">ПА</span><span class="logo-text"><strong>Пётр Алексеев</strong><small>Консалтинг: даркстор, доставка, франшиза</small></span></a>
-        <p class="footer-intro">Спокойный запуск доставки, операционные процессы, франшиза. Москва, удалённо и с выездом.</p>
+        <a class="logo" href="#main"><span class="logo-mark">ПА</span><span class="logo-text"><strong>Пётр Алексеев</strong><small>Бизнес-процессы · автоматизация · внедрение</small></span></a>
+        <p class="footer-intro">Помогаем увидеть бизнес как систему, спроектировать изменения и довести их до измеримого результата.</p>
       </div>
-      <div>
-        <h2>Навигация</h2>
-        <ul>
-          <li><a href="services.html">Услуги и цены</a></li>
-          <li><a href="cases.html">Кейсы</a></li>
-          <li><a href="about.html">Обо мне</a></li>
-          <li><a href="blog/index.html">Статьи</a></li>
-          <li><a href="materials.html">Чек-листы</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>Связь</h2>
-        <ul>
-          <li><a href="tel:+79269232929">+7 (926) 923-29-29</a></li>
-          <li><a href="mailto:a50petr@yandex.ru">a50petr@yandex.ru</a></li>
-          <li><a href="https://t.me/PetroAlekseev">Telegram</a></li>
-          <li><a href="https://www.linkedin.com/in/%D0%BF%D0%B5%D1%82%D1%80-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2-265a56225/" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
-          <li>Москва</li>
-        </ul>
-      </div>
+      <div><h2>Разделы</h2><ul><li><a href="#approach">Подход</a></li><li><a href="#expertise">Что делаем</a></li><li><a href="#team">Команда и партнёры</a></li><li><a href="#case">Кейс Евроопт</a></li><li><a href="#experience">Опыт</a></li></ul></div>
+      <div><h2>Связь</h2><ul><li><a href="tel:+79269232929">+7 (926) 923-29-29</a></li><li><a href="mailto:a50petr@yandex.ru">a50petr@yandex.ru</a></li><li><a href="https://t.me/PetroAlekseev">Написать в Telegram</a></li><li><a href="https://t.me/+i5epN8cjG_pkOGE6" target="_blank" rel="noopener">Личный Telegram-канал</a></li><li>Москва · удалённо · с выездом</li></ul></div>
     </div>
-    <div class="container legal"><p>РГСУ, государственное и муниципальное управление, 2012 · © <span data-year>2026</span> Пётр Алексеев. Цифры на сайте — результаты проектов, где я отвечал за операционное управление или запуск.</p></div>
+    <div class="container legal"><p>© <span data-year>2026</span> Пётр Алексеев. Цифры — результаты проектов, где Пётр отвечал за операционное управление и внедрение изменений.</p></div>
   </footer>
   <a class="float-chat" href="https://t.me/PetroAlekseev" aria-label="Написать в Telegram"></a>
   <script src="assets/js/main.js"></script>
