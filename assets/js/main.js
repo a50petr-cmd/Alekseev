@@ -39,50 +39,62 @@
       ym(113335579, "reachGoal", name);
     }
   }
-  document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
-    link.addEventListener("click", function () {
-      metrikaGoal("click_phone");
-    });
-  });
-  document.querySelectorAll('a[href*="t.me/"]').forEach(function (link) {
-    link.addEventListener("click", function () {
-      metrikaGoal("click_telegram");
-    });
-  });
-  document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
-    link.addEventListener("click", function () {
-      metrikaGoal("click_email");
-    });
-  });
-  document.querySelectorAll('a[href*="linkedin.com/"]').forEach(function (link) {
-    link.addEventListener("click", function () {
-      metrikaGoal("click_linkedin");
-    });
-  });
-  document.querySelectorAll("[data-goal]").forEach(function (element) {
-    element.addEventListener("click", function () {
-      metrikaGoal(element.dataset.goal);
-    });
-  });
 
-  if ("IntersectionObserver" in window) {
-    var observedGoals = [
-      { selector: "#team", goal: "view_team" },
-      { selector: "#contact", goal: "reach_contact" },
-    ];
-    observedGoals.forEach(function (item) {
-      var element = document.querySelector(item.selector);
-      if (!element) return;
-      var observer = new IntersectionObserver(
-        function (entries) {
-          if (!entries[0].isIntersecting) return;
-          metrikaGoal(item.goal);
-          observer.disconnect();
-        },
-        { threshold: 0.35 }
-      );
-      observer.observe(element);
+  function setupMetrikaTracking() {
+    if (window.__metrikaTrackingBound) {
+      return;
+    }
+    window.__metrikaTrackingBound = true;
+    document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+      link.addEventListener("click", function () {
+        metrikaGoal("click_phone");
+      });
     });
+    document.querySelectorAll('a[href*="t.me/"]').forEach(function (link) {
+      link.addEventListener("click", function () {
+        metrikaGoal("click_telegram");
+      });
+    });
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
+      link.addEventListener("click", function () {
+        metrikaGoal("click_email");
+      });
+    });
+    document.querySelectorAll('a[href*="linkedin.com/"]').forEach(function (link) {
+      link.addEventListener("click", function () {
+        metrikaGoal("click_linkedin");
+      });
+    });
+    document.querySelectorAll("[data-goal]").forEach(function (element) {
+      element.addEventListener("click", function () {
+        metrikaGoal(element.dataset.goal);
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      var observedGoals = [
+        { selector: "#team", goal: "view_team" },
+        { selector: "#contact", goal: "reach_contact" },
+      ];
+      observedGoals.forEach(function (item) {
+        var element = document.querySelector(item.selector);
+        if (!element) return;
+        var observer = new IntersectionObserver(
+          function (entries) {
+            if (!entries[0].isIntersecting) return;
+            metrikaGoal(item.goal);
+            observer.disconnect();
+          },
+          { threshold: 0.35 }
+        );
+        observer.observe(element);
+      });
+    }
+  }
+
+  document.addEventListener("metrika:ready", setupMetrikaTracking, { once: true });
+  if (window.__metrikaInitialized) {
+    setupMetrikaTracking();
   }
 
   var booking = document.querySelector("#booking");
