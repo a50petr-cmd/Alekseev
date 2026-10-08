@@ -87,28 +87,21 @@
     .outcomes strong { display: block; font-family: var(--display); font-size: 1.35rem; color: #fff; }
     .outcomes span { display: block; margin-top: 5px; color: rgba(246,243,236,.62); font-size: 13px; }
     .recommendation {
-      display: grid; grid-template-columns: minmax(260px, .72fr) 1.28fr; gap: 34px; align-items: start;
-      margin-top: 16px; padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: var(--cream);
-    }
-    .recommendation-scan {
-      display: block; padding: 10px; border-radius: 16px; background: #e8e4d9;
-      box-shadow: 0 16px 38px rgba(18,22,18,.12); text-decoration: none;
-    }
-    .recommendation-scan img {
-      width: 100%; border-radius: 9px; filter: contrast(1.12) brightness(1.04);
-    }
-    .recommendation-scan span {
-      display: block; padding: 10px 4px 2px; text-align: center; color: var(--ink-soft);
-      font-size: 13px; font-weight: 750;
+      max-width: 940px; margin-top: 16px; padding: clamp(26px, 5vw, 52px);
+      border: 1px solid var(--line); border-radius: 24px; background: var(--cream);
     }
     .recommendation-copy h3 { margin: 8px 0 15px; font-size: clamp(1.65rem, 3vw, 2.25rem); }
     .recommendation-quote {
       margin: 0 0 20px; padding-left: 18px; border-left: 3px solid var(--orange);
       font-family: var(--serif); font-size: clamp(1.22rem, 2.2vw, 1.55rem); line-height: 1.38;
     }
+    .recommendation-intro { max-width: 52rem; margin-bottom: 18px; color: var(--ink-soft); }
     .recommendation-copy .detail-list { margin: 0 0 20px; font-size: 15px; }
-    .recommendation-author { color: var(--ink-soft); font-size: 14px; }
-    .recommendation-author strong { display: block; color: var(--ink); font-size: 16px; }
+    .recommendation-closing {
+      max-width: 52rem; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line);
+      color: var(--ink-soft);
+    }
+    .recommendation-author { margin-top: 22px; color: var(--ink); font-size: 14px; font-weight: 800; }
     .scope-list {
       display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line);
     }
@@ -145,11 +138,10 @@
     .continuity strong { color: #fff; }
     .contact-pitch { max-width: 46rem; }
     @media (max-width: 980px) {
-      .process-strip, .capability-grid, .euroopt-story, .outcomes, .scope-list, .team-panel, .team-grid, .recommendation { grid-template-columns: 1fr; }
+      .process-strip, .capability-grid, .euroopt-story, .outcomes, .scope-list, .team-panel, .team-grid { grid-template-columns: 1fr; }
       .scope-list article { border-right: 0 !important; }
       .preview-hero .stats { grid-template-columns: 1fr; }
       .euroopt-story, .team-panel { padding: 28px 22px; }
-      .recommendation-copy { order: -1; }
     }
   </style>
   <script type="application/ld+json">
@@ -378,13 +370,10 @@
           </div>
         </div>
         <div class="recommendation">
-          <a class="recommendation-scan" href="assets/images/euroopt-recommendation-public.jpg" target="_blank" rel="noopener" aria-label="Открыть рекомендательное письмо Евроопт в полном размере" data-goal="open_recommendation">
-            <img src="assets/images/euroopt-recommendation-public.jpg" width="728" height="595" alt="Рекомендательное письмо компании Евроопт о работе Петра Алексеева над сервисом ЯМИГОМ" loading="lazy">
-            <span>Нажмите, чтобы открыть письмо в полном размере</span>
-          </a>
           <div class="recommendation-copy">
-            <p class="eyebrow"><span>Подтверждение</span> Рекомендательное письмо</p>
+            <p class="eyebrow"><span>Подтверждение</span> Из рекомендательного письма</p>
             <h3>Евроопт о результатах проекта</h3>
+            <p class="recommendation-intro">Пётр Алексеев работал консультантом по развитию сервисов доставки с сентября 2021 года по январь 2022 года. Он был приглашён для выстраивания бизнес-процессов быстрой доставки «ЯМИГОМ» в Минске.</p>
             <p class="recommendation-quote">«Результаты его деятельности до сих пор приносят неоспоримую пользу нашему бизнесу».</p>
             <ul class="detail-list">
               <li>Выстроены коммуникации между операционным блоком, маркетингом, IT и коммерческим блоком</li>
@@ -393,7 +382,8 @@
               <li>Совместно с IT разработана собственная WMS для товародвижения</li>
               <li>Увеличена скорость сборки заказов</li>
             </ul>
-            <p class="recommendation-author"><strong>Евгений Жигимонт</strong>Первый заместитель генерального директора ООО «Евроторг»</p>
+            <p class="recommendation-closing">«С поставленными руководством задачами справился на отлично. Помимо высокого профессионализма, оставил впечатление приятного и целеустремлённого человека. Обладает стратегическим мышлением, пониманием и готовностью реагировать на изменения окружающей среды, навыками управления проектами и способностью координировать усилия многих для достижения целей компании».</p>
+            <p class="recommendation-author">Первый заместитель генерального директора ООО «Евроторг»</p>
           </div>
         </div>
       </div>
