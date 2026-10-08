@@ -1,0 +1,7 @@
+Self-hosted fonts used on this site (SIL Open Font License 1.1):
+
+- Manrope — Copyright 2018 The Manrope Project Authors
+- Source Serif 4 — Copyright 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'
+- Unbounded — Copyright 2022 The Unbounded Project Authors
+
+Full OFL text: https://scripts.sil.org/OFL
