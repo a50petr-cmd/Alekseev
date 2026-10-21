@@ -19,8 +19,9 @@
       var elapsed = (Date.now() - started) / 1000;
       data.set("_elapsed", String(elapsed));
 
-      function showSuccess() {
-        if (typeof ym === "function") {
+      function showSuccess(opts) {
+        var track = !(opts && opts.track === false);
+        if (track && typeof ym === "function") {
           ym(113335579, "reachGoal", "form_submit");
         }
         form.reset();
@@ -34,7 +35,7 @@
       function showError() {
         if (status) {
           status.innerHTML =
-            'Не удалось отправить форму. Напишите напрямую: <a href="mailto:a50petr@yandex.ru">a50petr@yandex.ru</a>';
+            'Не удалось отправить форму. Напишите напрямую: <a href="mailto:a50petro@yandex.ru">a50petro@yandex.ru</a>';
           status.className = "lead-status is-err";
         }
       }
@@ -48,7 +49,7 @@
           return;
         }
         if (data.get("website")) {
-          showSuccess();
+          showSuccess({ track: false });
           return;
         }
         if (!data.get("name") || !data.get("contact") || !data.get("task") || !data.get("consent")) {

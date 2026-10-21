@@ -21,14 +21,20 @@ python -m http.server 8765
 | V3 — портрет эксперта | http://127.0.0.1:8765/_preview/mockups/v3/ |
 | Черновик политики | http://127.0.0.1:8765/_preview/mockups/privacy-draft.html |
 
-## Что исправлено (проверка v2)
+## Что исправлено (последняя итерация v2)
 
-1. **Горизонтальный скролл.** Причина: `style.css` задаёт `.steps { grid-template-columns: repeat(4, 1fr) }`, а в кейсе Евроопт на главной было 5 шагов во второй колонке `case-panel` → документ шире окна (~1519 при viewport 1440). На главной v2 кейсы упрощены до одной карточки без шагов; в `mockup.css` для `.steps` зафиксирована одна колонка. После правок: **scrollWidth = 1440 на 1440 и scrollWidth = 390 на 390**.
-2. **Кейсы на главной.** Карточка: название, ситуация (1–2 строки), 3 цифры, «Услуга: …», «Открыть кейс». Шаги и цитата только на `case-fasol.html` / `case-euroopt.html`.
-3. **Контраст (WCAG AA).** Кнопка «Как это работает» (перебивает `btn-ghost` из прод-CSS с белым текстом); ячейки Telegram/LinkedIn (специфичность фона и цвета); подпись согласия и ссылка на политику; ссылка на канал; видимый checkbox.
-4. **`operations-director.html`:** canonical `https://petr-alekseev.ru/operations-director.html`; фраза про 6 месяцев заменена.
-5. **Цели Метрики** — см. ниже.
-6. Скриншоты v2 (home, operations-director, case-fasol, case-euroopt) на 1440 и 390 обновлены.
+1. **«О нас»:** другое фото, чем в hero — `assets/images/draft/petr-alekseev-portrait-v1.jpg` (есть также `draft/petr-alekseev-original.jpg`). Hero остаётся на `petr-alekseev.jpg`.
+2. **Контраст тёмных карточек кейсов:** eyebrow и ссылка «Открыть кейс» — `#5eead4` / `#d5ddd7` на `#101410` (WCAG AA).
+3. **Honeypot в `lead-form.js`:** при заполненном `website` показывается успех, но `form_submit` / `ym` не вызываются. Реальный успех по-прежнему шлёт цель.
+4. Почта в макетах: везде `a50petro@yandex.ru`.
+5. Скриншоты v2 (home, operations-director, case-fasol, case-euroopt) 1440/390 обновлены.
+
+### Ранее (проверка v2)
+
+1. Горизонтальный скролл (`.steps` из прод-CSS + 5 шагов Евроопта) → упрощённые карточки; scrollWidth = ширине окна на 1440 и 390.
+2. Кейсы на главной: одна карточка без шагов/цитаты.
+3. Контраст ghost-кнопки, TG/LI, согласия, канала, checkbox.
+4. Canonical и формулировка на `operations-director.html`.
 
 ## Цели Метрики в макетах v2
 
@@ -41,7 +47,7 @@ python -m http.server 8765
 | `click_primary_cta` | `data-goal="click_primary_cta"` | Кнопки «Обсудить задачу» (hero, about, header услуги, submit формы, кейсы) |
 | `view_case` | `data-goal="view_case"` | «Открыть кейс» на главной и на странице услуги |
 | `click_telegram_channel` | `data-goal="click_telegram_channel"` | Ссылка на канал под формой и в футере |
-| `form_submit` | `lead-form.js` → `ym(..., "reachGoal", "form_submit")` при успешной отправке | Не `data-goal` на клике: цель только после успешного stub/PHP |
+| `form_submit` | `lead-form.js` → `ym(..., "reachGoal", "form_submit")` при реальном успехе | Honeypot (`website` заполнено): UI «успех», цель **не** шлётся |
 
 Новых идентификаторов не добавлялось. Для phone/email/telegram/linkedin отдельных `data-goal` нет — цели уже вешаются в `main.js` по `href` (как на проде); дублировать атрибут не стали, чтобы не слать цель дважды.
 

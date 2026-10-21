@@ -43,7 +43,7 @@ $safeName = str_replace(["\r", "\n"], ' ', $name);
 $safeContact = str_replace(["\r", "\n"], ' ', $contact);
 $body = "Имя: {$safeName}\nКонтакт: {$safeContact}\n\nЗадача:\n{$task}\n";
 $headers = "From: noreply@petr-alekseev.ru\r\nContent-Type: text/plain; charset=UTF-8\r\n";
-$sent = @mail('a50petr@yandex.ru', 'Заявка с сайта', $body, $headers);
+$sent = @mail('a50petro@yandex.ru', 'Заявка с сайта', $body, $headers);
 
 if (!$sent) {
     http_response_code(500);
