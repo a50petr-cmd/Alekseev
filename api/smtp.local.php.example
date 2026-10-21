@@ -1,0 +1,16 @@
+<?php
+/**
+ * Скопируйте в smtp.local.php (не коммитить) или задайте GitHub Secrets:
+ * SMTP_USER, SMTP_PASS — тогда файл соберётся при деплое.
+ *
+ * Рекомендуется SMTP Яндекса: письма на a50petro@yandex.ru не уходят в спам.
+ * Пароль приложения: https://id.yandex.ru/security/app-passwords
+ */
+return [
+    'host' => 'ssl://smtp.yandex.ru',
+    'port' => 465,
+    'user' => 'a50petro@yandex.ru',
+    'pass' => 'ПАРОЛЬ_ПРИЛОЖЕНИЯ',
+    'from' => 'a50petro@yandex.ru',
+    'from_name' => 'Сайт petr-alekseev.ru',
+];

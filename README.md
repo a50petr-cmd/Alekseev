@@ -50,6 +50,7 @@
 - Имя и контакт **не** попадают в заголовки письма: CR/LF вычищаются, значения только в теле; `From` / `Subject` фиксированные.
 - Honeypot `website`: ответ `ok`, без цели Метрики на клиенте при stub; на PHP — тихий `ok` без письма.
 - Ошибка отправки → mailto на `a50petro@yandex.ru` в UI.
+- **Почта не в спам:** лучше SMTP Яндекса — секреты GitHub `SMTP_USER` / `SMTP_PASS` (пароль приложения). Иначе `mail()` от `forms@petr-alekseev.ru` (ящик нужно создать в панели Reg.ru → Почта).
 
 ## Deploy FTP (`.github/workflows/deploy-ftp.yml`, не меняли)
 

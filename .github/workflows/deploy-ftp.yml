@@ -24,6 +24,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Write SMTP config for lead form
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: |
+          python3 <<'PY'
+          import os
+          from pathlib import Path
+          user = os.environ.get("SMTP_USER") or "a50petro@yandex.ru"
+          password = os.environ.get("SMTP_PASS") or ""
+          if not password:
+              print("SMTP_PASS not set — lead.php will use mail() via forms@petr-alekseev.ru")
+              raise SystemExit(0)
+          def php_str(s: str) -> str:
+              return "'" + s.replace("\\", "\\\\").replace("'", "\\'") + "'"
+
+          lines = [
+              "<?php",
+              "return [",
+              f"  'host' => {php_str('ssl://smtp.yandex.ru')},",
+              "  'port' => 465,",
+              f"  'user' => {php_str(user)},",
+              f"  'pass' => {php_str(password)},",
+              f"  'from' => {php_str(user)},",
+              f"  'from_name' => {php_str('Сайт petr-alekseev.ru')},",
+              "];",
+              "",
+          ]
+          Path("api/smtp.local.php").write_text("\n".join(lines), encoding="utf-8")
+          print(f"Wrote api/smtp.local.php for SMTP user {user}")
+          PY
+
       - name: Normalize FTP server directory
         id: ftpdir
         env:

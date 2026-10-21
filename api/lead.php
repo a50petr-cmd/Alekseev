@@ -220,31 +220,23 @@ if ($referer === '') {
     $referer = 'не указано';
 }
 
-$body = "Имя: {$safeName}\n"
+$to = 'a50petro@yandex.ru';
+$subjectText = 'Новая заявка с сайта petr-alekseev.ru';
+$bodyText = "Новая заявка с сайта petr-alekseev.ru\n"
+    . "--------------------------------\n"
+    . "Имя: {$safeName}\n"
     . "Телефон: {$safePhone}\n"
     . "Почта: {$safeEmail}\n"
     . "Telegram: {$safeTelegram}\n"
-    . "Страница: {$referer}\n\n"
+    . "Страница: {$referer}\n"
+    . "--------------------------------\n"
     . "Задача:\n{$safeTask}\n";
 
-$subject = mb_encode_mimeheader('Заявка с сайта petr-alekseev.ru', 'UTF-8', 'B');
+$replyTo = ($email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL) !== false)
+    ? strip_crlf($email)
+    : $to;
 
-$headers = "From: noreply@petr-alekseev.ru\r\n"
-    . "MIME-Version: 1.0\r\n"
-    . "Content-Type: text/plain; charset=UTF-8\r\n"
-    . "Content-Transfer-Encoding: 8bit\r\n";
-
-if ($email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL) !== false) {
-    $headers .= 'Reply-To: ' . strip_crlf($email) . "\r\n";
-}
-
-$sent = @mail(
-    'a50petro@yandex.ru',
-    $subject,
-    $body,
-    $headers,
-    '-f noreply@petr-alekseev.ru'
-);
+$sent = send_lead_email($to, $subjectText, $bodyText, $replyTo);
 
 if (!$sent) {
     http_response_code(500);
@@ -253,3 +245,187 @@ if (!$sent) {
 }
 
 echo json_encode(['ok' => true]);
+
+/**
+ * @return array{host:string,port:int,user:string,pass:string,from:string,from_name:string}|null
+ */
+function load_smtp_config(): ?array
+{
+    $local = __DIR__ . '/smtp.local.php';
+    if (!is_file($local)) {
+        return null;
+    }
+    /** @var mixed $cfg */
+    $cfg = include $local;
+    if (!is_array($cfg)) {
+        return null;
+    }
+    $user = trim((string)($cfg['user'] ?? ''));
+    $pass = (string)($cfg['pass'] ?? '');
+    if ($user === '' || $pass === '') {
+        return null;
+    }
+    return [
+        'host' => (string)($cfg['host'] ?? 'ssl://smtp.yandex.ru'),
+        'port' => (int)($cfg['port'] ?? 465),
+        'user' => $user,
+        'pass' => $pass,
+        'from' => (string)($cfg['from'] ?? $user),
+        'from_name' => (string)($cfg['from_name'] ?? 'Сайт petr-alekseev.ru'),
+    ];
+}
+
+function encode_mime_header(string $text): string
+{
+    return '=?UTF-8?B?' . base64_encode($text) . '?=';
+}
+
+function build_message_id(): string
+{
+    return '<lead.' . bin2hex(random_bytes(12)) . '@petr-alekseev.ru>';
+}
+
+function build_raw_email(
+    string $to,
+    string $fromEmail,
+    string $fromName,
+    string $subject,
+    string $body,
+    string $replyTo
+): string {
+    $qpBody = quoted_printable_encode(str_replace("\r\n", "\n", $body));
+    $qpBody = str_replace("\n", "\r\n", $qpBody);
+
+    $headers = [
+        'Date: ' . date('r'),
+        'From: ' . encode_mime_header($fromName) . ' <' . $fromEmail . '>',
+        'To: <' . $to . '>',
+        'Reply-To: <' . $replyTo . '>',
+        'Message-ID: ' . build_message_id(),
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: quoted-printable',
+        'X-Mailer: petr-alekseev.ru',
+        'Auto-Submitted: auto-generated',
+    ];
+
+    return 'Subject: ' . encode_mime_header($subject) . "\r\n"
+        . implode("\r\n", $headers) . "\r\n\r\n"
+        . $qpBody . "\r\n";
+}
+
+function smtp_expect($fp, array $okCodes): bool
+{
+    $response = '';
+    while (($line = fgets($fp, 515)) !== false) {
+        $response .= $line;
+        if (isset($line[3]) && $line[3] === ' ') {
+            break;
+        }
+    }
+    $code = (int)substr($response, 0, 3);
+    return in_array($code, $okCodes, true);
+}
+
+function smtp_cmd($fp, string $cmd, array $okCodes): bool
+{
+    fwrite($fp, $cmd . "\r\n");
+    return smtp_expect($fp, $okCodes);
+}
+
+function send_via_smtp(array $cfg, string $to, string $subject, string $body, string $replyTo): bool
+{
+    $host = $cfg['host'];
+    $port = $cfg['port'];
+    $errno = 0;
+    $errstr = '';
+    $fp = @stream_socket_client(
+        $host . ':' . $port,
+        $errno,
+        $errstr,
+        20,
+        STREAM_CLIENT_CONNECT
+    );
+    if ($fp === false) {
+        return false;
+    }
+    stream_set_timeout($fp, 20);
+
+    try {
+        if (!smtp_expect($fp, [220])) {
+            return false;
+        }
+        $ehloHost = 'petr-alekseev.ru';
+        if (!smtp_cmd($fp, 'EHLO ' . $ehloHost, [250])) {
+            return false;
+        }
+        if (!smtp_cmd($fp, 'AUTH LOGIN', [334])) {
+            return false;
+        }
+        if (!smtp_cmd($fp, base64_encode($cfg['user']), [334])) {
+            return false;
+        }
+        if (!smtp_cmd($fp, base64_encode($cfg['pass']), [235])) {
+            return false;
+        }
+        if (!smtp_cmd($fp, 'MAIL FROM:<' . $cfg['from'] . '>', [250])) {
+            return false;
+        }
+        if (!smtp_cmd($fp, 'RCPT TO:<' . $to . '>', [250, 251])) {
+            return false;
+        }
+        if (!smtp_cmd($fp, 'DATA', [354])) {
+            return false;
+        }
+
+        $raw = build_raw_email($to, $cfg['from'], $cfg['from_name'], $subject, $body, $replyTo);
+        // Dot-stuffing
+        $raw = preg_replace('/^\./m', '..', $raw) ?? $raw;
+        fwrite($fp, $raw . "\r\n.\r\n");
+        if (!smtp_expect($fp, [250])) {
+            return false;
+        }
+        smtp_cmd($fp, 'QUIT', [221]);
+        return true;
+    } finally {
+        fclose($fp);
+    }
+}
+
+function send_via_mail(string $to, string $subject, string $body, string $replyTo): bool
+{
+    // Ящик должен существовать в панели Reg.ru (Почта), иначе Яндекс часто кладёт в спам.
+    $fromEmail = 'forms@petr-alekseev.ru';
+    $fromName = 'Сайт petr-alekseev.ru';
+    $qpBody = quoted_printable_encode(str_replace("\r\n", "\n", $body));
+    $qpBody = str_replace("\n", "\r\n", $qpBody);
+
+    $headers = 'Date: ' . date('r') . "\r\n"
+        . 'From: ' . encode_mime_header($fromName) . ' <' . $fromEmail . ">\r\n"
+        . 'Reply-To: <' . $replyTo . ">\r\n"
+        . 'Message-ID: ' . build_message_id() . "\r\n"
+        . "MIME-Version: 1.0\r\n"
+        . "Content-Type: text/plain; charset=UTF-8\r\n"
+        . "Content-Transfer-Encoding: quoted-printable\r\n"
+        . "X-Mailer: petr-alekseev.ru\r\n"
+        . "Auto-Submitted: auto-generated";
+
+    return @mail(
+        $to,
+        encode_mime_header($subject),
+        $qpBody,
+        $headers,
+        '-f ' . $fromEmail
+    );
+}
+
+function send_lead_email(string $to, string $subject, string $body, string $replyTo): bool
+{
+    $smtp = load_smtp_config();
+    if ($smtp !== null) {
+        if (send_via_smtp($smtp, $to, $subject, $body, $replyTo)) {
+            return true;
+        }
+    }
+    return send_via_mail($to, $subject, $body, $replyTo);
+}
