@@ -1010,3 +1010,93 @@ body.theme-site .service-label { background: rgba(20, 184, 166, 0.16); color: #5
   text-align: center;
   padding: 48px 16px;
 }
+
+/* Blog */
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: var(--muted);
+}
+.breadcrumbs a { color: var(--accent); text-decoration: none; }
+.breadcrumbs a:hover { text-decoration: underline; }
+.breadcrumbs li:not(:last-child)::after {
+  content: "→";
+  margin-left: 10px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.blog-list {
+  display: grid;
+  gap: 16px;
+  margin: 28px 0 48px;
+}
+.blog-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.blog-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.blog-card time {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.blog-card h2 {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.blog-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0 0 28px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.article-body {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  overflow-wrap: anywhere;
+}
+.article-body h2 {
+  margin-top: 28px;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+}
+.article-body h2:first-child { margin-top: 0; }
+.article-body p, .article-body li { color: var(--ink-soft); }
+.article-body ul, .article-body ol { margin: 12px 0; padding-left: 1.25em; }
+.article-body a { color: var(--accent); }
+.article-cta {
+  margin: 28px 0 48px;
+  padding: 24px 28px;
+  background: var(--band);
+  color: var(--band-ink);
+  border-radius: var(--radius-lg);
+}
+.article-cta .lead { color: #c9d4cc; }
+.article-cta a.channel-link { color: #5eead4; }

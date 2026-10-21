@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Старые URL блога → новый индекс
+RewriteRule ^blog/franchise\.html$ /blog/ [R=301,L]
+RewriteRule ^blog/import\.html$ /blog/ [R=301,L]
+RewriteRule ^blog/kpi\.html$ /blog/ [R=301,L]
+RewriteRule ^blog/logistics\.html$ /blog/ [R=301,L]
+RewriteRule ^blog/index\.html$ /blog/ [R=301,L]

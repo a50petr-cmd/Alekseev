@@ -4,7 +4,7 @@
 
 Почта везде: `a50petro@yandex.ru`.
 
-## Страницы (5 + 404)
+## Страницы (5 + блог + 404)
 
 | URL | Файл |
 |---|---|
@@ -12,8 +12,14 @@
 | `/operations-director.html` | услуга |
 | `/case-fasol.html` | кейс Фасоль |
 | `/case-euroopt.html` | кейс Евроопт |
+| `/blog/` | индекс блога (v2) |
+| `/blog/darkstores-russia-october-2026.html` | статья |
 | `/privacy.html` | политика (из privacy-release) |
 | `/404.html` | ошибка |
+
+Старые `blog/franchise|import|kpi|logistics.html` и старый индекс **не в релизе**. 301 → `/blog/` в `.htaccess`.
+
+**Статья darkstores:** тело раздела 1 ждёт текст из документа (в чат); на странице пока `[УТОЧНИТЬ]`.
 
 ## Добавлено
 
