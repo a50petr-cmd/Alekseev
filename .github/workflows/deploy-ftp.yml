@@ -109,3 +109,45 @@ jobs:
           done
           echo "::error::Сайт не обновился. Проверьте секрет FTP_SERVER_DIR (корень сайта в ISPmanager, обычно www/petr-alekseev.ru/)."
           exit 1
+
+      - name: Notify Yandex IndexNow
+        continue-on-error: true
+        run: |
+          python3 <<'PY'
+          import json, re, urllib.request
+          from pathlib import Path
+
+          key = "15cc1411bc624812835571494ad154e0"
+          locs = re.findall(r"<loc>\s*([^<]+?)\s*</loc>", Path("sitemap.xml").read_text(encoding="utf-8"))
+          payload = {
+              "host": "petr-alekseev.ru",
+              "key": key,
+              "keyLocation": f"https://petr-alekseev.ru/{key}.txt",
+              "urlList": locs,
+          }
+          body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+          print("IndexNow payload:", body.decode("utf-8"))
+          req = urllib.request.Request(
+              "https://yandex.com/indexnow",
+              data=body,
+              headers={"Content-Type": "application/json; charset=utf-8"},
+              method="POST",
+          )
+          try:
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  code = resp.getcode()
+                  text = resp.read().decode("utf-8", errors="replace")
+          except urllib.error.HTTPError as e:
+              code = e.code
+              text = e.read().decode("utf-8", errors="replace")
+          except Exception as e:
+              code = 0
+              text = str(e)
+          print(f"IndexNow HTTP status: {code}")
+          print("IndexNow response body:")
+          print(text)
+          if code in (200, 202):
+              print("IndexNow OK")
+          else:
+              print("IndexNow non-success status (deploy continues)")
+          PY

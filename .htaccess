@@ -36,6 +36,9 @@ RewriteRule ^checklists/(franchise|import|kpi|logistics)\.html$ /blog/ [R=301,L]
   <Files "robots.txt">
     Require all granted
   </Files>
+  <Files "15cc1411bc624812835571494ad154e0.txt">
+    Require all granted
+  </Files>
   <Files "posts.json">
     Require all granted
   </Files>
