@@ -1,20 +1,97 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Страница не найдена — Пётр Алексеев</title>
+  <meta name="description" content="Страница не найдена. Вернитесь на главную petr-alekseev.ru или откройте услуги, блог или контакты.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://petr-alekseev.ru/404.html">
+  <meta property="og:title" content="Страница не найдена — Пётр Алексеев">
+  <meta property="og:description" content="Страница не найдена. Вернитесь на главную petr-alekseev.ru или откройте услуги, блог или контакты.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://petr-alekseev.ru/404.html">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Пётр Алексеев">
+  <meta property="og:image" content="https://petr-alekseev.ru/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0f1411">
   <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="32x32">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body class="theme-site">
-  <main class="page-404">
+  <a class="skip" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="wrap site-header-inner">
+      <a class="logo" href="/"><span class="logo-mark">ПА</span><span class="logo-text"><strong>Пётр Алексеев</strong><small>Операции · ритейл · доставка</small></span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню"><span></span></button>
+      <nav id="nav" class="nav">
+        <a href="/#offers">Услуги</a>
+        <a href="/#method">Как мы работаем</a>
+        <a href="/#cases">Кейсы</a>
+        <a href="/blog/">Блог</a>
+        <a href="/#about">О нас</a>
+        <a class="btn btn-primary btn-small nav-cta" href="/#contact" data-goal="click_primary_cta">Связаться</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="page-404">
     <p class="eyebrow"><span>404</span></p>
     <h1>Страница не найдена</h1>
-    <p class="lead">Такой страницы нет. Вернитесь на главную.</p>
-    <p style="margin-top:24px"><a class="btn btn-primary" href="/">На главную</a></p>
+    <p class="lead">Такой страницы нет. Вернитесь на главную или откройте нужный раздел.</p>
+    <p style="margin-top:24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+      <a class="btn btn-primary" href="/">На главную</a>
+      <a class="btn btn-ghost" href="/#offers">Услуги</a>
+      <a class="btn btn-ghost" href="/blog/">Блог</a>
+      <a class="btn btn-ghost" href="/#contact">Связаться</a>
+    </p>
   </main>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="/"><span class="logo-mark">ПА</span><span class="logo-text"><strong>Пётр Алексеев</strong><small>Операции · ритейл</small></span></a>
+        <p class="lead" style="margin-top:12px">Берём на себя операционку и доводим изменения до результата.</p>
+      </div>
+      <div>
+        <h2>Навигация</h2>
+        <ul>
+          <li><a href="/#offers">Услуги</a></li>
+          <li><a href="/operations-director.html">Операционный директор на аутсорсе</a></li>
+          <li><a href="/case-fasol.html">Кейс «Фасоль»</a></li>
+          <li><a href="/case-euroopt.html">Кейс Евроопт</a></li>
+          <li><a href="/blog/">Блог</a></li>
+          <li><a href="/#contact">Связаться</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Связь</h2>
+        <ul>
+          <li><a href="tel:+79269232929">+7 (926) 923-29-29</a></li>
+          <li><a href="https://t.me/PetroAlekseev">@PetroAlekseev</a></li>
+          <li><a href="mailto:a50petro@yandex.ru">a50petro@yandex.ru</a></li>
+          <li><a href="https://t.me/Alekseev_Petr_consult" data-goal="click_telegram_channel">Канал</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap legal">
+      <p><a href="/privacy.html">Политика конфиденциальности</a> · <a href="/consent.html">Согласие на обработку данных</a> · © <span data-year>2026</span> Пётр Алексеев</p>
+    </div>
+  </footer>
+  <script src="/assets/js/consent.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script>
+    (function () {
+      var toggle = document.querySelector(".nav-toggle");
+      var nav = document.querySelector(".nav");
+      if (!toggle || !nav) return;
+      toggle.addEventListener("click", function () {
+        var open = nav.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    })();
+  </script>
 </body>
 </html>

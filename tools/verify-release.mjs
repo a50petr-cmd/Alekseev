@@ -26,6 +26,7 @@ const releaseHtml = [
   "case-fasol.html",
   "case-euroopt.html",
   "privacy.html",
+  "consent.html",
   "404.html",
 ];
 const releaseExtras = ["api/lead.php", "assets/js/lead-form.js", "assets/css/site.css", "sitemap.xml"];
@@ -57,16 +58,12 @@ for (const file of checkFiles) {
   const text = readFileSync(file, "utf8");
   const r = rel(file);
   if (text.includes("[УТОЧНИТЬ")) errors.push(`${r}: found [УТОЧНИТЬ`);
+  if (text.includes("[ИНН")) errors.push(`${r}: found [ИНН`);
+  if (text.includes("[дата")) errors.push(`${r}: found [дата`);
   if (text.includes("a50petr@yandex.ru")) errors.push(`${r}: found a50petr@yandex.ru`);
   if (text.includes("_preview")) errors.push(`${r}: found _preview`);
   if (text.includes("Макет")) errors.push(`${r}: found Макет`);
   if (text.includes("noindex")) errors.push(`${r}: found noindex`);
-  // [дата — allow only [дата публикации] in privacy.html
-  const dateTokens = text.match(/\[дата[^\]]*\]/g) || [];
-  for (const tok of dateTokens) {
-    if (r === "privacy.html" && tok === "[дата публикации]") continue;
-    errors.push(`${r}: found ${tok}`);
-  }
   // index.html in hrefs
   const badIndex = [...text.matchAll(/href\s*=\s*["']([^"']*index\.html[^"']*)["']/gi)];
   for (const m of badIndex) errors.push(`${r}: href uses index.html → ${m[1]}`);

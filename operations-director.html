@@ -1,17 +1,98 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Операционный директор на аутсорсе: формат и результат — Пётр Алексеев</title>
+  <title>Операционный директор на аутсорсе — формат и цены по задаче</title>
   <meta name="description" content="Как мы работаем в формате операционного директора на аутсорсе: первые 30 дней, 3–6 месяцев, передача команде. Кейсы и ответы на вопросы.">
   <link rel="canonical" href="https://petr-alekseev.ru/operations-director.html">
   <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Операционный директор на аутсорсе — формат и цены по задаче">
+  <meta property="og:description" content="Как мы работаем в формате операционного директора на аутсорсе: первые 30 дней, 3–6 месяцев, передача команде. Кейсы и ответы на вопросы.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://petr-alekseev.ru/operations-director.html">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Пётр Алексеев">
+  <meta property="og:image" content="https://petr-alekseev.ru/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#0f1411">
   <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Операционный директор на аутсорсе",
+        "url": "https://petr-alekseev.ru/operations-director.html",
+        "description": "Как мы работаем в формате операционного директора на аутсорсе: первые 30 дней, 3–6 месяцев, передача команде. Кейсы и ответы на вопросы.",
+        "provider": {
+          "@type": "Person",
+          "name": "Пётр Алексеев",
+          "url": "https://petr-alekseev.ru/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Чем это отличается от найма штатного директора?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Работаем ограниченный срок с чёткой целью и передаём систему вашей команде. Не нужно искать и оформлять сотрудника."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Сколько это длится?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Обычно 3–6 месяцев, зависит от задачи."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Сколько это стоит?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Зависит от задачи и объёма. Обсуждаем после 30-минутного знакомства."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Для каких компаний?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ритейл, e-commerce, e-grocery, доставка, импорт, франчайзинг."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Где работаете?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Москва, удалённо, с выездом."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Что если задача вне вашей компетенции?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Скажем об этом прямо."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="theme-site case-page" data-page="operations-director">
   <a class="skip" href="#main">К содержанию</a>
@@ -25,7 +106,7 @@
         <a href="/#cases">Кейсы</a>
         <a href="/blog/">Блог</a>
         <a href="/#about">О нас</a>
-        <a href="#contact">Связаться</a>
+        <a class="btn btn-primary btn-small nav-cta" href="#contact" data-goal="click_primary_cta">Связаться</a>
       </nav>
     </div>
   </header>
@@ -82,6 +163,15 @@
 
       <section>
         <p class="eyebrow"><span>Результат</span></p>
+        <div class="case-brands" aria-label="Евроопт и ЯМИГОМ">
+          <div class="brand brand--euroopt">
+            <img src="/assets/images/logos/euroopt.png" width="142" height="45" alt="Евроопт" loading="lazy">
+          </div>
+          <div class="brand brand--yamigom">
+            <img src="/assets/images/logos/yamigom.jpg" width="42" height="42" alt="ЯМИГОМ" loading="lazy">
+            <span>ЯМИГОМ</span>
+          </div>
+        </div>
         <h2>Кейс Евроопт / ЯМИГОМ, Минск</h2>
         <p>Примерно за 6 месяцев убыточное направление стало управляемой моделью.</p>
         <div class="outcomes" style="margin-top:16px">
@@ -134,15 +224,21 @@
             <label>Имя
               <input name="name" autocomplete="name" required maxlength="120" placeholder="Как к вам обращаться">
             </label>
-            <label>Как связаться
-              <input name="contact" autocomplete="tel" required maxlength="200" placeholder="Телефон или Telegram">
+            <label>Телефон
+              <input name="phone" type="tel" autocomplete="tel" required maxlength="18" inputmode="tel" placeholder="+7 (___) ___-__-__">
+            </label>
+            <label>Почта
+              <input name="email" type="email" autocomplete="email" maxlength="200" placeholder="name@mail.ru">
+            </label>
+            <label>Telegram
+              <input name="telegram" autocomplete="off" maxlength="64" placeholder="@username" spellcheck="false">
             </label>
             <label>Коротко о задаче
               <textarea name="task" required maxlength="4000" placeholder="Что происходит в бизнесе и какой результат нужен"></textarea>
             </label>
             <label class="check">
               <input type="checkbox" name="consent" value="1" required>
-              <span>Согласен на обработку персональных данных по <a href="/privacy.html">политике конфиденциальности</a></span>
+              <span>Даю <a href="/consent.html">согласие на обработку персональных данных</a> и ознакомлен с <a href="/privacy.html">политикой конфиденциальности</a></span>
             </label>
             <div class="hp" aria-hidden="true">
               <label>Сайт<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
@@ -189,7 +285,7 @@
       </div>
     </div>
     <div class="wrap legal">
-      <p><a href="/privacy.html">Политика конфиденциальности</a> · © <span data-year>2026</span> Пётр Алексеев</p>
+      <p><a href="/privacy.html">Политика конфиденциальности</a> · <a href="/consent.html">Согласие на обработку данных</a> · © <span data-year>2026</span> Пётр Алексеев</p>
     </div>
   </footer>
   <script src="/assets/js/consent.js"></script>

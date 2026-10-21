@@ -1,0 +1,442 @@
+{
+  "tests": [
+    {
+      "test": "\"viewport\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "viewport",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "width=device-width, initial-scale=1"
+    },
+    {
+      "test": "\"description\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "description",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель."
+    },
+    {
+      "test": "\"robots\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "robots",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "index,follow"
+    },
+    {
+      "test": "\"og:title\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:title",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "Дарксторы в России: рост продолжается, но экономика меняет правила"
+    },
+    {
+      "test": "\"og:description\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:description",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель."
+    },
+    {
+      "test": "\"og:type\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:type",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "article"
+    },
+    {
+      "test": "\"og:url\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:url",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "https://petr-alekseev.ru/blog/darkstores-russia-october-2026.html"
+    },
+    {
+      "test": "\"og:locale\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:locale",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "ru_RU"
+    },
+    {
+      "test": "\"og:site_name\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:site_name",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "Пётр Алексеев"
+    },
+    {
+      "test": "\"og:image\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:image",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "https://petr-alekseev.ru/assets/images/og-image.jpg"
+    },
+    {
+      "test": "\"og:image:width\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:image:width",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "1200"
+    },
+    {
+      "test": "\"og:image:height\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:image:height",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "630"
+    },
+    {
+      "test": "\"twitter:card\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "twitter:card",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "summary_large_image"
+    },
+    {
+      "test": "\"theme-color\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "theme-color",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "#0f1411"
+    },
+    {
+      "test": "Article[*]",
+      "schema": "Article",
+      "type": "jsonld",
+      "group": "Article",
+      "groups": [
+        "Schema.org",
+        "Article"
+      ],
+      "description": "schema in jsonld",
+      "passed": false,
+      "value": "",
+      "error": {
+        "type": "NOT_FOUND",
+        "message": "Could not find \"Article[*]\""
+      }
+    }
+  ],
+  "passed": [],
+  "failed": [
+    {
+      "test": "Article[*]",
+      "schema": "Article",
+      "type": "jsonld",
+      "group": "Article",
+      "groups": [
+        "Schema.org",
+        "Article"
+      ],
+      "description": "schema in jsonld",
+      "passed": false,
+      "value": "",
+      "error": {
+        "type": "NOT_FOUND",
+        "message": "Could not find \"Article[*]\""
+      }
+    }
+  ],
+  "warnings": [],
+  "optional": [
+    {
+      "test": "\"viewport\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "viewport",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "width=device-width, initial-scale=1"
+    },
+    {
+      "test": "\"description\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "description",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель."
+    },
+    {
+      "test": "\"robots\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "robots",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "index,follow"
+    },
+    {
+      "test": "\"og:title\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:title",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "Дарксторы в России: рост продолжается, но экономика меняет правила"
+    },
+    {
+      "test": "\"og:description\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:description",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель."
+    },
+    {
+      "test": "\"og:type\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:type",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "article"
+    },
+    {
+      "test": "\"og:url\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:url",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "https://petr-alekseev.ru/blog/darkstores-russia-october-2026.html"
+    },
+    {
+      "test": "\"og:locale\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:locale",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "ru_RU"
+    },
+    {
+      "test": "\"og:site_name\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:site_name",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "Пётр Алексеев"
+    },
+    {
+      "test": "\"og:image\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:image",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "https://petr-alekseev.ru/assets/images/og-image.jpg"
+    },
+    {
+      "test": "\"og:image:width\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:image:width",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "1200"
+    },
+    {
+      "test": "\"og:image:height\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "og:image:height",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "630"
+    },
+    {
+      "test": "\"twitter:card\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "twitter:card",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "summary_large_image"
+    },
+    {
+      "test": "\"theme-color\"",
+      "type": "metatag",
+      "group": "Metatags",
+      "description": "theme-color",
+      "optional": true,
+      "autoDetected": true,
+      "passed": true,
+      "value": "#0f1411"
+    }
+  ],
+  "skipped": [],
+  "groups": [
+    "Metatags",
+    "Article"
+  ],
+  "schemas": [],
+  "structuredData": {
+    "metatags": {
+      "undefined": [
+        null
+      ],
+      "viewport": [
+        "width=device-width, initial-scale=1"
+      ],
+      "description": [
+        "Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель."
+      ],
+      "robots": [
+        "index,follow"
+      ],
+      "og:title": [
+        "Дарксторы в России: рост продолжается, но экономика меняет правила"
+      ],
+      "og:description": [
+        "Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель."
+      ],
+      "og:type": [
+        "article"
+      ],
+      "og:url": [
+        "https://petr-alekseev.ru/blog/darkstores-russia-october-2026.html"
+      ],
+      "og:locale": [
+        "ru_RU"
+      ],
+      "og:site_name": [
+        "Пётр Алексеев"
+      ],
+      "og:image": [
+        "https://petr-alekseev.ru/assets/images/og-image.jpg"
+      ],
+      "og:image:width": [
+        "1200"
+      ],
+      "og:image:height": [
+        "630"
+      ],
+      "twitter:card": [
+        "summary_large_image"
+      ],
+      "theme-color": [
+        "#0f1411"
+      ]
+    },
+    "microdata": {},
+    "rdfa": {},
+    "jsonld": {
+      "undefined": [
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Главная",
+                  "item": "https://petr-alekseev.ru/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Блог",
+                  "item": "https://petr-alekseev.ru/blog/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Дарксторы в России: рост продолжается, но экономика меняет правила",
+                  "item": "https://petr-alekseev.ru/blog/darkstores-russia-october-2026.html"
+                }
+              ]
+            },
+            {
+              "@type": "Article",
+              "headline": "Дарксторы в России: рост продолжается, но экономика меняет правила",
+              "datePublished": "2026-10-21",
+              "dateModified": "2026-10-21",
+              "image": "https://petr-alekseev.ru/assets/images/og-image.jpg",
+              "author": {
+                "@type": "Person",
+                "name": "Пётр Алексеев",
+                "url": "https://petr-alekseev.ru/"
+              },
+              "publisher": {
+                "@type": "Person",
+                "name": "Пётр Алексеев",
+                "url": "https://petr-alekseev.ru/"
+              },
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://petr-alekseev.ru/blog/darkstores-russia-october-2026.html"
+              },
+              "description": "Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "options": {
+    "html": "<!DOCTYPE html>\r\n<html lang=\"ru\">\r\n<head>\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  <title>Дарксторы в России: рынок e-grocery в октябре 2026 — Пётр Алексеев</title>\r\n  <meta name=\"description\" content=\"Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель.\">\r\n  <link rel=\"canonical\" href=\"https://petr-alekseev.ru/blog/darkstores-russia-october-2026.html\">\r\n  <meta name=\"robots\" content=\"index,follow\">\r\n  <meta property=\"og:title\" content=\"Дарксторы в России: рост продолжается, но экономика меняет правила\">\r\n  <meta property=\"og:description\" content=\"Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель.\">\r\n  <meta property=\"og:type\" content=\"article\">\r\n  <meta property=\"og:url\" content=\"https://petr-alekseev.ru/blog/darkstores-russia-october-2026.html\">\r\n  <meta property=\"og:locale\" content=\"ru_RU\">\r\n  <meta property=\"og:site_name\" content=\"Пётр Алексеев\">\r\n  <meta property=\"og:image\" content=\"https://petr-alekseev.ru/assets/images/og-image.jpg\">\r\n  <meta property=\"og:image:width\" content=\"1200\">\r\n  <meta property=\"og:image:height\" content=\"630\">\r\n  <meta name=\"twitter:card\" content=\"summary_large_image\">\r\n  <meta name=\"theme-color\" content=\"#0f1411\">\r\n  <link rel=\"icon\" href=\"/assets/favicon.png\" type=\"image/png\" sizes=\"32x32\">\r\n  <link rel=\"apple-touch-icon\" href=\"/assets/apple-touch-icon.png\">\r\n  <link rel=\"stylesheet\" href=\"/assets/css/style.css\">\r\n  <link rel=\"stylesheet\" href=\"/assets/css/site.css\">\r\n  <script type=\"application/ld+json\">\r\n  {\r\n    \"@context\": \"https://schema.org\",\r\n    \"@graph\": [\r\n      {\r\n        \"@type\": \"BreadcrumbList\",\r\n        \"itemListElement\": [\r\n          { \"@type\": \"ListItem\", \"position\": 1, \"name\": \"Главная\", \"item\": \"https://petr-alekseev.ru/\" },\r\n          { \"@type\": \"ListItem\", \"position\": 2, \"name\": \"Блог\", \"item\": \"https://petr-alekseev.ru/blog/\" },\r\n          { \"@type\": \"ListItem\", \"position\": 3, \"name\": \"Дарксторы в России: рост продолжается, но экономика меняет правила\", \"item\": \"https://petr-alekseev.ru/blog/darkstores-russia-october-2026.html\" }\r\n        ]\r\n      },\r\n      {\r\n        \"@type\": \"Article\",\r\n        \"headline\": \"Дарксторы в России: рост продолжается, но экономика меняет правила\",\r\n        \"datePublished\": \"2026-10-21\",\r\n        \"dateModified\": \"2026-10-21\",\r\n        \"image\": \"https://petr-alekseev.ru/assets/images/og-image.jpg\",\r\n        \"author\": { \"@type\": \"Person\", \"name\": \"Пётр Алексеев\", \"url\": \"https://petr-alekseev.ru/\" },\r\n        \"publisher\": { \"@type\": \"Person\", \"name\": \"Пётр Алексеев\", \"url\": \"https://petr-alekseev.ru/\" },\r\n        \"mainEntityOfPage\": {\r\n          \"@type\": \"WebPage\",\r\n          \"@id\": \"https://petr-alekseev.ru/blog/darkstores-russia-october-2026.html\"\r\n        },\r\n        \"description\": \"Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок замедляется, и игроки считают прибыль. Данные INFOLine и новости последних недель.\"\r\n      }\r\n    ]\r\n  }\r\n  </script>\r\n</head>\r\n<body class=\"theme-site case-page\" data-page=\"blog-article\">\r\n  <a class=\"skip\" href=\"#main\">К содержанию</a>\r\n  <header class=\"site-header\">\r\n    <div class=\"wrap site-header-inner\">\r\n      <a class=\"logo\" href=\"/\"><span class=\"logo-mark\">ПА</span><span class=\"logo-text\"><strong>Пётр Алексеев</strong><small>Операции · ритейл · доставка</small></span></a>\r\n      <button class=\"nav-toggle\" type=\"button\" aria-expanded=\"false\" aria-controls=\"nav\" aria-label=\"Открыть меню\"><span></span></button>\r\n      <nav id=\"nav\" class=\"nav\">\r\n        <a href=\"/#offers\">Услуги</a>\r\n        <a href=\"/#method\">Как мы работаем</a>\r\n        <a href=\"/#cases\">Кейсы</a>\r\n        <a href=\"/blog/\">Блог</a>\r\n        <a href=\"/#about\">О нас</a>\r\n        <a href=\"/#contact\">Связаться</a>\r\n      </nav>\r\n    </div>\r\n  </header>\r\n  <main id=\"main\">\r\n    <div class=\"page-hero\">\r\n      <div class=\"wrap-s\">\r\n        <ul class=\"breadcrumbs\">\r\n          <li><a href=\"/\">Главная</a></li>\r\n          <li><a href=\"/blog/\">Блог</a></li>\r\n          <li aria-current=\"page\">Дарксторы в России, октябрь 2026</li>\r\n        </ul>\r\n        <h1>Дарксторы в России: рост продолжается, но экономика меняет правила</h1>\r\n        <p class=\"article-meta\">\r\n          <time datetime=\"2026-10-21\">21 октября 2026</time>\r\n          <span>Автор: Пётр Алексеев</span>\r\n        </p>\r\n      </div>\r\n    </div>\r\n    <div class=\"wrap-s\">\r\n      <div class=\"article-body\">\r\n        <p>Экспресс-доставка продуктов растёт быстрее остальных моделей, но рынок e-grocery в целом замедляется, и игроки перестраиваются на эффективность. Разбираем, что показывают данные INFOLine и новости последних недель.</p>\r\n\r\n        <h2>Рынок растёт, но темп снижается</h2>\r\n        <p>По данным INFOLine, во втором квартале 2026 года рынок e-grocery составил 470 млрд рублей. К прошлому году это плюс 23,9%, к первому кварталу минус 2,5%. Доля онлайна в продовольственном обороте выросла с 5,2% до 5,9%. По прогнозу INFOLine, по итогам 2026 года оборот онлайн-продаж продуктов питания составит 2,03 трлн рублей (плюс 25%); за первое полугодие он достиг 952 млрд рублей (плюс 23,9%). При этом гендиректор «Infoline-Аналитики» Михаил Бурмистров говорит, что динамика продолжает замедляться.</p>\r\n\r\n        <h2>Экспресс-доставка обгоняет остальных</h2>\r\n        <p>Оборот экспресс-доставки (до двух часов) вырос на 29% к прошлому году и достиг 364 млрд рублей, остальные модели доставки прибавили 9%. Лидеры квартала по обороту: X5 со 101,3 млрд рублей и «Самокат» с 80,5 млрд рублей (рост к первому кварталу 3,9%). Быстрее всех растёт «Магнит»: плюс 63,8% к прошлому году.</p>\r\n\r\n        <h2>Все считают прибыль</h2>\r\n        <p>Участники рынка сосредоточились на эффективности маркетинга и расходов на доставку, чтобы выйти на положительную EBITDA. Одним из инструментов стал перевод операций на дарксторы и собственные курьерские службы. Свежие новости показывают, как это выглядит на практике:</p>\r\n        <ul>\r\n          <li><strong>«Самокат»</strong> тестирует заказ ниже минимальной суммы с доплатой. В примерах журналистов при минимуме 950 рублей предлагали доплатить 157 рублей, в других заказах 127 и 157 рублей (16 октября). С начала сентября самовывоз из даркстора со скидкой 10% доступен во всех городах присутствия сервиса: заказ готов через 15 минут после оформления и хранится до конца дня.</li>\r\n          <li><strong>X5 Digital</strong> готовит объединённый даркстор в Петербурге: в одном помещении ассортимент «Пятёрочки», «Перекрёстка», «Чижика» и Vprok.ru. Компания ищет помещения площадью от 400 до 1600 кв. м в нескольких регионах (9 октября). Выручка X5 Digital в 2025 году выросла на 82,6% до 43,9 млрд рублей, чистый убыток составил 574 млн рублей.</li>\r\n          <li><strong>«Магнит»</strong> расширяет формат: «М.Косметик» открыл дарксторы в Тюмени и Омске. По итогам краснодарского пилота, который даёт около трети онлайн-оборота сети в городе, Магнит решил развивать формат в других регионах.</li>\r\n        </ul>\r\n\r\n        <h2>Что это значит для операционки</h2>\r\n        <p>Ниже наблюдения автора, а не данные источников.</p>\r\n        <ol>\r\n          <li>Размер корзины и стоимость последней мили становятся главными рычагами. Доплата за мелкий заказ и скидка за самовывоз отвечают на одну и ту же проблему: экономика маленького чека на курьерской доставке не сходится.</li>\r\n          <li>Объединение форматов в одном дарксторе, по-видимому, нужно, чтобы лучше загрузить площадь и расширить ассортимент без новых помещений. Это гипотеза, подтверждений в источниках нет.</li>\r\n          <li>Дарксторы остаются инструментом, но не решением: без управления сборкой, списаниями и загрузкой смен формат не окупается.</li>\r\n        </ol>\r\n\r\n        <h2>Мнение автора</h2>\r\n        <p>Видно что все игроки пытаются починить экономику, которая до сих пор не сходится. Покупатели переходят на модель экономии. Если раньше заказать доставку было чем то нормальным, то теперь сходить своими ногами считается выгоднее. На мой взгляд пора делать доставку-дискаунтер.</p>\r\n\r\n        <aside class=\"article-cta\">\r\n          <p class=\"lead\" style=\"margin:0 0 16px\">Если в вашей компании похожая задача, напишите на <a href=\"mailto:a50petro@yandex.ru\" style=\"color:#f4f7f4\">a50petro@yandex.ru</a> или в Telegram <a href=\"https://t.me/PetroAlekseev\" target=\"_blank\" rel=\"noopener\" style=\"color:#f4f7f4\">@PetroAlekseev</a>. Первые 30 минут на знакомство — разберём ситуацию и поймём, нужна ли диагностика.</p>\r\n          <p style=\"margin:0\">\r\n            <a class=\"btn btn-primary\" href=\"/#contact\" data-goal=\"click_primary_cta\">Обсудить задачу</a>\r\n          </p>\r\n        </aside>\r\n\r\n        <h2>Источники</h2>\r\n        <ul>\r\n          <li><a href=\"https://www.retail.ru/news/infoline-oborot-ekspress-dostavki-na-rynke-e-grocery-v-aprele-iyune-2026-goda-vy-24-avgusta-2026-281319/\" target=\"_blank\" rel=\"noopener nofollow\">INFOLine: оборот экспресс-доставки на рынке e-grocery, retail.ru, 24 августа 2026</a></li>\r\n          <li><a href=\"https://new-retail.ru/novosti/retail/rynok_e_grocery_vo_vtorom_kvartale_2026_sostavil_470_mlrd_rubley_infoline/\" target=\"_blank\" rel=\"noopener nofollow\">Рынок e-grocery во втором квартале 2026 составил 470 млрд рублей, new-retail.ru</a></li>\r\n          <li><a href=\"https://finance.mail.ru/article/dostanovka-po-trebovaniyu-69222706/\" target=\"_blank\" rel=\"noopener nofollow\">Коммерсантъ (через Финансы Mail), 14 августа 2026</a></li>\r\n          <li><a href=\"https://www.dp.ru/a/2026/10/09/x5-otkroet-novij-obedinjonnij\" target=\"_blank\" rel=\"noopener nofollow\">X5 откроет новый объединённый даркстор в Петербурге, dp.ru, 9 октября 2026</a></li>\r\n          <li><a href=\"https://oborot.ru/news/samokat-nachal-brat-doplatu-za-zakazy-nizhe-minimalnoj-summy-i281650.html\" target=\"_blank\" rel=\"noopener nofollow\">«Самокат» начал брать доплату за заказы ниже минимальной суммы, oborot.ru, 16 октября 2026</a></li>\r\n          <li><a href=\"https://new-retail.ru/novosti/retail/v_iyule_magnit_zapustil_dva_novykh_darkstora_m_kosmetik/\" target=\"_blank\" rel=\"noopener nofollow\">Магнит запустил два даркстора «М.Косметик», new-retail.ru, 30 июля 2026</a></li>\r\n          <li>RB.RU, 8 сентября 2026 — самовывоз из дарксторов «Самоката»</li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n  </main>\r\n  <footer class=\"site-footer\">\r\n    <div class=\"wrap footer-grid\">\r\n      <div>\r\n        <a class=\"logo\" href=\"/\"><span class=\"logo-mark\">ПА</span><span class=\"logo-text\"><strong>Пётр Алексеев</strong><small>Операции · ритейл</small></span></a>\r\n        <p class=\"lead\" style=\"margin-top:12px\">Берём на себя операционку и доводим изменения до результата.</p>\r\n      </div>\r\n      <div>\r\n        <h2>Навигация</h2>\r\n        <ul>\r\n          <li><a href=\"/#offers\">Услуги</a></li>\r\n          <li><a href=\"/operations-director.html\">Операционный директор на аутсорсе</a></li>\r\n          <li><a href=\"/case-fasol.html\">Кейс «Фасоль»</a></li>\r\n          <li><a href=\"/case-euroopt.html\">Кейс Евроопт</a></li>\r\n          <li><a href=\"/blog/\">Блог</a></li>\r\n          <li><a href=\"/#contact\">Связаться</a></li>\r\n        </ul>\r\n      </div>\r\n      <div>\r\n        <h2>Связь</h2>\r\n        <ul>\r\n          <li><a href=\"tel:+79269232929\">+7 (926) 923-29-29</a></li>\r\n          <li><a href=\"https://t.me/PetroAlekseev\">@PetroAlekseev</a></li>\r\n          <li><a href=\"mailto:a50petro@yandex.ru\">a50petro@yandex.ru</a></li>\r\n          <li><a href=\"https://t.me/Alekseev_Petr_consult\" data-goal=\"click_telegram_channel\">Канал</a></li>\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <div class=\"wrap legal\">\r\n      <p><a href=\"/privacy.html\">Политика конфиденциальности</a> · © <span data-year>2026</span> Пётр Алексеев</p>\r\n    </div>\r\n  </footer>\r\n  <script src=\"/assets/js/consent.js\"></script>\r\n  <script src=\"/assets/js/main.js\"></script>\r\n  <script>\r\n    (function () {\r\n      var toggle = document.querySelector(\".nav-toggle\");\r\n      var nav = document.querySelector(\".nav\");\r\n      if (!toggle || !nav) return;\r\n      toggle.addEventListener(\"click\", function () {\r\n        var open = nav.classList.toggle(\"is-open\");\r\n        toggle.setAttribute(\"aria-expanded\", open ? \"true\" : \"false\");\r\n      });\r\n    })();\r\n  </script>\r\n</body>\r\n</html>\r\n",
+    "presets": [],
+    "schemas": [
+      "jsonld:Article"
+    ]
+  }
+}
