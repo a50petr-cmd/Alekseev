@@ -55,6 +55,13 @@ jobs:
             **/blog/_article-template.html
             **/blog/КАК-ДОБАВИТЬ-СТАТЬЮ.txt
             **/README.md
+            **/tools/**
+            **/*.md
+            **/CNAME
+            **/.env*
+            **/YANDEX-API.md
+            **/.seo-reports/**
+            **/*.bundle
 
       - name: Verify live homepage
         run: |
