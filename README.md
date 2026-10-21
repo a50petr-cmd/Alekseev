@@ -1,4 +1,4 @@
-# Релиз нового сайта (`release/new-site`)
+﻿# Релиз нового сайта (`release/new-site`)
 
 Локальная ветка. В `main` / origin **не пушить** без слова «публикуй».
 
@@ -71,4 +71,4 @@ node tools/verify-release.mjs
 
 ## Коммит
 
-См. `git log -1` на ветке `release/new-site` после коммита.
+Хэш: `d32bef8`.
