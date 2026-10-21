@@ -221,30 +221,33 @@ if ($referer === '') {
 }
 
 $to = 'a50petro@yandex.ru';
-$subjectText = 'Новая заявка с сайта petr-alekseev.ru';
-$bodyText = "Новая заявка с сайта petr-alekseev.ru\n"
-    . "--------------------------------\n"
+$subjectText = 'Заявка: ' . $safeName;
+$bodyText = "Здравствуйте.\n\n"
+    . "На сайте petr-alekseev.ru оставили заявку.\n\n"
     . "Имя: {$safeName}\n"
     . "Телефон: {$safePhone}\n"
     . "Почта: {$safeEmail}\n"
     . "Telegram: {$safeTelegram}\n"
-    . "Страница: {$referer}\n"
-    . "--------------------------------\n"
-    . "Задача:\n{$safeTask}\n";
+    . "Страница: {$referer}\n\n"
+    . "Задача:\n{$safeTask}\n\n"
+    . "--\n"
+    . "Ответить можно reply на это письмо"
+    . ($email !== '' ? " или на {$safeEmail}" : '')
+    . ".\n";
 
 $replyTo = ($email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL) !== false)
     ? strip_crlf($email)
     : $to;
 
-$sent = send_lead_email($to, $subjectText, $bodyText, $replyTo);
+$mailResult = send_lead_email($to, $subjectText, $bodyText, $replyTo);
 
-if (!$sent) {
+if (!$mailResult['ok']) {
     http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'mail']);
+    echo json_encode(['ok' => false, 'error' => 'mail', 'via' => $mailResult['via']], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-echo json_encode(['ok' => true]);
+echo json_encode(['ok' => true, 'via' => $mailResult['via']], JSON_UNESCAPED_UNICODE);
 
 /**
  * @return array{host:string,port:int,user:string,pass:string,from:string,from_name:string}|null
@@ -280,9 +283,13 @@ function encode_mime_header(string $text): string
     return '=?UTF-8?B?' . base64_encode($text) . '?=';
 }
 
-function build_message_id(): string
+function build_message_id(string $fromEmail): string
 {
-    return '<lead.' . bin2hex(random_bytes(12)) . '@petr-alekseev.ru>';
+    $domain = 'yandex.ru';
+    if (str_contains($fromEmail, '@')) {
+        $domain = substr(strrchr($fromEmail, '@') ?: '@yandex.ru', 1);
+    }
+    return '<lead.' . bin2hex(random_bytes(12)) . '@' . $domain . '>';
 }
 
 function build_raw_email(
@@ -293,7 +300,7 @@ function build_raw_email(
     string $body,
     string $replyTo
 ): string {
-    $qpBody = quoted_printable_encode(str_replace("\r\n", "\n", $body));
+    $qpBody = quoted_printable_encode(str_replace(["\r\n", "\r"], "\n", $body));
     $qpBody = str_replace("\n", "\r\n", $qpBody);
 
     $headers = [
@@ -301,12 +308,10 @@ function build_raw_email(
         'From: ' . encode_mime_header($fromName) . ' <' . $fromEmail . '>',
         'To: <' . $to . '>',
         'Reply-To: <' . $replyTo . '>',
-        'Message-ID: ' . build_message_id(),
+        'Message-ID: ' . build_message_id($fromEmail),
         'MIME-Version: 1.0',
         'Content-Type: text/plain; charset=UTF-8',
         'Content-Transfer-Encoding: quoted-printable',
-        'X-Mailer: petr-alekseev.ru',
-        'Auto-Submitted: auto-generated',
     ];
 
     return 'Subject: ' . encode_mime_header($subject) . "\r\n"
@@ -314,7 +319,8 @@ function build_raw_email(
         . $qpBody . "\r\n";
 }
 
-function smtp_expect($fp, array $okCodes): bool
+/** @return array{0:int,1:string,2:bool} */
+function smtp_expect($fp, array $okCodes): array
 {
     $response = '';
     while (($line = fgets($fp, 515)) !== false) {
@@ -324,10 +330,11 @@ function smtp_expect($fp, array $okCodes): bool
         }
     }
     $code = (int)substr($response, 0, 3);
-    return in_array($code, $okCodes, true);
+    return [$code, trim($response), in_array($code, $okCodes, true)];
 }
 
-function smtp_cmd($fp, string $cmd, array $okCodes): bool
+/** @return array{0:int,1:string,2:bool} */
+function smtp_cmd($fp, string $cmd, array $okCodes): array
 {
     fwrite($fp, $cmd . "\r\n");
     return smtp_expect($fp, $okCodes);
@@ -335,80 +342,98 @@ function smtp_cmd($fp, string $cmd, array $okCodes): bool
 
 function send_via_smtp(array $cfg, string $to, string $subject, string $body, string $replyTo): bool
 {
-    $host = $cfg['host'];
-    $port = $cfg['port'];
-    $errno = 0;
-    $errstr = '';
-    $fp = @stream_socket_client(
-        $host . ':' . $port,
-        $errno,
-        $errstr,
-        20,
-        STREAM_CLIENT_CONNECT
-    );
-    if ($fp === false) {
-        return false;
-    }
-    stream_set_timeout($fp, 20);
+    $attempts = [
+        ['remote' => 'ssl://smtp.yandex.ru:465', 'starttls' => false],
+        ['remote' => 'tcp://smtp.yandex.ru:587', 'starttls' => true],
+    ];
 
-    try {
-        if (!smtp_expect($fp, [220])) {
-            return false;
-        }
-        $ehloHost = 'petr-alekseev.ru';
-        if (!smtp_cmd($fp, 'EHLO ' . $ehloHost, [250])) {
-            return false;
-        }
-        if (!smtp_cmd($fp, 'AUTH LOGIN', [334])) {
-            return false;
-        }
-        if (!smtp_cmd($fp, base64_encode($cfg['user']), [334])) {
-            return false;
-        }
-        if (!smtp_cmd($fp, base64_encode($cfg['pass']), [235])) {
-            return false;
-        }
-        if (!smtp_cmd($fp, 'MAIL FROM:<' . $cfg['from'] . '>', [250])) {
-            return false;
-        }
-        if (!smtp_cmd($fp, 'RCPT TO:<' . $to . '>', [250, 251])) {
-            return false;
-        }
-        if (!smtp_cmd($fp, 'DATA', [354])) {
-            return false;
-        }
+    $users = array_values(array_unique([
+        $cfg['user'],
+        strstr($cfg['user'], '@') !== false ? strstr($cfg['user'], '@', true) : $cfg['user'],
+    ]));
 
-        $raw = build_raw_email($to, $cfg['from'], $cfg['from_name'], $subject, $body, $replyTo);
-        // Dot-stuffing
-        $raw = preg_replace('/^\./m', '..', $raw) ?? $raw;
-        fwrite($fp, $raw . "\r\n.\r\n");
-        if (!smtp_expect($fp, [250])) {
-            return false;
+    foreach ($attempts as $attempt) {
+        foreach ($users as $authUser) {
+            $errno = 0;
+            $errstr = '';
+            $fp = @stream_socket_client($attempt['remote'], $errno, $errstr, 20, STREAM_CLIENT_CONNECT);
+            if ($fp === false) {
+                continue;
+            }
+            stream_set_timeout($fp, 20);
+
+            try {
+                if (!smtp_expect($fp, [220])[2]) {
+                    continue;
+                }
+
+                if ($attempt['starttls']) {
+                    if (!smtp_cmd($fp, 'EHLO petr-alekseev.ru', [250])[2]) {
+                        continue;
+                    }
+                    if (!smtp_cmd($fp, 'STARTTLS', [220])[2]) {
+                        continue;
+                    }
+                    if (!@stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
+                        continue;
+                    }
+                }
+
+                if (!smtp_cmd($fp, 'EHLO petr-alekseev.ru', [250])[2]) {
+                    continue;
+                }
+                if (!smtp_cmd($fp, 'AUTH LOGIN', [334])[2]) {
+                    continue;
+                }
+                if (!smtp_cmd($fp, base64_encode($authUser), [334])[2]) {
+                    continue;
+                }
+                if (!smtp_cmd($fp, base64_encode($cfg['pass']), [235])[2]) {
+                    continue;
+                }
+                if (!smtp_cmd($fp, 'MAIL FROM:<' . $cfg['from'] . '>', [250])[2]) {
+                    continue;
+                }
+                if (!smtp_cmd($fp, 'RCPT TO:<' . $to . '>', [250, 251])[2]) {
+                    continue;
+                }
+                if (!smtp_cmd($fp, 'DATA', [354])[2]) {
+                    continue;
+                }
+
+                $raw = build_raw_email($to, $cfg['from'], $cfg['from_name'], $subject, $body, $replyTo);
+                $raw = preg_replace('/^\./m', '..', $raw) ?? $raw;
+                fwrite($fp, $raw . "\r\n.\r\n");
+                if (!smtp_expect($fp, [250])[2]) {
+                    continue;
+                }
+                smtp_cmd($fp, 'QUIT', [221]);
+                return true;
+            } finally {
+                if (is_resource($fp)) {
+                    fclose($fp);
+                }
+            }
         }
-        smtp_cmd($fp, 'QUIT', [221]);
-        return true;
-    } finally {
-        fclose($fp);
     }
+
+    return false;
 }
 
 function send_via_mail(string $to, string $subject, string $body, string $replyTo): bool
 {
-    // Ящик должен существовать в панели Reg.ru (Почта), иначе Яндекс часто кладёт в спам.
     $fromEmail = 'forms@petr-alekseev.ru';
     $fromName = 'Сайт petr-alekseev.ru';
-    $qpBody = quoted_printable_encode(str_replace("\r\n", "\n", $body));
+    $qpBody = quoted_printable_encode(str_replace(["\r\n", "\r"], "\n", $body));
     $qpBody = str_replace("\n", "\r\n", $qpBody);
 
     $headers = 'Date: ' . date('r') . "\r\n"
         . 'From: ' . encode_mime_header($fromName) . ' <' . $fromEmail . ">\r\n"
         . 'Reply-To: <' . $replyTo . ">\r\n"
-        . 'Message-ID: ' . build_message_id() . "\r\n"
+        . 'Message-ID: ' . build_message_id($fromEmail) . "\r\n"
         . "MIME-Version: 1.0\r\n"
         . "Content-Type: text/plain; charset=UTF-8\r\n"
-        . "Content-Transfer-Encoding: quoted-printable\r\n"
-        . "X-Mailer: petr-alekseev.ru\r\n"
-        . "Auto-Submitted: auto-generated";
+        . "Content-Transfer-Encoding: quoted-printable";
 
     return @mail(
         $to,
@@ -419,13 +444,19 @@ function send_via_mail(string $to, string $subject, string $body, string $replyT
     );
 }
 
-function send_lead_email(string $to, string $subject, string $body, string $replyTo): bool
+/** @return array{ok:bool,via:string} */
+function send_lead_email(string $to, string $subject, string $body, string $replyTo): array
 {
     $smtp = load_smtp_config();
     if ($smtp !== null) {
+        // Если SMTP настроен — только он. Без тихого fallback в spam-prone mail().
         if (send_via_smtp($smtp, $to, $subject, $body, $replyTo)) {
-            return true;
+            return ['ok' => true, 'via' => 'smtp'];
         }
+        return ['ok' => false, 'via' => 'smtp_failed'];
     }
-    return send_via_mail($to, $subject, $body, $replyTo);
+    if (send_via_mail($to, $subject, $body, $replyTo)) {
+        return ['ok' => true, 'via' => 'mail'];
+    }
+    return ['ok' => false, 'via' => 'mail_failed'];
 }
