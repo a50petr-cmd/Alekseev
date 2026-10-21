@@ -71,4 +71,4 @@ node tools/verify-release.mjs
 
 ## Коммит
 
-Хэш: `d32bef8`.
+Хэш сборки: `d32bef8`. HEAD ветки: `37230e3` (хэш в этом README).
