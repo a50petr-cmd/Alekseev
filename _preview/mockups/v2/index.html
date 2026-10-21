@@ -22,14 +22,12 @@
     body.theme-v2 .btn-primary:hover { background: #115e59; }
     body.theme-v2 .mock-hero { padding-top: 40px; }
     body.theme-v2 .outcomes strong { font-size: clamp(1.8rem, 3.2vw, 2.6rem); }
-    body.theme-v2 .case-panel { background: #101410; color: #f4f7f4; border-color: #243028; }
-    body.theme-v2 .case-panel .lead,
-    body.theme-v2 .case-panel .eyebrow,
-    body.theme-v2 .case-panel .steps p { color: #c9d2cb; }
-    body.theme-v2 .case-panel .outcomes div,
-    body.theme-v2 .case-panel .steps article { background: #1a211c; border-color: #2c3630; }
-    body.theme-v2 .case-panel .outcomes span { color: #9aaba0; }
-    body.theme-v2 .quote { background: #1a211c; border-left-color: #14b8a6; }
+    body.theme-v2 .case-card { background: #101410; color: #f4f7f4; border-color: #243028; }
+    body.theme-v2 .case-card .lead,
+    body.theme-v2 .case-card .eyebrow { color: #c9d2cb; }
+    body.theme-v2 .case-card .outcomes div { background: #1a211c; border-color: #2c3630; }
+    body.theme-v2 .case-card .outcomes span { color: #9aaba0; }
+    body.theme-v2 .btn-ghost { background: #fff !important; color: #101410 !important; }
     body.theme-v2 .nav a { color: #f4f7f4; }
     body.theme-v2 .site-header { border-bottom-color: #243028; }
     body.theme-v2 .card.is-featured { background: #101410; color: #f4f7f4; border-color: #14b8a6; }
@@ -135,66 +133,31 @@
           <p class="lead">Личный опыт: что делал я на проектах.</p>
         </div>
 
-        <div class="case-panel" id="fasol">
-          <div>
-            <p class="eyebrow"><span>Кейс</span> METRO · «Фасоль»</p>
-            <h2>«Фасоль»: магазины у дома по франшизе METRO</h2>
-            <p class="lead"><strong>Ситуация.</strong> Магазины у дома надо сделать конкурентными с большими сетями.</p>
-            <div class="outcomes">
-              <div><strong>~25</strong><span>открытых магазинов</span></div>
-              <div><strong>0</strong><span>закрытых из открытых</span></div>
-              <div><strong>под ключ</strong><span>планировка и оборудование</span></div>
-            </div>
-            <p class="service-label">Услуга: магазин у дома под ключ</p>
-            <p style="margin-top:14px"><a href="case-fasol.html" data-goal="view_case">Открыть кейс</a></p>
+        <article class="case-card" id="fasol">
+          <p class="eyebrow"><span>Кейс</span> METRO · «Фасоль»</p>
+          <h2>«Фасоль»: магазины у дома по франшизе METRO</h2>
+          <p class="lead">Магазины у дома надо сделать конкурентными с большими сетями.</p>
+          <div class="outcomes">
+            <div><strong>~25</strong><span>открытых магазинов</span></div>
+            <div><strong>0</strong><span>закрытых из открытых</span></div>
+            <div><strong>под ключ</strong><span>планировка и оборудование</span></div>
           </div>
-          <div class="steps">
-            <article>
-              <h3>Что сделал</h3>
-              <p>Спроектировал пространство магазина, планировку, зонирование под категорийный менеджмент (касса самообслуживания, бакалея, food to go), расстановку оборудования.</p>
-            </article>
-            <article>
-              <h3>Внедрил в магазинах</h3>
-              <p>Выпечка, кофе с собой, разливное пиво, тандыр.</p>
-            </article>
-            <article>
-              <h3>Результат</h3>
-              <p>Около 25 открытых магазинов, ни один не закрыт.</p>
-            </article>
-          </div>
-        </div>
+          <p class="service-label">Услуга: магазин у дома под ключ</p>
+          <p style="margin-top:14px"><a href="case-fasol.html" data-goal="view_case">Открыть кейс</a></p>
+        </article>
 
-        <div class="case-panel" id="euroopt" style="margin-top:20px">
-          <div>
-            <p class="eyebrow"><span>Кейс</span> Евроопт · ЯМИГОМ · Минск</p>
-            <div class="case-brands" aria-label="Евроопт и ЯМИГОМ">
-              <div class="brand"><img src="/assets/images/logos/euroopt.png" width="120" height="38" alt="Евроопт"></div>
-              <div class="brand"><img src="/assets/images/logos/yamigom.jpg" width="36" height="36" alt=""><span>ЯМИГОМ</span></div>
-            </div>
-            <h2>Из убыточной быстрой доставки — в управляемую модель</h2>
-            <p class="lead"><strong>Ситуация.</strong> После покупки сервиса быстрой доставки у компании было четыре даркстора и экономика, которая не сходилась. Было непонятно, какие процессы создают убытки и что менять в первую очередь.</p>
-            <div class="outcomes">
-              <div><strong>×2</strong><span>ниже операционные затраты</span></div>
-              <div><strong>2:37</strong><span>сборка вместо 5 минут</span></div>
-              <div><strong>1,4%</strong><span>списания вместо 7%</span></div>
-            </div>
-            <p class="lead" style="margin-top:16px">Период: сентябрь 2021 – февраль 2022, около 6 месяцев.</p>
-            <p class="service-label">Услуга: операционный директор на аутсорсе / аудит доставки</p>
-            <p style="margin-top:14px"><a href="case-euroopt.html" data-goal="view_case">Открыть кейс</a></p>
+        <article class="case-card" id="euroopt">
+          <p class="eyebrow"><span>Кейс</span> Евроопт · ЯМИГОМ · Минск</p>
+          <h2>Из убыточной быстрой доставки — в управляемую модель</h2>
+          <p class="lead">После покупки сервиса быстрой доставки у компании было четыре даркстора и экономика, которая не сходилась.</p>
+          <div class="outcomes">
+            <div><strong>×2</strong><span>ниже операционные затраты</span></div>
+            <div><strong>2:37</strong><span>сборка вместо 5 минут</span></div>
+            <div><strong>1,4%</strong><span>списания вместо 7%</span></div>
           </div>
-          <div class="steps">
-            <article><h3>Погрузился во всю цепочку</h3><p>Разобрал работу направления от маркетинга и ассортимента до склада, сборки, логистики и передачи заказа клиенту.</p></article>
-            <article><h3>Нашёл системные потери</h3><p>Связал экономику с реальными операциями: списаниями, производительностью сборки, ФОТ, маршрутизацией, поставками и мотивацией курьеров.</p></article>
-            <article><h3>Спроектировал целевую модель</h3><p>Собрал план изменений по процессам, команде, показателям и стандартам работы. Для каждого мероприятия зафиксировал ожидаемый эффект.</p></article>
-            <article><h3>Внедрил изменения вместе с командой</h3><p>Перестроил сборку и логистику, внедрил стандарты планировки и мотивацию курьеров, сократил списания и операционные расходы.</p></article>
-            <article><h3>Вывел направление на операционный ноль</h3><p>За шесть месяцев проектной работы убыточная модель стала управляемой системой с прозрачными показателями и устойчивыми процессами.</p></article>
-            <div class="quote">
-              <p>«Результаты его деятельности до сих пор приносят неоспоримую пользу нашему бизнесу».</p>
-              <p>«С поставленными руководством задачами справился на отлично…»</p>
-              <p class="author">Первый заместитель генерального директора ООО «Евроторг». Пётр работал консультантом по развитию сервисов доставки «ЯМИГОМ» в Минске.</p>
-            </div>
-          </div>
-        </div>
+          <p class="service-label">Услуга: операционный директор на аутсорсе / аудит доставки</p>
+          <p style="margin-top:14px"><a href="case-euroopt.html" data-goal="view_case">Открыть кейс</a></p>
+        </article>
       </div>
     </section>
 
@@ -251,7 +214,7 @@
             <a href="mailto:a50petr@yandex.ru"><span>Почта</span><strong>a50petr@yandex.ru</strong></a>
             <a class="contact-strip--li" href="https://www.linkedin.com/in/%D0%BF%D0%B5%D1%82%D1%80-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B5%D0%B2-265a56225/" rel="noopener noreferrer" target="_blank"><span>LinkedIn</span><strong>Пётр Алексеев</strong></a>
           </div>
-          <p style="margin:14px 0 0"><a href="https://t.me/Alekseev_Petr_consult" target="_blank" rel="noopener" data-goal="click_telegram_channel">Канал: t.me/Alekseev_Petr_consult</a></p>
+          <p style="margin:14px 0 0"><a class="channel-link" href="https://t.me/Alekseev_Petr_consult" target="_blank" rel="noopener" data-goal="click_telegram_channel">Канал: t.me/Alekseev_Petr_consult</a></p>
         </div>
       </div>
     </section>

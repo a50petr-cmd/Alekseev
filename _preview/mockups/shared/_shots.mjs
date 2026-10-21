@@ -8,11 +8,10 @@ mkdirSync(out, { recursive: true });
 const base = "http://127.0.0.1:8765/_preview/mockups";
 
 const pages = [
-  ["v1/index.html", "v1-home"],
   ["v2/index.html", "v2-home"],
-  ["v3/index.html", "v3-home"],
-  ["v1/case-fasol.html", "v1-case-fasol"],
-  ["v1/case-euroopt.html", "v1-case-euroopt"],
+  ["v2/operations-director.html", "v2-operations-director"],
+  ["v2/case-fasol.html", "v2-case-fasol"],
+  ["v2/case-euroopt.html", "v2-case-euroopt"],
 ];
 
 const browser = await chromium.launch();
@@ -21,15 +20,21 @@ for (const [path, name] of pages) {
     [1440, "1440"],
     [390, "390"],
   ]) {
-    if (name.startsWith("v1-case") && label === "390") continue;
-    const page = await browser.newPage({ viewport: { width: w, height: label === "390" ? 844 : 900 } });
+    const page = await browser.newPage({
+      viewport: { width: w, height: label === "390" ? 844 : 900 },
+    });
     await page.goto(`${base}/${path}`, { waitUntil: "networkidle" });
+    const metrics = await page.evaluate(() => ({
+      innerWidth: window.innerWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+    }));
+    console.log(`${name}-${label}: inner=${metrics.innerWidth} scroll=${metrics.scrollWidth}`);
     await page.screenshot({
       path: join(out, `${name}-${label}.png`),
       fullPage: true,
     });
     await page.close();
-    console.log(`${name}-${label}.png`);
+    console.log(`wrote ${name}-${label}.png`);
   }
 }
 await browser.close();
