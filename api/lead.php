@@ -81,7 +81,7 @@ function client_ip(): string
 /** @return bool true if allowed, false if limit exceeded */
 function rate_limit_allow(string $ip): bool
 {
-    $dir = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'pa_lead_rate';
+    $dir = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'pa_lead_rate_v2';
     if (!is_dir($dir) && !@mkdir($dir, 0700, true) && !is_dir($dir)) {
         return true;
     }
