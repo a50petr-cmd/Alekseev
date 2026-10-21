@@ -323,7 +323,17 @@
         status.className = "lead-status";
       }
 
-      var data = new FormData(form);
+      // urlencoded: Reg.ru/nginx отдаёт 403 на multipart/form-data к /api/lead.php
+      var data = new URLSearchParams();
+      Array.prototype.forEach.call(form.elements, function (el) {
+        if (!el.name || el.disabled) return;
+        if (el.type === "checkbox" || el.type === "radio") {
+          if (el.checked) data.append(el.name, el.value || "on");
+          return;
+        }
+        if (el.tagName === "BUTTON") return;
+        data.append(el.name, el.value);
+      });
       var elapsed = (Date.now() - started) / 1000;
       data.set("_elapsed", String(elapsed));
       if (phoneInput) data.set("phone", formatPhoneInput(phoneInput.value));
@@ -397,10 +407,19 @@
       fetch(ENDPOINT, {
         method: "POST",
         body: data,
-        headers: { Accept: "application/json" },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        },
       })
         .then(function (response) {
-          return response.json().then(function (json) {
+          return response.text().then(function (text) {
+            var json = null;
+            try {
+              json = text ? JSON.parse(text) : null;
+            } catch (_) {
+              json = null;
+            }
             return { ok: response.ok && json && json.ok, json: json, status: response.status };
           });
         })
