@@ -22,6 +22,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/blog.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -52,7 +53,7 @@
   }
   </script>
 </head>
-<body class="theme-site case-page" data-page="blog-article">
+<body class="theme-site" data-page="blog-article">
   <a class="skip" href="#main">К содержанию</a>
   <header class="site-header">
     <div class="wrap site-header-inner">
@@ -69,37 +70,37 @@
     </div>
   </header>
   <main id="main">
-    <div class="page-hero">
-      <div class="wrap-s">
-        <ul class="breadcrumbs">
-          <li><a href="/">Главная</a></li>
-          <li><a href="/blog/">Блог</a></li>
-          <li aria-current="page">[короткий заголовок]</li>
-        </ul>
+    <div class="bj-wrap">
+      <ul class="bj-crumbs">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/blog/">Блог</a></li>
+        <li aria-current="page">[рубрика]</li>
+      </ul>
+      <header class="a-head">
+        <div class="kicker">[рубрика] <i>· [N] минут чтения</i></div>
         <h1>[ЗАГОЛОВОК]</h1>
-        <p class="article-meta">
-          <time datetime="YYYY-MM-DD">ДД месяца ГГГГ г.</time>
-          <span>Автор: Пётр Алексеев</span>
-        </p>
-      </div>
-    </div>
-    <div class="wrap-s">
-      <div class="article-body">
+        <p class="dek">[ОПИСАНИЕ]</p>
+        <div class="byline">
+          <div class="ava">ПА</div>
+          <div><strong>Пётр Алексеев</strong>Операционный директор на аутсорсе · ДД месяца ГГГГ</div>
+        </div>
+      </header>
+      <article class="prose">
         <p>[Текст статьи]</p>
-        <h2>Источники</h2>
-        <ul>
-          <li><a href="https://example.com" rel="noopener noreferrer" target="_blank">[источник]</a></li>
-        </ul>
-      </div>
-      <aside class="article-cta">
-        <h2 style="margin:0 0 10px;color:#f4f7f4">Обсудить задачу</h2>
-        <p class="lead" style="margin:0 0 16px">Разберём ситуацию на первой встрече и поймём, подходит ли формат операционного директора на аутсорсе.</p>
-        <p style="margin:0;display:flex;flex-wrap:wrap;gap:12px">
-          <a class="btn btn-primary" href="/#contact" data-goal="click_primary_cta">Обсудить задачу</a>
-          <a class="btn btn-ghost" href="/operations-director.html" style="background:#fff!important;color:#101410!important">Как работает услуга</a>
-          <a class="channel-link" href="https://t.me/Alekseev_Petr_consult" target="_blank" rel="noopener" data-goal="click_telegram_channel">Канал в Telegram</a>
-        </p>
-      </aside>
+        <h2>[Подзаголовок]</h2>
+        <p>[Абзац]</p>
+        <!-- при необходимости: .stat, .pull, .takeaways -->
+      </article>
+      <section class="author">
+        <div class="ava">ПА</div>
+        <div>
+          <h4>Пётр Алексеев</h4>
+          <p>18 лет в операционном управлении ритейла и доставки: X5, METRO, Купер, Комус, Евроопт. Беру операционку на 3–6 месяцев и довожу изменения до результата.</p>
+          <a class="bj-btn" href="/operations-director.html#contact" data-goal="click_primary_cta">Обсудить задачу</a>
+          <a class="bj-btn-ghost" href="/operations-director.html#contact">Первые 30 минут бесплатно →</a>
+        </div>
+      </section>
+      <div class="related">Читайте также<a href="/blog/[related-slug].html">[заголовок связанной статьи]</a></div>
     </div>
   </main>
   <footer class="site-footer">
