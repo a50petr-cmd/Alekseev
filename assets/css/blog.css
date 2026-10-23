@@ -119,6 +119,13 @@ body.theme-site[data-page="blog-article"] main {
   font-weight: 700;
   font-size: 15px;
   flex: none;
+  object-fit: cover;
+}
+
+img.ava {
+  display: block;
+  padding: 0;
+  background: var(--bj-paper-2);
 }
 
 .byline strong {
