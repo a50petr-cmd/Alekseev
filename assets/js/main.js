@@ -50,11 +50,19 @@
         metrikaGoal("click_phone");
       });
     });
-    document.querySelectorAll('a[href*="t.me/"]').forEach(function (link) {
+    // Личный Telegram — click_telegram; канал и приглашения в канал без data-goal — click_telegram_channel.
+    document.querySelectorAll('a[href*="t.me/PetroAlekseev"]').forEach(function (link) {
       link.addEventListener("click", function () {
         metrikaGoal("click_telegram");
       });
     });
+    document
+      .querySelectorAll('a[href*="t.me/Alekseev_Petr_consult"]:not([data-goal]), a[href*="t.me/+"]:not([data-goal])')
+      .forEach(function (link) {
+        link.addEventListener("click", function () {
+          metrikaGoal("click_telegram_channel");
+        });
+      });
     document.querySelectorAll('a[href^="mailto:"]').forEach(function (link) {
       link.addEventListener("click", function () {
         metrikaGoal("click_email");
