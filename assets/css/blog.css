@@ -89,6 +89,9 @@ body.theme-site[data-page="blog-article"] main {
   text-wrap: pretty;
   text-align: left;
   color: var(--bj-ink);
+  /* site.css задаёт h1 { max-width: 14ch } — для статей блога колонка должна быть полной */
+  max-width: none;
+  width: 100%;
 }
 
 .dek {
@@ -97,7 +100,7 @@ body.theme-site[data-page="blog-article"] main {
   line-height: 1.45;
   color: var(--bj-ink-2);
   margin: 0 0 30px;
-  max-width: 700px;
+  max-width: 680px; /* одна ширина с абзацами .prose */
 }
 
 .byline {
@@ -424,6 +427,7 @@ img.ava {
   margin: 0;
   letter-spacing: -0.02em;
   color: var(--bj-ink);
+  max-width: none; /* не наследовать h1 { max-width: 14ch } из site.css */
 }
 
 .b-head p {

@@ -233,6 +233,8 @@ h1 {
 
 body.case-page h1,
 body[data-page="privacy"] h1,
+body[data-page="blog"] h1,
+body[data-page="blog-article"] h1,
 .page-404 h1 {
   max-width: none;
   overflow-wrap: anywhere;
