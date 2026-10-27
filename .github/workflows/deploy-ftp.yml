@@ -84,6 +84,7 @@ jobs:
             **/.cursor/**
             **/_preview/**
             **/assets/images/draft/**
+            **/api/data/**
             **/blog/_article-template.html
             **/blog/КАК-ДОБАВИТЬ-СТАТЬЮ.txt
             **/README.md

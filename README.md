@@ -75,6 +75,31 @@ node tools/verify-release.mjs
 - `_preview/` (макеты, черновики, скриншоты) — не деплоится
 - неотслеживаемые: `.env.example`, `YANDEX-API.md`, `tools/` часть файлов, `assets/images/draft/`, `alekseev-pending.bundle` и т.п.
 
+## Счётчик просмотров
+
+Реализован в `api/views.php` с фронтенд-частью в `assets/js/views.js`.
+
+**Где хранится база:**
+- Основное: `../petr-alekseev-data/views.db` (SQLite) или `../petr-alekseev-data/views.json` (fallback JSON с flock)
+  - Это уровнем выше веб-корня `/home/www/petr-alekseev.ru/`
+- Запасной вариант при недоступности родительской директории: `api/data/` (защищена `.htaccess: Require all denied`)
+
+**Как задать начальные значения из Метрики:**
+1. Скопируйте `api/views-seed.example.php` → `views-seed.php` рядом с файлом базы (в `../petr-alekseev-data/` или `api/data/`)
+2. Отредактируйте массив slug → количество_просмотров
+3. При следующем обращении к `/api/views.php` значения будут загружены в БД и файл переименован в `.seed` для отметки
+
+**Как сбросить счётчики:**
+1. На хостинге удалите файл `../petr-aleksеev-data/views.db` (или `views.json`)
+2. Таблица `hits` очищается автоматически от записей старше 2 дней
+
+**Технические детали:**
+- `POST /api/views.php` с JSON `{"slug":"..."}` — увеличить счётчик (защита от накрутки: 1 просмотр/IP/slug/24ч)
+- `GET /api/views.php?slugs=a,b,c` — получить числа без увеличения
+- Боты отсеиваются по User-Agent (содержащие bot/crawl/spider и т.п.)
+- IP не хранится в открытом виде, только `hash('sha256', ip+slug+дата+соль)`
+- Минимальное число для показа: 30 просмотров
+
 ## Коммит
 
 Хэш сборки: `d32bef8`. HEAD ветки: `37230e3` (хэш в этом README).
