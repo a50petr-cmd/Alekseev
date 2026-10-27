@@ -4,7 +4,7 @@
 
   var MSG = {
     phoneEmpty: "Укажите телефон",
-    phoneInvalid: "Введите телефон полностью: +7 (926) 923-29-29",
+    phoneInvalid: "Введите телефон полностью: +7 (___) ___-__-__",
     emailInvalid: "Проверьте почту, например name@mail.ru",
     telegramInvalid: "Введите ник Telegram, например @username",
     nameEmpty: "Укажите имя",
@@ -47,8 +47,8 @@
 
   function isValidPhone(raw) {
     var d = normalizePhoneDigits(raw);
-    if (d.length !== 11 || d.charAt(0) !== "7") return false;
-    return "34589".indexOf(d.charAt(1)) !== -1;
+    // Достаточно полного номера: +7 и ещё 10 цифр. Код оператора не проверяем.
+    return d.length === 11 && d.charAt(0) === "7";
   }
 
   function isValidEmail(raw) {

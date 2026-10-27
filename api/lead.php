@@ -51,10 +51,8 @@ function format_phone(string $digits): string
 
 function is_valid_phone_digits(string $digits): bool
 {
-    if (strlen($digits) !== 11 || $digits[0] !== '7') {
-        return false;
-    }
-    return in_array($digits[1], ['3', '4', '5', '8', '9'], true);
+    // Достаточно полного номера: +7 и ещё 10 цифр. Код оператора не проверяем.
+    return strlen($digits) === 11 && $digits[0] === '7';
 }
 
 function extract_telegram_username(string $raw): string
@@ -162,7 +160,7 @@ $phoneDigits = normalize_phone_digits($phone);
 if ($phone === '' || $phoneDigits === '' || $phoneDigits === '7') {
     $errors['phone'] = 'Укажите телефон';
 } elseif (!is_valid_phone_digits($phoneDigits)) {
-    $errors['phone'] = 'Введите телефон полностью: +7 (926) 923-29-29';
+    $errors['phone'] = 'Введите телефон полностью: +7 (___) ___-__-__';
 }
 
 if ($email !== '') {
