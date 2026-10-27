@@ -1,20 +1,13 @@
 (function () {
   /*
-   * Яндекс Метрика загружается сразу при открытии страницы (модель «уведомление + отказ»).
-   * Баннер сообщает об аналитике и даёт отказаться; отказ сохраняется в localStorage.
-   * Свои визиты: открыть любую страницу с ?nometrika=1 — счётчик в этом браузере
-   * больше не загружается (не зависит от IP и VPN). Вернуть: ?nometrika=0.
+   * Баннер «уведомление + отказ» и исключение своих визитов (?nometrika=1).
+   * Сам счётчик Яндекс Метрики подключается стандартным кодом на странице
+   * (script + noscript). Здесь только: disable при отказе/владельце и баннер.
    */
   var COUNTER_ID = 113335579;
   var STORAGE_KEY = "pa_analytics_consent_v1"; // "denied" — посетитель отказался
   var NOTICE_KEY = "pa_analytics_notice_v1"; // "seen" — баннер закрыт
   var OWNER_KEY = "pa_no_metrika"; // "1" — браузер владельца сайта, не считать
-
-  var consentScript = document.currentScript;
-  var assetsBase =
-    consentScript && consentScript.src
-      ? consentScript.src.replace(/[^/]+$/, "")
-      : new URL("assets/js/", document.baseURI).href;
   var privacyHref = "/privacy.html";
 
   function read(key) {
@@ -31,7 +24,6 @@
     } catch (error) {}
   }
 
-  // Переключатель «не считать мои визиты» через параметр в адресе.
   (function handleOwnerParam() {
     var match = location.search.match(/[?&]nometrika=([01])/);
     if (!match) return;
@@ -46,26 +38,7 @@
   var isOwner = read(OWNER_KEY) === "1";
   var isDenied = read(STORAGE_KEY) === "denied";
 
-  function loadMetrika() {
-    if (window.__metrikaLoadStarted) {
-      return;
-    }
-    window.__metrikaLoadStarted = true;
-    window.__analyticsConsent = true;
-    document.dispatchEvent(new CustomEvent("analytics:consent"));
-    var script = document.createElement("script");
-    script.src = assetsBase + "yandex-metrika.js";
-    script.async = true;
-    script.onload = function () {
-      if (typeof window.initYandexMetrika === "function") {
-        window.initYandexMetrika();
-      }
-    };
-    document.head.appendChild(script);
-  }
-
   function stopMetrika() {
-    // Документированный способ Яндекса остановить отправку данных счётчиком на текущей странице.
     window["disableYaCounter" + COUNTER_ID] = true;
   }
 
@@ -147,12 +120,14 @@
 
   onReady(bindResetControls);
 
+  // Важно: disable до выполнения стандартного кода счётчика на странице.
   if (isOwner || isDenied) {
+    stopMetrika();
     return;
   }
 
-  // Счётчик стартует сразу — первым хитом уходит настоящий источник перехода (поиск, Telegram и т.д.).
-  loadMetrika();
+  window.__analyticsConsent = true;
+  document.dispatchEvent(new CustomEvent("analytics:consent"));
 
   if (read(NOTICE_KEY) !== "seen") {
     onReady(renderBanner);
