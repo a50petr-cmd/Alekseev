@@ -228,7 +228,9 @@ h3 {
 
 h1 {
   font-size: clamp(1.85rem, 4.2vw, 3.1rem);
-  max-width: 14ch;
+  /* Ширину задаёт колонка сетки (.mock-hero-grid / .a-head), не 14ch —
+     иначе с Onest заголовок сжимается в узкий столбик у левого края. */
+  max-width: none;
 }
 
 body.case-page h1,
@@ -239,6 +241,14 @@ body[data-page="blog-article"] h1,
   max-width: none;
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+.mock-hero-grid > div:first-child {
+  min-width: 0;
+}
+
+.mock-hero h1 {
+  max-width: 100%;
 }
 
 .cookie-consent {
