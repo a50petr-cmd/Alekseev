@@ -1079,6 +1079,16 @@ body.theme-site .nav .nav-cta:hover {
   color: #fff !important;
 }
 
+/* После десктопных цветов: в выпадающем меню на телефоне ссылки тёмные на белом */
+@media (max-width: 900px) {
+  body.theme-site .nav a {
+    color: var(--ink);
+  }
+  body.theme-site .nav .nav-cta {
+    color: #fff !important;
+  }
+}
+
 .logo-strip {
   padding: 28px 0 8px;
   border-bottom: 1px solid var(--line);

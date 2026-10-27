@@ -10,6 +10,9 @@ RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^ https://petr-alekseev.ru%{REQUEST_URI} [R=301,L]
 
+# Корень: /index.html → /
+RewriteRule ^index\.html$ / [R=301,L]
+
 # Старые URL блога → новый индекс
 RewriteRule ^blog/franchise\.html$ /blog/ [R=301,L]
 RewriteRule ^blog/import\.html$ /blog/ [R=301,L]
