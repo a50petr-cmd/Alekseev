@@ -31,6 +31,8 @@ body.theme-site[data-page="blog-article"] main {
 }
 
 .bj-crumbs {
+  max-width: 680px;
+  margin-inline: auto;
   font-family: var(--bj-sans);
   font-size: 13px;
   color: var(--bj-ink-3);
@@ -57,7 +59,7 @@ body.theme-site[data-page="blog-article"] main {
 /* ---------- статья ---------- */
 /* Колонка статьи: левый край совпадает с логотипом в шапке (не центрируем 820px) */
 .a-head {
-  max-width: 820px;
+  max-width: 680px;
   margin: 0 auto;
   padding: 56px 0 40px;
   text-align: left;
@@ -142,7 +144,7 @@ img.ava {
 }
 
 .prose {
-  max-width: 820px;
+  max-width: 680px;
   margin: 0 auto;
   padding: 8px 0 24px;
   font-family: var(--bj-serif);
@@ -159,12 +161,14 @@ img.ava {
 
 .prose > .stat,
 .prose > .takeaways {
-  max-width: 760px;
+  max-width: 680px;
   margin-inline: auto;
 }
 
 .prose p {
   margin: 0 0 1.15em;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .prose h2 {
@@ -318,7 +322,7 @@ img.ava {
 }
 
 .author {
-  max-width: 820px;
+  max-width: 680px;
   margin: 48px auto 0;
   padding: 28px 0;
   border-top: 2px solid var(--bj-ink);
@@ -386,7 +390,7 @@ img.ava {
 }
 
 .related {
-  max-width: 820px;
+  max-width: 680px;
   margin: 8px auto 80px;
   padding: 22px 0 0;
   border-top: 1px solid var(--bj-rule);
