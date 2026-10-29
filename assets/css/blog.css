@@ -167,7 +167,8 @@ img.ava {
 
 .prose p {
   margin: 0 0 1.15em;
-  text-align: left;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .prose h2 {
