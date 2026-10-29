@@ -147,8 +147,8 @@ img.ava {
   max-width: 680px;
   margin: 0 auto;
   padding: 8px 0 24px;
-  font-family: var(--bj-serif);
-  font-size: 20px;
+  font-family: var(--bj-sans);
+  font-size: 18px;
   line-height: 1.7;
   color: var(--bj-ink);
   text-align: left;
@@ -167,8 +167,7 @@ img.ava {
 
 .prose p {
   margin: 0 0 1.15em;
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
 }
 
 .prose h2 {
