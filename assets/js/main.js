@@ -101,7 +101,7 @@
   }
 
   document.addEventListener("metrika:ready", setupMetrikaTracking, { once: true });
-  if (window.__metrikaInitialized) {
+  if (window.__metrikaInitialized || typeof ym === "function") {
     setupMetrikaTracking();
   }
 

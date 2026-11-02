@@ -129,6 +129,21 @@
   window.__analyticsConsent = true;
   document.dispatchEvent(new CustomEvent("analytics:consent"));
 
+  // Inline-счётчик на странице идёт после consent.js; цели в main.js ждут metrika:ready.
+  onReady(function () {
+    if (typeof ym !== "function") {
+      return;
+    }
+    if (typeof window.initYandexMetrika === "function") {
+      window.initYandexMetrika();
+      return;
+    }
+    if (!window.__metrikaInitialized) {
+      window.__metrikaInitialized = true;
+      document.dispatchEvent(new CustomEvent("metrika:ready"));
+    }
+  });
+
   if (read(NOTICE_KEY) !== "seen") {
     onReady(renderBanner);
   }
