@@ -11,6 +11,19 @@ if (!bj_is_slug($slug)) {
     exit;
 }
 
+if (bj_is_hidden($slug)) {
+    http_response_code(404);
+    $nf = dirname(__DIR__) . DIRECTORY_SEPARATOR . '404.html';
+    if (is_file($nf)) {
+        header('Content-Type: text/html; charset=utf-8');
+        readfile($nf);
+        exit;
+    }
+    header('Content-Type: text/plain; charset=utf-8');
+    echo 'Not found';
+    exit;
+}
+
 $post = bj_load_dynamic_post($slug);
 if ($post !== null) {
     header('Content-Type: text/html; charset=utf-8');

@@ -97,14 +97,67 @@ function bj_load_dynamic_posts(): array
     return is_array($json) ? $json : [];
 }
 
+function bj_hidden_path(): string
+{
+    return bj_data_root() . DIRECTORY_SEPARATOR . 'hidden.json';
+}
+
+/** @return array<string,true> */
+function bj_load_hidden_slugs(): array
+{
+    $file = bj_hidden_path();
+    if (!is_file($file)) {
+        return [];
+    }
+    $json = json_decode((string)file_get_contents($file), true);
+    if (!is_array($json)) {
+        return [];
+    }
+    $out = [];
+    foreach ($json as $slug) {
+        if (is_string($slug) && bj_is_slug($slug)) {
+            $out[$slug] = true;
+        }
+    }
+    return $out;
+}
+
+function bj_is_hidden(string $slug): bool
+{
+    return isset(bj_load_hidden_slugs()[$slug]);
+}
+
+/** @param array<string,true> $slugs */
+function bj_save_hidden_slugs(array $slugs): bool
+{
+    $list = array_keys($slugs);
+    sort($list);
+    $json = json_encode(array_values($list), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    if ($json === false) {
+        return false;
+    }
+    return file_put_contents(bj_hidden_path(), $json . "\n") !== false;
+}
+
+function bj_hide_slug(string $slug): bool
+{
+    if (!bj_is_slug($slug)) {
+        return false;
+    }
+    $hidden = bj_load_hidden_slugs();
+    $hidden[$slug] = true;
+    return bj_save_hidden_slugs($hidden);
+}
+
 /**
- * Объединённый список: динамические сверху по дате, без дублей slug (dynamic побеждает).
+ * Объединённый список: динамические + статическиe, без скрытых и дублей.
  * @return list<array<string,mixed>>
  */
 function bj_load_all_posts(): array
 {
     $dynamic = bj_load_dynamic_posts();
     $static = bj_load_static_posts();
+    $hidden = bj_load_hidden_slugs();
     $dynamicSlugs = [];
     foreach ($dynamic as $p) {
         if (is_array($p) && !empty($p['slug'])) {
@@ -119,11 +172,12 @@ function bj_load_all_posts(): array
             continue;
         }
         $slug = (string)($post['slug'] ?? '');
-        if ($slug === '' || isset($seen[$slug])) {
+        if ($slug === '' || isset($seen[$slug]) || isset($hidden[$slug])) {
             continue;
         }
         $seen[$slug] = true;
         $post['source'] = isset($dynamicSlugs[$slug]) ? 'dynamic' : 'static';
+        $post['canDelete'] = true;
         $out[] = $post;
     }
 
@@ -258,6 +312,13 @@ function bj_publish_post(array $meta, string $bodyHtml, ?string $coverTmpPath = 
 
     bj_write_dynamic_sitemap();
 
+    // Если slug раньше скрывали из админки — вернуть на сайт
+    $hidden = bj_load_hidden_slugs();
+    if (isset($hidden[$slug])) {
+        unset($hidden[$slug]);
+        bj_save_hidden_slugs($hidden);
+    }
+
     return ['ok' => true, 'slug' => $slug, 'url' => '/blog/' . $slug . '.html'];
 }
 
@@ -266,30 +327,48 @@ function bj_delete_post(string $slug): array
     if (!bj_is_slug($slug)) {
         return ['ok' => false, 'error' => 'bad_slug'];
     }
-    if (!bj_dynamic_exists($slug)) {
+
+    $existed = bj_dynamic_exists($slug);
+    foreach (bj_load_static_posts() as $p) {
+        if (($p['slug'] ?? '') === $slug) {
+            $existed = true;
+            break;
+        }
+    }
+    if (!$existed && is_file(bj_project_root() . DIRECTORY_SEPARATOR . 'blog' . DIRECTORY_SEPARATOR . $slug . '.html')) {
+        $existed = true;
+    }
+    if (!$existed) {
         return ['ok' => false, 'error' => 'not_found'];
     }
 
-    $dir = bj_post_dir($slug);
-    foreach (scandir($dir) ?: [] as $name) {
-        if ($name === '.' || $name === '..') {
-            continue;
+    if (bj_dynamic_exists($slug)) {
+        $dir = bj_post_dir($slug);
+        foreach (scandir($dir) ?: [] as $name) {
+            if ($name === '.' || $name === '..') {
+                continue;
+            }
+            $path = $dir . DIRECTORY_SEPARATOR . $name;
+            if (is_file($path)) {
+                @unlink($path);
+            }
         }
-        $path = $dir . DIRECTORY_SEPARATOR . $name;
-        if (is_file($path)) {
-            @unlink($path);
-        }
-    }
-    @rmdir($dir);
+        @rmdir($dir);
 
-    $posts = array_values(array_filter(
-        bj_load_dynamic_posts(),
-        static fn($p) => ($p['slug'] ?? '') !== $slug
-    ));
-    if (!bj_save_dynamic_index($posts)) {
-        return ['ok' => false, 'error' => 'index_write'];
+        $posts = array_values(array_filter(
+            bj_load_dynamic_posts(),
+            static fn($p) => ($p['slug'] ?? '') !== $slug
+        ));
+        if (!bj_save_dynamic_index($posts)) {
+            return ['ok' => false, 'error' => 'index_write'];
+        }
+        bj_write_dynamic_sitemap();
     }
-    bj_write_dynamic_sitemap();
+
+    // Статические из Git не трогаем файлами — прячем вне репозитория
+    if (!bj_hide_slug($slug)) {
+        return ['ok' => false, 'error' => 'hide_write'];
+    }
 
     return ['ok' => true, 'slug' => $slug];
 }

@@ -47,6 +47,7 @@ admin_require_login();
       <p id="previewLink" class="preview-link" hidden></p>
 
       <h2 class="published-title">Уже опубликованы</h2>
+      <p class="muted">Все статьи блога. «Удалить» снимает с сайта.</p>
       <ul id="dynList" class="dyn-list"><li class="muted">Загрузка…</li></ul>
     </section>
   </main>

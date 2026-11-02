@@ -12,7 +12,7 @@ if (!admin_logged_in()) {
 $action = (string)($_POST['action'] ?? $_GET['action'] ?? '');
 
 if ($action === 'list') {
-    admin_json(['ok' => true, 'posts' => bj_load_dynamic_posts()]);
+    admin_json(['ok' => true, 'posts' => bj_load_all_posts()]);
 }
 
 if ($action === 'preview_save') {
