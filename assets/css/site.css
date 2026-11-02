@@ -1422,3 +1422,357 @@ body.theme-site .service-label { background: rgba(20, 184, 166, 0.16); color: #5
   .fx-rec{padding:64px 20px 22px}
   .fx-rec:before{left:18px;top:-4px;font-size:96px}
 }
+
+/* === Homepage conversion + infographic (2026-11-02) === */
+
+#when-needed {
+  padding-top: 40px;
+  padding-bottom: 8px;
+}
+
+.signals-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.signals-list li {
+  margin: 0;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.signals-more {
+  margin: 18px 0 0;
+}
+
+.signals-more a {
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
+.case-actions {
+  margin: 0;
+  color: #c9d2cb;
+  font-size: 15px;
+  line-height: 1.5;
+  max-width: 52rem;
+}
+
+body.theme-site .case-card .quote {
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: #1a211c;
+  border-left-color: #5eead4;
+}
+
+body.theme-site .case-card .quote p {
+  color: #f4f7f4;
+}
+
+body.theme-site .case-card .quote .author {
+  color: #9aaba0;
+}
+
+.ig-flow {
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr 36px 1fr 36px 1fr;
+  gap: 12px 8px;
+  align-items: stretch;
+  width: 100%;
+  margin: 28px 0 0;
+  padding: 24px 20px;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.ig-flow__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  min-width: 0;
+  height: 100%;
+}
+
+.ig-flow__num {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: #fff;
+  color: var(--accent-deep, var(--accent));
+  font-family: Onest, Manrope, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.ig-flow__card {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 16px 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.ig-flow__card strong {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.ig-flow__card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.ig-flow__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: start;
+  width: 36px;
+  height: 52px;
+  margin: 0;
+  padding: 0;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--accent);
+  user-select: none;
+}
+
+.ig-flow__step--final .ig-flow__num {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.ig-flow__step--final .ig-flow__card {
+  background: #101410;
+  border-color: #243028;
+  color: #f4f7f4;
+}
+
+.ig-flow__step--final .ig-flow__card p {
+  color: #c9d2cb;
+}
+
+.case-infographic {
+  display: grid;
+  gap: 20px;
+}
+
+.case-infographic + .case-infographic {
+  margin-top: 20px;
+}
+
+.case-infographic__top .case-brands {
+  margin-bottom: 12px;
+}
+
+.case-infographic__top h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.03em;
+  max-width: none;
+}
+
+.case-infographic__top .lead {
+  margin-bottom: 12px;
+  max-width: none;
+}
+
+.case-infographic__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.case-infographic__foot .service-label {
+  margin-top: 0;
+}
+
+.ig-panel {
+  width: 100%;
+  margin: 0;
+  padding: 8px;
+  border-radius: 16px;
+  background: #0c100e;
+  border: 1px solid #243028;
+  box-sizing: border-box;
+}
+
+.ig-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.ig-metrics__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  padding: 22px 16px;
+  min-width: 0;
+}
+
+.ig-metrics__item + .ig-metrics__item {
+  border-left: 1px solid #243028;
+}
+
+.ig-metrics__label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a8a80;
+}
+
+.ig-metrics__change {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.ig-metrics__was {
+  font-size: 15px;
+  color: #8a9a90;
+}
+
+.ig-metrics__arrow {
+  font-size: 20px;
+  font-weight: 700;
+  color: #5eead4;
+  line-height: 1;
+}
+
+.ig-metrics__change strong {
+  font-family: Onest, Manrope, sans-serif;
+  font-size: clamp(1.55rem, 2.4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #5eead4;
+}
+
+.ig-score {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 8px;
+  text-align: center;
+  border-radius: 16px;
+  background: #0c100e;
+  border: 1px solid #243028;
+  box-sizing: border-box;
+}
+
+.ig-score__item {
+  padding: 22px 16px;
+  box-sizing: border-box;
+}
+
+.ig-score__item + .ig-score__item {
+  border-left: 1px solid #243028;
+}
+
+.ig-score__item strong {
+  display: block;
+  font-family: Onest, Manrope, sans-serif;
+  font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #f4f7f4;
+}
+
+.ig-score__item span {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #9aaba0;
+}
+
+.ig-score__item--accent strong {
+  color: #5eead4;
+}
+
+@media (max-width: 900px) {
+  .ig-flow {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 4px;
+    padding: 20px 16px;
+  }
+
+  .ig-flow__step {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .ig-flow__arrow {
+    width: auto;
+    height: 32px;
+    align-self: center;
+    transform: rotate(90deg);
+    font-size: 26px;
+  }
+
+  .ig-metrics,
+  .ig-score {
+    grid-template-columns: 1fr;
+  }
+
+  .ig-metrics__item + .ig-metrics__item,
+  .ig-score__item + .ig-score__item {
+    border-left: 0;
+    border-top: 1px solid #243028;
+  }
+}
+
+@media (max-width: 700px) {
+  .signals-list {
+    grid-template-columns: 1fr;
+  }
+
+  .case-infographic__foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
