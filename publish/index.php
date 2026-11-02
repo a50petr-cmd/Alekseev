@@ -10,14 +10,14 @@ admin_require_login();
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Новая статья — админка</title>
   <meta name="robots" content="noindex,nofollow">
-  <link rel="stylesheet" href="/admin/admin.css">
+  <link rel="stylesheet" href="/publish/admin.css">
 </head>
 <body class="admin-body">
   <header class="admin-top">
     <strong>Админка блога</strong>
     <nav>
       <a href="/blog/" target="_blank" rel="noopener">Блог</a>
-      <a href="/admin/logout.php">Выйти</a>
+      <a href="/publish/logout.php">Выйти</a>
     </nav>
   </header>
 
@@ -51,6 +51,6 @@ admin_require_login();
     </section>
   </main>
 
-  <script src="/admin/admin.js"></script>
+  <script src="/publish/admin.js"></script>
 </body>
 </html>

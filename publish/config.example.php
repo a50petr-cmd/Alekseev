@@ -4,7 +4,7 @@
  *   petr-alekseev-data/admin.local.php
  * (в корне сайта; каталог petr-alekseev-data закрыт .htaccess)
  *
- * Либо локально: admin/config.local.php (не в Git / не в FTP).
+ * Либо локально: publish/config.local.php (не в Git / не в FTP).
  *
  * Пароль: любой длинный; храните только хеш.
  * Сгенерировать хеш: php -r "echo password_hash('ВАШ_ПАРОЛЬ', PASSWORD_DEFAULT), PHP_EOL;"

@@ -1,6 +1,6 @@
 # Админка блога
 
-URL на проде: `https://petr-alekseev.ru/admin/`
+URL на проде: `https://petr-alekseev.ru/publish/`
 
 ## Первый запуск на хостинге
 
@@ -15,7 +15,7 @@ URL на проде: `https://petr-alekseev.ru/admin/`
 
 1. ИИ пишет черновик в `blog/inbox/{slug}/` (meta.json + article.md + cover).
 2. Вы правите и в админке вставляете текст / загружаете обложку.
-3. **Превью** → ссылка `/admin/preview.php?id=…` (noindex).
+3. **Превью** → ссылка `/publish/preview.php?id=…` (noindex).
 4. **Опубликовать** → статья в `petr-alekseev-data/blog/`, URL `/blog/{slug}.html`.
 
 Статические статьи из Git не трогаются. Новый slug не должен совпадать с существующим `.html` в `blog/`.

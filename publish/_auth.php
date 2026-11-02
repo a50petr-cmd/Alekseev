@@ -57,7 +57,7 @@ function admin_logged_in(): bool
 function admin_require_login(): void
 {
     if (!admin_logged_in()) {
-        header('Location: /admin/login.php');
+        header('Location: /publish/login.php');
         exit;
     }
 }

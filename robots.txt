@@ -4,6 +4,7 @@ Allow: /
 # Черновики и служебное — не для индекса
 Disallow: /_preview/
 Disallow: /blog/inbox/
+Disallow: /publish/
 Disallow: /admin/
 
 Sitemap: https://petr-alekseev.ru/sitemap.xml

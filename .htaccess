@@ -23,6 +23,9 @@ RewriteRule ^blog/index\.html$ /blog/ [R=301,L]
 # Данные админки / счётчиков — не отдавать
 RewriteRule ^petr-alekseev-data(/|$) - [F,L]
 
+# Старый URL админки (Reg.ru часто режет /admin/) → новый
+RewriteRule ^admin(/.*)?$ /publish$1 [R=302,L]
+
 # Динамические статьи из админки (если нет статического HTML)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^blog/([a-z0-9-]+)\.html$ /blog/article.php?slug=$1 [L,QSA]

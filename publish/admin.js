@@ -79,7 +79,7 @@
     fd.append('action', action);
     fd.append('payload', JSON.stringify(data));
     if (file) fd.append('cover', file);
-    const res = await fetch('/admin/api.php', { method: 'POST', body: fd, credentials: 'same-origin' });
+    const res = await fetch('/publish/api.php', { method: 'POST', body: fd, credentials: 'same-origin' });
     return res.json();
   }
 
@@ -131,7 +131,7 @@
 
   async function loadList() {
     try {
-      const res = await fetch('/admin/api.php?action=list', { credentials: 'same-origin' });
+      const res = await fetch('/publish/api.php?action=list', { credentials: 'same-origin' });
       const json = await res.json();
       if (!json.ok || !Array.isArray(json.posts) || json.posts.length === 0) {
         dynList.innerHTML = '<li class="muted">Пока пусто</li>';

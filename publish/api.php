@@ -47,7 +47,7 @@ if ($action === 'preview_save') {
     if (file_put_contents($path, json_encode($draft, JSON_UNESCAPED_UNICODE) . "\n") === false) {
         admin_json(['ok' => false, 'error' => 'write'], 500);
     }
-    admin_json(['ok' => true, 'id' => $id, 'url' => '/admin/preview.php?id=' . rawurlencode($id)]);
+    admin_json(['ok' => true, 'id' => $id, 'url' => '/publish/preview.php?id=' . rawurlencode($id)]);
 }
 
 if ($action === 'publish') {

@@ -89,9 +89,11 @@ jobs:
             **/blog/inbox/**
             **/blog/_data/**
             **/admin/config.local.php
+            **/publish/config.local.php
             **/blog/_article-template.html
             **/blog/КАК-ДОБАВИТЬ-СТАТЬЮ.txt
             **/admin/config.example.php
+            **/publish/config.example.php
             **/README.md
             **/tools/**
             **/*.md

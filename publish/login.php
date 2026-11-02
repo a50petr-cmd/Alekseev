@@ -4,7 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/_auth.php';
 
 if (admin_logged_in()) {
-    header('Location: /admin/');
+    header('Location: /publish/');
     exit;
 }
 
@@ -12,9 +12,9 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass = (string)($_POST['password'] ?? '');
     if (!admin_is_configured()) {
-        $error = 'Пароль не настроен. Создайте petr-alekseev-data/admin.local.php по образцу admin/config.example.php';
+        $error = 'Пароль не настроен. Создайте petr-alekseev-data/admin.local.php по образцу publish/config.example.php';
     } elseif (admin_try_login($pass)) {
-        header('Location: /admin/');
+        header('Location: /publish/');
         exit;
     } else {
         $error = 'Неверный пароль';
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Вход — админка блога</title>
   <meta name="robots" content="noindex,nofollow">
-  <link rel="stylesheet" href="/admin/admin.css">
+  <link rel="stylesheet" href="/publish/admin.css">
 </head>
 <body class="admin-body">
   <main class="login-card">
