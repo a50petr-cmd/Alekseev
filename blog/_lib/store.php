@@ -365,7 +365,14 @@ function bj_delete_post(string $slug): array
         bj_write_dynamic_sitemap();
     }
 
-    // Статические из Git не трогаем файлами — прячем вне репозитория
+    // Статический HTML: убрать с раздачи (nginx отдаёт файл напрямую).
+    // При следующем «публикуй» из Git файл может вернуться — тогда снова удалите здесь
+    // или уберите статью из репозитория.
+    $static = bj_project_root() . DIRECTORY_SEPARATOR . 'blog' . DIRECTORY_SEPARATOR . $slug . '.html';
+    if (is_file($static)) {
+        @rename($static, $static . '.off');
+    }
+
     if (!bj_hide_slug($slug)) {
         return ['ok' => false, 'error' => 'hide_write'];
     }
