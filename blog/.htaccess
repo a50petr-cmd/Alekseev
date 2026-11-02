@@ -1,12 +1,5 @@
 DirectoryIndex index.php index.html
 
-<IfModule mod_authz_core.c>
-  <DirectoryMatch "^.*/blog/(_lib|_data|inbox)">
-    Require all denied
-  </DirectoryMatch>
-</IfModule>
-
-# Запасной запрет на прямые пути к служебному
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteRule ^_lib(/|$) - [F,L]
