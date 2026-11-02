@@ -120,4 +120,56 @@
     script.async = true;
     document.body.appendChild(script);
   }
+
+  // Главная: три последние статьи из каталога блога (статика + админка)
+  var homeBlogList = document.querySelector("[data-home-blog-list]");
+  if (homeBlogList) {
+    function escapeHtml(value) {
+      return String(value == null ? "" : value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+    fetch("/blog/posts-all.php", { credentials: "same-origin" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("blog list " + response.status);
+        return response.json();
+      })
+      .then(function (posts) {
+        if (!Array.isArray(posts) || posts.length === 0) return;
+        var latest = posts.slice(0, 3);
+        homeBlogList.innerHTML = latest
+          .map(function (post) {
+            var slug = String(post.slug || "");
+            if (!slug) return "";
+            var href = "/blog/" + encodeURIComponent(slug) + ".html";
+            var date = escapeHtml(post.date || "");
+            var dateLabel = escapeHtml(post.dateLabel || post.date || "");
+            var title = escapeHtml(post.title || "");
+            var description = escapeHtml(post.description || "");
+            return (
+              '<a class="blog-card" href="' +
+              href +
+              '">' +
+              '<time datetime="' +
+              date +
+              '">' +
+              dateLabel +
+              "</time>" +
+              "<h2>" +
+              title +
+              "</h2>" +
+              "<p>" +
+              description +
+              "</p>" +
+              "</a>"
+            );
+          })
+          .join("");
+      })
+      .catch(function () {
+        // оставляем статичный fallback из index.html
+      });
+  }
 })();
