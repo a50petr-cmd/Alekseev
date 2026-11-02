@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# Drafts and admin — keep out of index
+# Drafts and admin - keep out of index
 Disallow: /_preview/
 Disallow: /blog/inbox/
 Disallow: /publish/
