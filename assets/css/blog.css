@@ -697,3 +697,22 @@ img.ava {
     padding: 40px 0 28px;
   }
 }
+
+/* Закреплённая кнопка Telegram (личка) — только страницы статей */
+body.theme-site[data-page="blog-article"] .float-chat {
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  z-index: 95;
+}
+
+body.theme-site[data-page="blog-article"] .float-chat:focus-visible {
+  outline: 3px solid var(--bj-accent);
+  outline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  body.theme-site[data-page="blog-article"] .float-chat {
+    bottom: 28px;
+    right: max(28px, calc(50vw - 560px + 28px));
+  }
+}
