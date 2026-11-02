@@ -115,4 +115,23 @@ if ($action === 'publish') {
     admin_json(['ok' => true, 'slug' => $slug, 'url' => $result['url']]);
 }
 
+if ($action === 'delete') {
+    $slug = trim((string)($_POST['slug'] ?? ''));
+    if ($slug === '' && isset($_POST['payload'])) {
+        $payload = json_decode((string)$_POST['payload'], true);
+        if (is_array($payload)) {
+            $slug = trim((string)($payload['slug'] ?? ''));
+        }
+    }
+    if (!bj_is_slug($slug)) {
+        admin_json(['ok' => false, 'error' => 'bad_slug'], 400);
+    }
+    $result = bj_delete_post($slug);
+    if (empty($result['ok'])) {
+        $code = ($result['error'] ?? '') === 'not_found' ? 404 : 500;
+        admin_json(['ok' => false, 'error' => $result['error'] ?? 'delete'], $code);
+    }
+    admin_json(['ok' => true, 'slug' => $slug]);
+}
+
 admin_json(['ok' => false, 'error' => 'action'], 400);

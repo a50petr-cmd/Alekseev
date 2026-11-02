@@ -261,6 +261,39 @@ function bj_publish_post(array $meta, string $bodyHtml, ?string $coverTmpPath = 
     return ['ok' => true, 'slug' => $slug, 'url' => '/blog/' . $slug . '.html'];
 }
 
+function bj_delete_post(string $slug): array
+{
+    if (!bj_is_slug($slug)) {
+        return ['ok' => false, 'error' => 'bad_slug'];
+    }
+    if (!bj_dynamic_exists($slug)) {
+        return ['ok' => false, 'error' => 'not_found'];
+    }
+
+    $dir = bj_post_dir($slug);
+    foreach (scandir($dir) ?: [] as $name) {
+        if ($name === '.' || $name === '..') {
+            continue;
+        }
+        $path = $dir . DIRECTORY_SEPARATOR . $name;
+        if (is_file($path)) {
+            @unlink($path);
+        }
+    }
+    @rmdir($dir);
+
+    $posts = array_values(array_filter(
+        bj_load_dynamic_posts(),
+        static fn($p) => ($p['slug'] ?? '') !== $slug
+    ));
+    if (!bj_save_dynamic_index($posts)) {
+        return ['ok' => false, 'error' => 'index_write'];
+    }
+    bj_write_dynamic_sitemap();
+
+    return ['ok' => true, 'slug' => $slug];
+}
+
 function bj_write_dynamic_sitemap(): void
 {
     $posts = bj_load_dynamic_posts();

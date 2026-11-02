@@ -139,12 +139,39 @@
       }
       dynList.innerHTML = json.posts.map((p) => {
         const href = '/blog/' + encodeURIComponent(p.slug) + '.html';
-        return '<li><a href="' + href + '" target="_blank" rel="noopener">' + escapeHtml(p.title || p.slug) + '</a></li>';
+        const slug = String(p.slug || '');
+        return '<li class="dyn-item">'
+          + '<a href="' + href + '" target="_blank" rel="noopener">' + escapeHtml(p.title || slug) + '</a>'
+          + '<button type="button" class="btn-del" data-slug="' + escapeHtml(slug) + '">Удалить</button>'
+          + '</li>';
       }).join('');
     } catch (e) {
       dynList.innerHTML = '<li class="muted">Список недоступен</li>';
     }
   }
+
+  dynList.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.btn-del');
+    if (!btn) return;
+    const slug = btn.getAttribute('data-slug') || '';
+    if (!slug) return;
+    if (!confirm('Удалить статью с сайта? Это нельзя отменить.')) return;
+    btn.disabled = true;
+    setStatus('Удаляю…', true);
+    try {
+      const json = await postForm('delete', { slug });
+      if (!json.ok) {
+        setStatus('Не удалено: ' + (json.error || 'ошибка'), false);
+        btn.disabled = false;
+        return;
+      }
+      setStatus('Удалено', true);
+      loadList();
+    } catch (err) {
+      setStatus('Ошибка сети', false);
+      btn.disabled = false;
+    }
+  });
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
