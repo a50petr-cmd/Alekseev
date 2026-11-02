@@ -181,11 +181,41 @@ function bj_load_all_posts(): array
         $out[] = $post;
     }
 
+    // Feature (первая карточка): свежая из админки. Старые из Git — ниже в списке.
     usort($out, static function (array $a, array $b): int {
-        return strcmp((string)($b['date'] ?? ''), (string)($a['date'] ?? ''));
+        $aDyn = (($a['source'] ?? '') === 'dynamic') ? 1 : 0;
+        $bDyn = (($b['source'] ?? '') === 'dynamic') ? 1 : 0;
+        if ($aDyn !== $bDyn) {
+            return $bDyn <=> $aDyn;
+        }
+        $aTs = bj_post_sort_ts($a);
+        $bTs = bj_post_sort_ts($b);
+        if ($aTs !== $bTs) {
+            return $bTs <=> $aTs;
+        }
+        return strcmp((string)($b['slug'] ?? ''), (string)($a['slug'] ?? ''));
     });
 
     return $out;
+}
+
+/** @param array<string,mixed> $post */
+function bj_post_sort_ts(array $post): int
+{
+    if (!empty($post['publishedAt'])) {
+        $n = (int)$post['publishedAt'];
+        if ($n > 0) {
+            return $n;
+        }
+    }
+    $date = (string)($post['date'] ?? '');
+    if ($date !== '') {
+        $t = strtotime($date . ' 12:00:00');
+        if ($t !== false) {
+            return $t;
+        }
+    }
+    return 0;
 }
 
 function bj_dynamic_exists(string $slug): bool
@@ -276,18 +306,21 @@ function bj_publish_post(array $meta, string $bodyHtml, ?string $coverTmpPath = 
         @unlink($coverTmpPath);
     }
 
+    $now = time();
+    $date = (string)($meta['date'] ?? date('Y-m-d'));
     $indexMeta = [
         'slug' => $slug,
         'title' => (string)($meta['title'] ?? ''),
         'description' => (string)($meta['description'] ?? ''),
-        'date' => (string)($meta['date'] ?? date('Y-m-d')),
-        'dateLabel' => (string)($meta['dateLabel'] ?? ''),
+        'date' => $date,
+        'dateLabel' => (string)($meta['dateLabel'] ?? bj_date_label($date)),
         'category' => (string)($meta['category'] ?? 'Практика'),
         'readTime' => (string)($meta['readTime'] ?? '5 минут'),
         'figure' => (string)($meta['figure'] ?? '·'),
         'figureCaption' => (string)($meta['figureCaption'] ?? ''),
         'imageAlt' => (string)($meta['imageAlt'] ?? ''),
         'source' => 'dynamic',
+        'publishedAt' => $now,
     ];
     if ($coverFile) {
         $indexMeta['coverFile'] = $coverFile;
@@ -305,7 +338,9 @@ function bj_publish_post(array $meta, string $bodyHtml, ?string $coverTmpPath = 
     $posts = bj_load_dynamic_posts();
     $posts = array_values(array_filter($posts, static fn($p) => ($p['slug'] ?? '') !== $slug));
     array_unshift($posts, $indexMeta);
-    usort($posts, static fn($a, $b) => strcmp((string)($b['date'] ?? ''), (string)($a['date'] ?? '')));
+    usort($posts, static function (array $a, array $b): int {
+        return bj_post_sort_ts($b) <=> bj_post_sort_ts($a);
+    });
     if (!bj_save_dynamic_index($posts)) {
         return ['ok' => false, 'error' => 'index_write'];
     }
