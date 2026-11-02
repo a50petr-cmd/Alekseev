@@ -435,9 +435,9 @@ h3 {
 
 .about-photo img {
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center 12%;
+  height: auto;
+  aspect-ratio: 680 / 430;
+  object-fit: contain;
 }
 
 .faq {
