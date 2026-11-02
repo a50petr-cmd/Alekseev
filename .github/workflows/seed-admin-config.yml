@@ -1,0 +1,52 @@
+# Заливка пароля админки в petr-alekseev-data/ (исключён из обычного FTP-деплоя).
+name: Seed admin config
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: seed-admin-config
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare files
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          d = Path("upload/petr-alekseev-data")
+          d.mkdir(parents=True, exist_ok=True)
+          (d / ".htaccess").write_text("Require all denied\n", encoding="utf-8")
+          (d / "admin.local.php").write_text(
+              "<?php\n"
+              "return [\n"
+              "  'password_hash' => '$2b$10$uuK2O0pncjt/.4RJboPjTuCWuWC98WtTya4Ck5SaKiGJfAfAFMVXS',\n"
+              "  'session_name' => 'pa_blog_admin',\n"
+              "];\n",
+              encoding="utf-8",
+          )
+          print("Prepared:", list(d.iterdir()))
+          PY
+
+      - name: Normalize FTP server directory
+        id: ftpdir
+        env:
+          SERVER_DIR: ${{ secrets.FTP_SERVER_DIR }}
+        run: |
+          dir="$SERVER_DIR"
+          case "$dir" in */) ;; *) dir="${dir}/" ;; esac
+          echo "path=$dir" >> "$GITHUB_OUTPUT"
+
+      - name: Upload petr-alekseev-data via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./upload/
+          server-dir: ${{ steps.ftpdir.outputs.path }}
+          log-level: verbose
