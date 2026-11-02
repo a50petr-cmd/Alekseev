@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Превью админки блога</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="/admin/admin.css">
+  <style>
+    .banner {
+      background: #1f6b4a;
+      color: #fff;
+      padding: 10px 16px;
+      font: 14px/1.4 "Segoe UI", system-ui, sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="admin-body">
+  <div class="banner">Превью админки — только заголовок, картинка и текст</div>
+  <header class="admin-top">
+    <strong>Новая статья</strong>
+    <nav><a href="./preview.html" id="openPreviewTop">Превью</a></nav>
+  </header>
+
+  <main class="admin-simple">
+    <section class="admin-form">
+      <h1>Новая статья</h1>
+      <p class="muted">Заполните три поля и нажмите «Превью».</p>
+
+      <label>Заголовок
+        <input id="title" type="text" value="Когда собственнику нужен порядок в операционке">
+      </label>
+
+      <label>Картинка
+        <input id="cover" type="file" accept="image/*">
+      </label>
+      <div id="coverPreview" class="cover-preview" hidden></div>
+
+      <label>Текст статьи
+        <textarea id="body" rows="18">Точка работает, но каждое утро начинается с тушения пожаров. Поставщик опоздал, продавец заболел, а цифры за вчера вы смотрите только вечером.
+
+## Три признака
+
+- Решения принимаете только вы — даже мелкие.
+- В конце месяца «деньги должны быть», а их нет.
+- Новых точек боитесь больше, чем конкурентов.
+
+## Что сделать за неделю
+
+Выпишите пять процессов, без которых день разваливается. Назначьте ответственного и одну цифру на каждый. Остальное пока не трогайте.
+</textarea>
+      </label>
+
+      <div class="actions">
+        <button type="button" class="btn" id="btnPreview">Превью</button>
+      </div>
+      <p id="status" class="status" role="status"></p>
+      <p id="previewLink" class="preview-link"></p>
+    </section>
+  </main>
+
+  <script src="./preview-app.js"></script>
+</body>
+</html>

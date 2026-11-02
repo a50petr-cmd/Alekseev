@@ -20,6 +20,13 @@ RewriteRule ^blog/kpi\.html$ /blog/ [R=301,L]
 RewriteRule ^blog/logistics\.html$ /blog/ [R=301,L]
 RewriteRule ^blog/index\.html$ /blog/ [R=301,L]
 
+# Данные админки / счётчиков — не отдавать
+RewriteRule ^petr-alekseev-data(/|$) - [F,L]
+
+# Динамические статьи из админки (если нет статического HTML)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^blog/([a-z0-9-]+)\.html$ /blog/article.php?slug=$1 [L,QSA]
+
 # Старые страницы → новые (301)
 RewriteRule ^services\.html$ /#offers [R=301,L,NE]
 RewriteRule ^cases\.html$ /#cases [R=301,L,NE]

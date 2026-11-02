@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Превью статьи</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261027b">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261027b">
+  <link rel="stylesheet" href="/assets/css/blog.css?v=20261102a">
+</head>
+<body class="theme-site" data-page="blog-article">
+  <div style="background:#fff3cd;color:#664d03;padding:10px 16px;text-align:center;font:14px/1.4 system-ui,sans-serif">
+    Черновик превью · <a href="./">назад в админку</a>
+  </div>
+  <a class="skip" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="wrap site-header-inner">
+      <a class="logo" href="/"><span class="logo-mark">ПА</span><span class="logo-text"><strong>Пётр Алексеев</strong><small>Операции · ритейл · доставка</small></span></a>
+      <nav id="nav" class="nav">
+        <a href="/blog/">Блог</a>
+        <a class="btn btn-primary btn-small nav-cta" href="/#contact">Связаться</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="bj-wrap">
+      <ul class="bj-crumbs">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/blog/">Блог</a></li>
+        <li aria-current="page" id="crumbCat">Практика</li>
+      </ul>
+      <header class="a-head">
+        <div class="kicker"><span id="kickerCat">Практика</span> <i>· <span id="kickerTime">5 минут</span> чтения</i></div>
+        <h1 id="h1">Заголовок</h1>
+        <p class="dek" id="dek">Описание</p>
+        <div class="byline">
+          <img class="ava" src="/assets/images/petr-alekseev.jpg" width="72" height="72" alt="Пётр Алексеев">
+          <div><strong>Пётр Алексеев</strong>Операционный директор на аутсорсе · <span id="bylineDate"></span></div>
+        </div>
+      </header>
+      <article class="prose" id="prose"></article>
+      <section class="author">
+        <img class="ava" src="/assets/images/petr-alekseev.jpg" width="72" height="72" alt="Пётр Алексеев">
+        <div>
+          <h4>Пётр Алексеев</h4>
+          <p>18 лет в операционном управлении ритейла и доставки: X5, METRO, Купер, Комус, Евроопт.</p>
+          <a class="bj-btn" href="/operations-director.html#contact">Обсудить задачу</a>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script>
+  (function () {
+    const KEY = 'pa_blog_admin_preview_draft';
+    const raw = localStorage.getItem(KEY);
+    if (!raw) {
+      document.getElementById('h1').textContent = 'Нет черновика';
+      document.getElementById('dek').textContent = 'Откройте админку превью и нажмите «Превью».';
+      return;
+    }
+    const d = JSON.parse(raw);
+    const months = {1:'января',2:'февраля',3:'марта',4:'апреля',5:'мая',6:'июня',7:'июля',8:'августа',9:'сентября',10:'октября',11:'ноября',12:'декабря'};
+    function dateLabel(iso) {
+      const t = new Date(iso + 'T12:00:00');
+      if (isNaN(t)) return iso;
+      return t.getDate() + ' ' + (months[t.getMonth()+1] || '') + ' ' + t.getFullYear();
+    }
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function inline(t) {
+      t = esc(t);
+      t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+|\/[^)\s]*)\)/g, '<a href="$2">$1</a>');
+      t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      return t;
+    }
+    function mdToHtml(md) {
+      md = (md || '').replace(/\r\n/g, '\n').trim();
+      if (!md) return '';
+      const blocks = md.split(/\n{2,}/);
+      const html = [];
+      for (let block of blocks) {
+        block = block.trim();
+        if (!block) continue;
+        if (/^##\s+.+/.test(block) && !block.includes('\n')) {
+          html.push('<h2>' + inline(block.replace(/^##\s+/, '')) + '</h2>');
+          continue;
+        }
+        const lines = block.split('\n');
+        const isUl = lines.every(l => /^\s*[-*]\s+/.test(l));
+        const isOl = lines.every(l => /^\s*\d+\.\s+/.test(l));
+        if (isUl) {
+          html.push('<ul>' + lines.map(l => '<li>' + inline(l.replace(/^\s*[-*]\s+/, '')) + '</li>').join('') + '</ul>');
+          continue;
+        }
+        if (isOl) {
+          html.push('<ol>' + lines.map(l => '<li>' + inline(l.replace(/^\s*\d+\.\s+/, '')) + '</li>').join('') + '</ol>');
+          continue;
+        }
+        html.push('<p>' + inline(lines.join(' ')) + '</p>');
+      }
+      return html.join('\n');
+    }
+
+    document.title = (d.title || 'Превью') + ' — превью';
+    document.getElementById('crumbCat').textContent = d.category || 'Практика';
+    document.getElementById('kickerCat').textContent = d.category || 'Практика';
+    document.getElementById('kickerTime').textContent = d.readTime || '5 минут';
+    document.getElementById('h1').textContent = d.title || '';
+    document.getElementById('dek').textContent = d.description || '';
+    document.getElementById('bylineDate').textContent = dateLabel(d.date || '');
+
+    let cover = '';
+    if (d.coverDataUrl) {
+      cover = '<figure class="fx-fig" style="margin:0 0 28px"><img src="' + d.coverDataUrl.replace(/"/g, '&quot;') + '" alt="' + esc(d.imageAlt || d.title || '') + '" width="1200" height="630"></figure>';
+    }
+    document.getElementById('prose').innerHTML = cover + mdToHtml(d.bodyMd || '');
+  })();
+  </script>
+</body>
+</html>

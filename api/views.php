@@ -66,20 +66,28 @@ function is_bot_ua(string $ua): bool
 
 function load_valid_slugs(): array
 {
-    $file = __DIR__ . '/../blog/posts.json';
-    if (!is_file($file)) {
-        return [];
-    }
-
-    $json = json_decode(file_get_contents($file), true);
-    if (!is_array($json)) {
-        return [];
-    }
-
     $slugs = [];
-    foreach ($json as $item) {
-        if (isset($item['slug']) && is_string($item['slug'])) {
-            $slugs[$item['slug']] = true;
+
+    $file = __DIR__ . '/../blog/posts.json';
+    if (is_file($file)) {
+        $json = json_decode((string)file_get_contents($file), true);
+        if (is_array($json)) {
+            foreach ($json as $item) {
+                if (isset($item['slug']) && is_string($item['slug'])) {
+                    $slugs[$item['slug']] = true;
+                }
+            }
+        }
+    }
+
+    // Статьи из админки (вне Git)
+    $store = __DIR__ . '/../blog/_lib/store.php';
+    if (is_file($store)) {
+        require_once $store;
+        foreach (bj_load_dynamic_posts() as $item) {
+            if (isset($item['slug']) && is_string($item['slug'])) {
+                $slugs[$item['slug']] = true;
+            }
         }
     }
 

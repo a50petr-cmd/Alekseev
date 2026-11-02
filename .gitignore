@@ -2,3 +2,5 @@
 .seo-reports/
 api/smtp.local.php
 petr-alekseev-data/
+admin/config.local.php
+blog/_data/

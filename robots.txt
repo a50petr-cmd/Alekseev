@@ -3,5 +3,8 @@ Allow: /
 
 # Черновики и служебное — не для индекса
 Disallow: /_preview/
+Disallow: /blog/inbox/
+Disallow: /admin/
 
 Sitemap: https://petr-alekseev.ru/sitemap.xml
+Sitemap: https://petr-alekseev.ru/blog/sitemap-dynamic.php

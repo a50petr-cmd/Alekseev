@@ -85,8 +85,13 @@ jobs:
             **/_preview/**
             **/assets/images/draft/**
             **/api/data/**
+            **/petr-alekseev-data/**
+            **/blog/inbox/**
+            **/blog/_data/**
+            **/admin/config.local.php
             **/blog/_article-template.html
             **/blog/КАК-ДОБАВИТЬ-СТАТЬЮ.txt
+            **/admin/config.example.php
             **/README.md
             **/tools/**
             **/*.md
