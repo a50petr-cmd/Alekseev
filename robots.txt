@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# Черновики и служебное — не для индекса
+# Drafts and admin — keep out of index
 Disallow: /_preview/
 Disallow: /blog/inbox/
 Disallow: /publish/

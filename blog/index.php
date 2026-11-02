@@ -24,6 +24,10 @@ $cards = bj_render_index_cards($posts);
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Блог — Пётр Алексеев">
+  <meta name="twitter:description" content="Статьи об операционном управлении, ритейле, быстрой доставке и дарксторах — практика Петра Алексеева.">
+  <meta name="twitter:image" content="https://petr-alekseev.ru/assets/images/og-image.jpg">
+  <meta name="yandex-verification" content="36d2c01f5201e09b">
   <meta name="theme-color" content="#0f1411">
   <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -33,10 +37,22 @@ $cards = bj_render_index_cards($posts);
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://petr-alekseev.ru/" },
-      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://petr-alekseev.ru/blog/" }
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://petr-alekseev.ru/" },
+          { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://petr-alekseev.ru/blog/" }
+        ]
+      },
+      {
+        "@type": "Blog",
+        "name": "Блог — Пётр Алексеев",
+        "url": "https://petr-alekseev.ru/blog/",
+        "description": "Статьи об операционном управлении, ритейле, быстрой доставке и дарксторах — практика Петра Алексеева.",
+        "inLanguage": "ru-RU",
+        "author": { "@type": "Person", "name": "Пётр Алексеев", "url": "https://petr-alekseev.ru/" }
+      }
     ]
   }
   </script>

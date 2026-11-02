@@ -69,6 +69,10 @@ function bj_render_article_page(array $post, array $opts = []): string
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="' . $e($title) . '">
+  <meta name="twitter:description" content="' . $e($description) . '">
+  <meta name="twitter:image" content="' . $e($ogImage) . '">
+  <meta name="yandex-verification" content="36d2c01f5201e09b">
   <meta name="theme-color" content="#0f1411">
   <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">

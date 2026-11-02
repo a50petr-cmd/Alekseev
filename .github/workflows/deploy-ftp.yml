@@ -118,7 +118,7 @@ jobs:
           echo "::error::Сайт не обновился. Проверьте секрет FTP_SERVER_DIR (корень сайта в ISPmanager, обычно www/petr-alekseev.ru/)."
           exit 1
 
-      - name: Notify Yandex IndexNow
+      - name: Notify IndexNow (Yandex, Bing, api.indexnow.org)
         continue-on-error: true
         run: |
           python3 <<'PY'
@@ -127,6 +127,8 @@ jobs:
 
           key = "15cc1411bc624812835571494ad154e0"
           locs = re.findall(r"<loc>\s*([^<]+?)\s*</loc>", Path("sitemap.xml").read_text(encoding="utf-8"))
+          # Skip low-value legal pages for crawl budget signals
+          locs = [u for u in locs if not u.rstrip("/").endswith(("privacy.html", "consent.html"))]
           payload = {
               "host": "petr-alekseev.ru",
               "key": key,
@@ -134,28 +136,30 @@ jobs:
               "urlList": locs,
           }
           body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-          print("IndexNow payload:", body.decode("utf-8"))
-          req = urllib.request.Request(
+          print("IndexNow URLs:", len(locs))
+          endpoints = [
               "https://yandex.com/indexnow",
-              data=body,
-              headers={"Content-Type": "application/json; charset=utf-8"},
-              method="POST",
-          )
-          try:
-              with urllib.request.urlopen(req, timeout=30) as resp:
-                  code = resp.getcode()
-                  text = resp.read().decode("utf-8", errors="replace")
-          except urllib.error.HTTPError as e:
-              code = e.code
-              text = e.read().decode("utf-8", errors="replace")
-          except Exception as e:
-              code = 0
-              text = str(e)
-          print(f"IndexNow HTTP status: {code}")
-          print("IndexNow response body:")
-          print(text)
-          if code in (200, 202):
-              print("IndexNow OK")
-          else:
-              print("IndexNow non-success status (deploy continues)")
+              "https://www.bing.com/indexnow",
+              "https://api.indexnow.org/indexnow",
+          ]
+          for url in endpoints:
+              req = urllib.request.Request(
+                  url,
+                  data=body,
+                  headers={"Content-Type": "application/json; charset=utf-8"},
+                  method="POST",
+              )
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as resp:
+                      code = resp.getcode()
+                      text = resp.read().decode("utf-8", errors="replace")
+              except urllib.error.HTTPError as e:
+                  code = e.code
+                  text = e.read().decode("utf-8", errors="replace")
+              except Exception as e:
+                  code = 0
+                  text = str(e)
+              print(f"{url} -> HTTP {code}")
+              if text:
+                  print(text[:500])
           PY
