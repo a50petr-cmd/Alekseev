@@ -13,7 +13,19 @@ const shots = [
   { url: '/index.html#cases', name: 'home-1440.png', width: 1440, height: 1200 },
 ];
 
-const extra = process.argv[3] ? JSON.parse(process.argv[3]) : [];
+const fullVerify = process.argv.includes('--full');
+const extra = fullVerify
+  ? [
+      { url: '/case-x5.html', name: 'case-x5-390.png', width: 390, height: 900 },
+      { url: '/case-x5.html', name: 'case-x5-1440.png', width: 1440, height: 1200 },
+      { url: '/case-komus.html', name: 'case-komus-390.png', width: 390, height: 900 },
+      { url: '/case-komus.html', name: 'case-komus-1440.png', width: 1440, height: 1200 },
+      { url: '/case-modi.html', name: 'case-modi-390.png', width: 390, height: 900 },
+      { url: '/case-modi.html', name: 'case-modi-1440.png', width: 1440, height: 1200 },
+    ]
+  : process.argv[3]
+    ? JSON.parse(process.argv[3])
+    : [];
 
 await mkdir(outDir, { recursive: true });
 const browser = await chromium.launch();
