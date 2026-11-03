@@ -27,3 +27,6 @@
 - `docs/cursor-tasks/RESULTS-2026-11-03-about-team-image.md`
 
 Ветка `fix/about-team-image`. В `main` не пушил и не мёржил.
+
+## PR
+https://github.com/a50petr-cmd/Alekseev/pull/5
