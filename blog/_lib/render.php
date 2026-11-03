@@ -200,6 +200,15 @@ function bj_render_article_page(array $post, array $opts = []): string
    ym(113335579, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/113335579" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-14HYCZP7RD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+
+  gtag("config", "G-14HYCZP7RD");
+</script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/views.js" defer></script>
 </body>

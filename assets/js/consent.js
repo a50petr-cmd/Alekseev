@@ -1,10 +1,11 @@
 (function () {
   /*
    * Баннер «уведомление + отказ» и исключение своих визитов (?nometrika=1).
-   * Сам счётчик Яндекс Метрики подключается стандартным кодом на странице
-   * (script + noscript). Здесь только: disable при отказе/владельце и баннер.
+   * Счётчики Яндекс Метрики и Google Analytics подключаются стандартным кодом
+   * на странице. Здесь только: disable при отказе/владельце и баннер.
    */
   var COUNTER_ID = 113335579;
+  var GA_ID = "G-14HYCZP7RD";
   var STORAGE_KEY = "pa_analytics_consent_v1"; // "denied" — посетитель отказался
   var NOTICE_KEY = "pa_analytics_notice_v1"; // "seen" — баннер закрыт
   var OWNER_KEY = "pa_no_metrika"; // "1" — браузер владельца сайта, не считать
@@ -42,6 +43,10 @@
     window["disableYaCounter" + COUNTER_ID] = true;
   }
 
+  function stopGoogleAnalytics() {
+    window["ga-disable-" + GA_ID] = true;
+  }
+
   function closeBanner() {
     document.body.classList.remove("cookie-consent-open");
     var banner = document.getElementById("cookie-consent");
@@ -59,6 +64,7 @@
     write(STORAGE_KEY, "denied");
     write(NOTICE_KEY, "seen");
     stopMetrika();
+    stopGoogleAnalytics();
     closeBanner();
   }
 
@@ -95,7 +101,7 @@
     banner.setAttribute("aria-label", "Уведомление об использовании cookie");
     banner.innerHTML =
       '<div class="cookie-consent__inner">' +
-      '<p class="cookie-consent__text">Сайт использует cookie и сервис <strong>Яндекс Метрика</strong>, чтобы считать посещения и улучшать сайт. Вы можете отказаться от аналитики. ' +
+      '<p class="cookie-consent__text">Сайт использует cookie и сервисы <strong>Яндекс Метрика</strong> и <strong>Google Analytics</strong>, чтобы считать посещения и улучшать сайт. Вы можете отказаться от аналитики. ' +
       '<a href="' +
       privacyHref +
       '">Политика конфиденциальности</a>.</p>' +
@@ -123,6 +129,7 @@
   // Важно: disable до выполнения стандартного кода счётчика на странице.
   if (isOwner || isDenied) {
     stopMetrika();
+    stopGoogleAnalytics();
     return;
   }
 
