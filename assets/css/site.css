@@ -1516,6 +1516,22 @@ body.theme-site .service-label { background: rgba(20, 184, 166, 0.16); color: #5
   font-variant-numeric: tabular-nums;
 }
 
+@media (max-width: 390px) {
+  .fx-bars__track {
+    flex-wrap: wrap;
+  }
+
+  .fx-bars__val {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .fx-flow__node strong,
+  .fx-flow__node span {
+    font-size: 14px;
+  }
+}
+
 /* === Homepage conversion + infographic (2026-11-02) === */
 
 #when-needed {
@@ -2074,12 +2090,17 @@ body.theme-site .case-card .quote .author {
   justify-content: center;
   min-height: 44px;
   padding: 10px 18px;
+  border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
+  color: #fff;
+  background: #0e7a62;
   text-decoration: none;
 }
 
 #cases .case-card__cta:hover {
+  background: #0b6150;
+  color: #fff;
   text-decoration: none;
 }
 
