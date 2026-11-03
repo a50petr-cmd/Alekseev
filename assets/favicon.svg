@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
-  <defs>
-    <clipPath id="r"><rect width="32" height="32" rx="8"/></clipPath>
-  </defs>
-  <image href="images/petr-alekseev.jpg" x="0" y="0" width="32" height="32" preserveAspectRatio="xMidYMin slice" clip-path="url(#r)"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="352.31 237.29 324.67 324.67"><rect x="352.31" y="237.29" width="324.67" height="324.67" fill="#ffffff"/><g fill="#111111"><polygon points="514.75,276.25 393.57,523.00 415.85,523.00 514.74,321.65"/><polygon points="514.75,276.25 514.74,321.65 613.46,523.00 635.73,523.00"/><polygon points="482.50,446.50 591.99,446.50 591.99,466.50 482.50,466.50"/><circle cx="482.50" cy="456.50" r="22.28"/></g></svg>
