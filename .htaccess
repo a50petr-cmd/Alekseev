@@ -60,7 +60,8 @@ RewriteRule ^checklists/(franchise|import|kpi|logistics)\.html$ /blog/ [R=301,L]
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
-  Header set X-Frame-Options "SAMEORIGIN"
+  # X-Frame-Options не умеет allowlist и перекрывает CSP. Карты Метрики/Вебвизор — только frame-ancestors.
+  Header set Content-Security-Policy "frame-ancestors 'self' https://metrika.yandex.ru https://analytics.yandex.by https://analytics.yandex.com https://analytics.yandex.com.tr https://analytics.yandex.kz https://analytics.yandex.ru https://metr.yandex.by https://metr.yandex.com https://metr.yandex.com.tr https://metr.yandex.kz https://metr.yandex.ru https://metrica.ya.ru https://metrica.yandex https://metrica.yandex.by https://metrica.yandex.com https://metrica.yandex.com.tr https://metrica.yandex.kz https://metrica.yandex.ru https://metrika.ya.ru https://metrika.yandex https://metrika.yandex.by https://metrika.yandex.com https://metrika.yandex.com.tr https://metrika.yandex.kz https://metrika.yandex.uz https://webvisor.com https://*.webvisor.com"
 </IfModule>
 
 # Кеш
