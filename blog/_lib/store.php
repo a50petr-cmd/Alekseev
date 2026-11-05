@@ -538,6 +538,21 @@ function bj_sanitize_body_html(string $html): string
     return $html;
 }
 
+/** Убирает служебные строки из вставки Word (Title:/Description:/Адрес:) в начале текста. */
+function bj_strip_paste_service_lines(string $text): string
+{
+    $trimmed = trim($text);
+    if ($trimmed !== '' && !preg_match('/\r|\n/u', $text)
+        && preg_match('/^(Title|Description|Адрес)\s*:\s*(.*)$/ius', $trimmed, $m)) {
+        return trim($m[2]);
+    }
+    $lines = preg_split('/\r\n|\r|\n/', $text) ?: [];
+    while ($lines !== [] && preg_match('/^(Title|Description|Адрес)\s*:/iu', trim((string)$lines[0]))) {
+        array_shift($lines);
+    }
+    return implode("\n", $lines);
+}
+
 function bj_estimate_read_time(string $text): string
 {
     $words = preg_split('/\s+/u', trim(strip_tags($text))) ?: [];
