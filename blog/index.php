@@ -142,6 +142,7 @@ $cards = bj_render_index_cards($posts);
   gtag('config', 'G-14HYCZP7RD');
 </script>
   <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/goals.js"></script>
   <script src="/assets/js/views.js" defer></script>
 </body>
 </html>
