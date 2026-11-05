@@ -210,6 +210,7 @@ function bj_render_article_page(array $post, array $opts = []): string
   gtag("config", "G-14HYCZP7RD");
 </script>
   <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/goals.js"></script>
   <script src="/assets/js/views.js" defer></script>
 </body>
 </html>';

@@ -21,8 +21,8 @@
 
       function showSuccess(opts) {
         var track = !(opts && opts.track === false);
-        if (track && typeof ym === "function") {
-          ym(113335579, "reachGoal", "form_submit");
+        if (track) {
+          document.dispatchEvent(new CustomEvent("petr:form_submit"));
         }
         form.reset();
         started = Date.now();
