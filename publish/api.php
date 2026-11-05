@@ -25,7 +25,7 @@ if ($action === 'preview_save') {
         'id' => $id,
         'slug' => (string)($payload['slug'] ?? ''),
         'title' => (string)($payload['title'] ?? ''),
-        'description' => (string)($payload['description'] ?? ''),
+        'description' => bj_strip_paste_service_lines(trim((string)($payload['description'] ?? ''))),
         'date' => (string)($payload['date'] ?? date('Y-m-d')),
         'dateLabel' => (string)($payload['dateLabel'] ?? ''),
         'category' => (string)($payload['category'] ?? 'Практика'),
@@ -33,7 +33,7 @@ if ($action === 'preview_save') {
         'figure' => (string)($payload['figure'] ?? '·'),
         'figureCaption' => (string)($payload['figureCaption'] ?? ''),
         'imageAlt' => (string)($payload['imageAlt'] ?? ''),
-        'bodyMd' => (string)($payload['bodyMd'] ?? ''),
+        'bodyMd' => bj_strip_paste_service_lines((string)($payload['bodyMd'] ?? '')),
         'coverDataUrl' => (string)($payload['coverDataUrl'] ?? ''),
         'created' => time(),
     ];
@@ -57,7 +57,7 @@ if ($action === 'publish') {
     }
 
     $title = trim((string)($payload['title'] ?? ''));
-    $bodyMd = (string)($payload['bodyMd'] ?? '');
+    $bodyMd = bj_strip_paste_service_lines((string)($payload['bodyMd'] ?? ''));
     $slug = trim((string)($payload['slug'] ?? ''));
     if ($slug === '') {
         $slug = bj_slugify($title);
@@ -76,7 +76,7 @@ if ($action === 'publish') {
     $meta = [
         'slug' => $slug,
         'title' => $title,
-        'description' => trim((string)($payload['description'] ?? '')),
+        'description' => trim(bj_strip_paste_service_lines((string)($payload['description'] ?? ''))),
         'date' => $date,
         'dateLabel' => (string)($payload['dateLabel'] ?? bj_date_label($date)),
         'category' => (string)($payload['category'] ?? 'Практика'),
