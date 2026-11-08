@@ -2011,6 +2011,10 @@ body.theme-site .case-card .quote .author {
 #cases .case-card__text p {
   margin: 0;
   max-width: 70ch;
+  color: #17201b;
+  font-size: inherit;
+  font-weight: 400;
+  letter-spacing: normal;
 }
 
 #cases .case-card__metrics {
