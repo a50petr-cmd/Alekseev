@@ -19,6 +19,7 @@ RewriteRule ^blog/import\.html$ /blog/ [R=301,L]
 RewriteRule ^blog/kpi\.html$ /blog/ [R=301,L]
 RewriteRule ^blog/logistics\.html$ /blog/ [R=301,L]
 RewriteRule ^blog/index\.html$ /blog/ [R=301,L]
+RewriteRule ^blog/biznes-processy-v-malom-biznese-s-chego-nachat-esli-vse-derzhitsya-na-vas\.html$ /blog/biznes-processy-malogo-biznesa.html [R=301,L]
 
 # Данные админки / счётчиков — не отдавать
 RewriteRule ^petr-alekseev-data(/|$) - [F,L]
