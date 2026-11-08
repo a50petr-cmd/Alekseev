@@ -121,7 +121,10 @@ async function main() {
   await resetCalls(page);
   await clickWithoutNavigation(page, 'a[href^="tel:"]');
   calls = await getCalls(page);
-  assert(calls.gtag.some((a) => a[0] === "event" && a[1] === "click_phone"), "tel: gtag click_phone");
+  assert(
+    calls.gtag.some((a) => a[0] === "event" && a[1] === "click_phone" && a[2] && a[2].link_location),
+    "tel: gtag click_phone + link_location"
+  );
   assert(!calls.ym.some((a) => a[2] === "click_phone"), "tel: no Metrika click_phone goal");
 
   await resetCalls(page);
@@ -134,7 +137,7 @@ async function main() {
   await clickWithoutNavigation(page, 'a[href*="t.me/PetroAlekseev"]');
   calls = await getCalls(page);
   assert(calls.ym.some((a) => a[2] === "click_telegram"), "personal tg: ym");
-  assert(calls.gtag.some((a) => a[1] === "click_telegram"), "personal tg: gtag");
+  assert(calls.gtag.some((a) => a[0] === "event" && a[1] === "click_telegram_personal"), "personal tg: gtag");
 
   await resetCalls(page);
   await page.locator('[data-goal="click_primary_cta"]').first().click({ noWaitAfter: true });
@@ -158,7 +161,10 @@ async function main() {
   await page.waitForSelector(".lead-status.is-ok", { timeout: 5000 });
   calls = await getCalls(page);
   assert(calls.ym.some((a) => a[2] === "form_submit"), "form: ym form_submit");
-  assert(calls.gtag.some((a) => a[0] === "event" && a[1] === "generate_lead"), "form: gtag generate_lead");
+  assert(
+    calls.gtag.some((a) => a[0] === "event" && a[1] === "generate_lead" && a[2] && a[2].form_location === "home"),
+    "form: gtag generate_lead + form_location"
+  );
 
   console.log("OK: conversion tracking verified");
   await browser.close();
