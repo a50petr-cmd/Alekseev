@@ -347,10 +347,17 @@
         }
       }
 
+      function formLocationForPage() {
+        var path = (location.pathname || "").toLowerCase();
+        return path.indexOf("operations-director") !== -1 ? "operations_director" : "home";
+      }
+
       function showSuccess(opts) {
         var track = !(opts && opts.track === false);
         if (track) {
-          document.dispatchEvent(new CustomEvent("petr:form_submit"));
+          document.dispatchEvent(
+            new CustomEvent("petr:form_submit", { detail: { form_location: formLocationForPage() } })
+          );
         }
         form.reset();
         started = Date.now();
