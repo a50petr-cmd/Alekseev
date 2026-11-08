@@ -1,7 +1,13 @@
 DirectoryIndex index.php index.html
 
+# Редиректы в /blog/ (nginx отдаёт существующие .html статикой; для старых slug — см. stub .html и article.php)
+<IfModule mod_alias.c>
+  Redirect 301 biznes-processy-v-malom-biznese-s-chego-nachat-esli-vse-derzhitsya-na-vas.html /blog/biznes-processy-malogo-biznesa.html
+</IfModule>
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteRule ^biznes-processy-v-malom-biznese-s-chego-nachat-esli-vse-derzhitsya-na-vas\.html$ /blog/biznes-processy-malogo-biznesa.html [R=301,L]
   RewriteRule ^_lib(/|$) - [F,L]
   RewriteRule ^_data(/|$) - [F,L]
   RewriteRule ^inbox(/|$) - [F,L]

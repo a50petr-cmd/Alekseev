@@ -4,6 +4,16 @@ declare(strict_types=1);
 require_once __DIR__ . '/_lib/render.php';
 
 $slug = (string)($_GET['slug'] ?? '');
+
+$slugRedirects = [
+    'biznes-processy-v-malom-biznese-s-chego-nachat-esli-vse-derzhitsya-na-vas' => 'biznes-processy-malogo-biznesa',
+];
+if (isset($slugRedirects[$slug])) {
+    $target = '/blog/' . rawurlencode($slugRedirects[$slug]) . '.html';
+    header('Location: ' . $target, true, 301);
+    exit;
+}
+
 if (!bj_is_slug($slug)) {
     http_response_code(404);
     header('Content-Type: text/plain; charset=utf-8');
