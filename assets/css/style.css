@@ -415,7 +415,7 @@ section { padding: 84px 0; }
 .case-card:nth-child(even) { background: #243028; }
 .case-card .metric, .case-block .metric { font-family: var(--display); font-weight: 500; letter-spacing: -0.04em; line-height: 1.05; font-size: clamp(1.8rem, 3vw, 2.7rem); color: #f6f3ec; }
 .case-block .metric { color: var(--ink); }
-.metric span, .case-card p { display: block; margin-top: 8px; font-family: var(--sans); font-size: 14px; font-weight: 650; letter-spacing: 0; color: rgba(246,243,236,.72); line-height: 1.4; }
+.metric span, .case-card:not(.case-card--home) p { display: block; margin-top: 8px; font-family: var(--sans); font-size: 14px; font-weight: 650; letter-spacing: 0; color: rgba(246,243,236,.72); line-height: 1.4; }
 .case-block .metric span { color: var(--muted); }
 .case-card h3 { font-size: 1.7rem; margin-top: auto; }
 .case-card .more { margin-top: 14px; color: #ffd0c2; font-weight: 750; font-size: 14px; }

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 declare(strict_types=1);
 
 require_once __DIR__ . '/_lib/render.php';
@@ -33,8 +33,8 @@ $cards = bj_render_index_cards($posts);
   <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="32x32">
   <link rel="icon" href="/assets/favicon-48.png" type="image/png" sizes="48x48">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-  <link rel="stylesheet" href="/assets/css/style.css?v=20261027b">
-  <link rel="stylesheet" href="/assets/css/site.css?v=20261103a">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261108b">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261108b">
   <link rel="stylesheet" href="/assets/css/blog.css?v=20261102a">
   <script type="application/ld+json">
   {
