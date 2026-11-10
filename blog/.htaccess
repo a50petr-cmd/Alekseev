@@ -1,14 +1,24 @@
 DirectoryIndex index.php index.html
 
-# Редиректы в /blog/ (nginx отдаёт существующие .html статикой; для старых slug — см. stub .html и article.php)
+# ВАЖНО: в этой папке свой RewriteEngine On, поэтому правила из корневого .htaccess
+# для /blog/* сюда НЕ наследуются. Все редиректы и маршрут статей блога — только здесь.
+# nginx на Reg.ru отдаёт существующие .html статикой; правила ниже срабатывают для несуществующих адресов.
+
 <IfModule mod_alias.c>
-  Redirect 301 biznes-processy-v-malom-biznese-s-chego-nachat-esli-vse-derzhitsya-na-vas.html /blog/biznes-processy-malogo-biznesa.html
+  Redirect 301 /blog/biznes-processy-v-malom-biznese-s-chego-nachat-esli-vse-derzhitsya-na-vas.html /blog/biznes-processy-malogo-biznesa.html
 </IfModule>
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteRule ^biznes-processy-v-malom-biznese-s-chego-nachat-esli-vse-derzhitsya-na-vas\.html$ /blog/biznes-processy-malogo-biznesa.html [R=301,L]
   RewriteRule ^_lib(/|$) - [F,L]
   RewriteRule ^_data(/|$) - [F,L]
   RewriteRule ^inbox(/|$) - [F,L]
+
+  # Старые адреса блога (есть в индексе Google, отдавали 404) → индекс блога
+  RewriteRule ^biznes-processy-v-malom-biznese-s-chego-nachat-esli-vse-derzhitsya-na-vas\.html$ /blog/biznes-processy-malogo-biznesa.html [R=301,L]
+  RewriteRule ^(franchise|import|kpi|logistics|index)\.html$ /blog/ [R=301,L]
+
+  # Динамические статьи из /publish: несуществующий файл → article.php (он сам отдаёт 404, если статьи нет)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^([a-z0-9-]+)\.html$ article.php?slug=$1 [L,QSA]
 </IfModule>
