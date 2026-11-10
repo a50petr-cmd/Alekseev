@@ -150,7 +150,7 @@
     var formLocation = detail.form_location;
     if (!formLocation) {
       var path = (location.pathname || "").toLowerCase();
-      formLocation = path.indexOf("operations-director") !== -1 ? "operations_director" : "home";
+      formLocation = path.indexOf("operations-director") !== -1 ? "operations_director" : path.indexOf("audit-biznes-processov") !== -1 ? "audit" : "home";
     }
     track("form_submit", "generate_lead", { form_location: formLocation });
   });

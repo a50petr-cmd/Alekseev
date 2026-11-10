@@ -349,7 +349,7 @@
 
       function formLocationForPage() {
         var path = (location.pathname || "").toLowerCase();
-        return path.indexOf("operations-director") !== -1 ? "operations_director" : "home";
+        return path.indexOf("operations-director") !== -1 ? "operations_director" : path.indexOf("audit-biznes-processov") !== -1 ? "audit" : "home";
       }
 
       function showSuccess(opts) {
