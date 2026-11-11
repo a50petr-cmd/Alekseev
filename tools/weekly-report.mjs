@@ -19,6 +19,7 @@ const report = {
   google: null,
   ga4: null,
   metrika: null,
+  yandex_business: null,
   article_views: null,
   social: { telegram: null, tenchat: null, dzen: null },
   errors: [],
@@ -512,6 +513,94 @@ async function runMetrika(period) {
   }
 }
 
+async function metrikaGet(url, token) {
+  const response = await fetch(url, {
+    headers: { Authorization: `OAuth ${token}`, Accept: "application/json" },
+    signal: AbortSignal.timeout(45000),
+  });
+  const text = await response.text();
+  let body = {};
+  try {
+    body = JSON.parse(text);
+  } catch {
+    body = {};
+  }
+  if (!response.ok) {
+    throw new Error(String(body.message || body.errors?.[0]?.message || `HTTP ${response.status}`));
+  }
+  return body;
+}
+
+// Карточка организации на Яндекс Картах (Яндекс Бизнес): отдельный счётчик Метрики «онлайн-организация».
+// Показы карточки в поиске и на карте API не отдаёт, они только в кабинете yandex.ru/sprav.
+async function businessSlice(counterId, token, goals, from, to) {
+  const base = { ids: counterId, date1: from, date2: to, accuracy: "full" };
+  const totals = await metrikaGet(
+    `https://api-metrika.yandex.net/stat/v1/data?${new URLSearchParams({ ...base, metrics: "ym:s:visits,ym:s:users" })}`,
+    token,
+  );
+  const pages = await metrikaGet(
+    `https://api-metrika.yandex.net/stat/v1/data?${new URLSearchParams({ ...base, metrics: "ym:s:visits", dimensions: "ym:s:startURL", limit: "20" })}`,
+    token,
+  );
+  const reaches = new Map();
+  for (let i = 0; i < goals.length; i += 20) {
+    const chunk = goals.slice(i, i + 20);
+    const body = await metrikaGet(
+      `https://api-metrika.yandex.net/stat/v1/data?${new URLSearchParams({
+        ...base,
+        metrics: chunk.map((goal) => `ym:s:goal${goal.id}reaches`).join(","),
+      })}`,
+      token,
+    );
+    chunk.forEach((goal, index) => reaches.set(goal.id, Math.round(body.totals?.[index] || 0)));
+  }
+  return {
+    visits: Math.round(totals.totals?.[0] || 0),
+    users: Math.round(totals.totals?.[1] || 0),
+    pages: (pages.data || []).map((row) => ({
+      url: row.dimensions?.[0]?.name || null,
+      visits: Math.round(row.metrics?.[0] || 0),
+    })),
+    reaches,
+  };
+}
+
+async function runYandexBusiness(period) {
+  try {
+    const token = process.env.YANDEX_OAUTH_TOKEN;
+    const counterId = process.env.YANDEX_BUSINESS_COUNTER_ID || "114017689";
+    if (!token) throw new Error("В .env нет YANDEX_OAUTH_TOKEN");
+    const goalsBody = await metrikaGet(
+      `https://api-metrika.yandex.net/management/v1/counter/${counterId}/goals`,
+      token,
+    );
+    const goals = (goalsBody.goals || []).map((goal) => ({ id: goal.id, name: goal.name }));
+    const [current, previous] = await Promise.all([
+      businessSlice(counterId, token, goals, period.from, period.to),
+      businessSlice(counterId, token, goals, period.previous_from, period.previous_to),
+    ]);
+    const actions = goals
+      .map((goal) => ({
+        action: goal.name,
+        current: current.reaches.get(goal.id) || 0,
+        previous: previous.reaches.get(goal.id) || 0,
+      }))
+      .filter((row) => row.current || row.previous);
+    report.yandex_business = {
+      counter_id: counterId,
+      card_url: "https://yandex.ru/maps/org/alekseyev_petr/148881429593/",
+      current: { visits: current.visits, users: current.users, pages: current.pages },
+      previous: { visits: previous.visits, users: previous.users, pages: previous.pages },
+      actions,
+      actions_tracked: goals.length,
+      note: "Визиты и действия по карточке из Метрики. Показы в поиске и на карте API не отдаёт: смотреть в кабинете yandex.ru/sprav.",
+    };
+  } catch (error) {
+    report.yandex_business = { error: note("Яндекс Бизнес", error) };
+  }
+}
+
 function articleSlugs() {
   const blogDir = path.join(ROOT, "blog");
   const posts = JSON.parse(fs.readFileSync(path.join(blogDir, "posts.json"), "utf8"));
@@ -950,6 +1039,11 @@ function printSummary(paths) {
       : `Метрика: ${report.metrika?.visits ?? "нет"} визитов, ${report.metrika?.users ?? "нет"} посетителей`,
   );
   console.log(
+    report.yandex_business?.error
+      ? `Яндекс Бизнес: ${report.yandex_business.error}`
+      : `Яндекс Бизнес (карточка): ${report.yandex_business?.current?.visits ?? "нет"} визитов, действий: ${(report.yandex_business?.actions || []).reduce((sum, row) => sum + row.current, 0)}`,
+  );
+  console.log(
     articles?.articles
       ? `Статьи: ${articles.total} просмотров, ${articles.articles.length} страниц`
       : `Статьи: ${articles?.error || "нет данных"}`,
@@ -972,6 +1066,7 @@ async function main() {
     runGoogle(report.period),
     runGa4(report.period),
     runMetrika(report.period),
+    runYandexBusiness(report.period),
     runArticles(),
     runSocial(report.period),
   ]);
