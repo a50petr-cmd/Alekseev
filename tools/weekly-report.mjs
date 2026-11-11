@@ -54,6 +54,10 @@ function inclusiveDays(from, to) {
   return Math.round((parseDate(to) - parseDate(from)) / 86400000) + 1;
 }
 
+function daysBetween(fromIso, toIso) {
+  return Math.round((parseDate(toIso) - parseDate(fromIso)) / 86400000);
+}
+
 function localToday() {
   const now = new Date();
   return new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
@@ -591,15 +595,34 @@ function parseTelegram(html, period) {
     }
   }
   const periodPosts = posts.filter((post) => inPeriod(post.date, period.from, period.to));
+  // Охват на пост по неделям назад от конца периода: видно падение, а не только «эта неделя к прошлой».
+  const weekly = [];
+  for (let i = 0; i < 6; i++) {
+    const to = formatDate(addDays(parseDate(period.to), -7 * i));
+    const from = formatDate(addDays(parseDate(to), -6));
+    const bucket = posts.filter((post) => inPeriod(post.date, from, to) && post.views != null);
+    weekly.push({
+      from,
+      to,
+      posts: bucket.length,
+      avg_views_per_post: bucket.length ? round(sumKnown(bucket.map((post) => post.views)) / bucket.length, 1) : null,
+    });
+  }
+  const mature = periodPosts.filter((post) => post.views != null && daysBetween(post.date, formatDate(localToday())) >= 3);
   return {
     url: "https://t.me/s/Alekseev_Petr_consult",
     subscribers,
-    posts,
+    posts: posts.map((post) => ({ ...post, age_days: post.date ? daysBetween(post.date, formatDate(localToday())) : null })),
     period: {
       posts: periodPosts.length,
       views: sumKnown(periodPosts.map((post) => post.views)),
       reactions: sumKnown(periodPosts.map((post) => post.reactions)),
+      avg_views_per_post: periodPosts.length ? round(sumKnown(periodPosts.map((post) => post.views)) / periodPosts.length, 1) : null,
+      // посты старше 3 суток: их просмотры уже почти не растут, сравнивать недели честнее по ним
+      avg_views_mature_posts: mature.length ? round(sumKnown(mature.map((post) => post.views)) / mature.length, 1) : null,
+      mature_posts: mature.length,
     },
+    weekly_avg_views: weekly,
   };
 }
 
@@ -748,10 +771,11 @@ function parseOpenChannel(html, url, period) {
 function parseTenchat(html, period) {
   const title = decodeHtml(html.match(/<title>([^<]*)<\/title>/i)?.[1] || "").trim() || null;
   let subscribers = null;
+  const subscriberCandidates = [];
   {
     const flat = html.replace(/<[^>]+>/g, "|").replace(/\s+/g, " ");
-    const m = flat.match(/(\d+)\s*\|*\s*подписчиков/);
-    if (m) subscribers = Number(m[1]);
+    for (const m of flat.matchAll(/(\d+)\s*\|*\s*подписчик/gi)) subscriberCandidates.push(Number(m[1]));
+    if (subscriberCandidates.length) subscribers = subscriberCandidates[0];
   }
   const today = localToday();
   const posts = [];
@@ -790,6 +814,7 @@ function parseTenchat(html, period) {
     url: "https://tenchat.ru/5317936",
     title,
     subscribers,
+    subscribers_candidates: subscriberCandidates,
     posts: posts.length ? posts : null,
     period: dated.length
       ? {
@@ -827,10 +852,26 @@ function parseDzen(html, period) {
   };
 }
 
+function checkChannel(key, data) {
+  const warnings = [];
+  if (data.subscribers == null) warnings.push("подписчики не найдены");
+  if (!data.posts || !data.posts.length) warnings.push("посты не разобраны (разметка страницы могла измениться или страница не отдалась)");
+  if (!data.title && key !== "telegram") warnings.push("у страницы нет заголовка: возможно, получена заглушка или капча");
+  const distinct = new Set(data.subscribers_candidates || []);
+  if (distinct.size > 1) {
+    warnings.push(`несколько кандидатов на число подписчиков: ${[...distinct].join(", ")}; взято первое (${data.subscribers}), проверить вручную`);
+  }
+  return warnings;
+}
+
 async function runChannel(key, url, period, parser) {
   try {
     const html = await fetchText(url);
     report.social[key] = parser(html, period);
+    const warnings = checkChannel(key, report.social[key]);
+    if (warnings.length) {
+      report.social[key].warnings = warnings.map((text) => note(key, new Error(text)));
+    }
   } catch (error) {
     report.social[key] = {
       url,
@@ -918,7 +959,8 @@ function printSummary(paths) {
       ? `Telegram за период: ${telegram.posts} постов`
       : `Telegram: ${report.social.telegram?.error || "нет данных"}`,
   );
-  console.log(`Ошибок секций: ${report.errors.length}`);
+  console.log(`Ошибок и предупреждений: ${report.errors.length}`);
+  for (const line of report.errors) console.log(`  - ${line}`);
   console.log(paths.localPath);
   console.log(paths.copyPath);
 }
