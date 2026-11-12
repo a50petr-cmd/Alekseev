@@ -308,3 +308,31 @@ body.v3 .btn.btn-tg:hover { background: var(--tg-deep); color: #fff; }
 .v3 .page-404 .lead{margin-left:auto;margin-right:auto}
 @media(max-width:640px){.v3 .prose-doc{padding:24px 18px}.v3 .fx-bars{padding:18px 16px}}
 .v3 .fx-flow{padding:18px 20px;gap:14px}
+
+/* proof strip with mini charts */
+.v3 .proof > .pf{padding:24px 24px 20px;display:flex;flex-direction:column}
+.v3 .proof strong{font-size:clamp(2rem,3.2vw,2.8rem)}
+.v3 .pf span{margin-top:6px;min-height:2.8em}
+.v3 .pf-bars{margin-top:14px;display:grid;gap:6px}
+.v3 .pf-bars b{display:block;position:relative;height:24px;width:var(--w);border-radius:6px;font-weight:400}
+.v3 .pf-bars .was{background:#c9d3cd}
+.v3 .pf-bars .now{background:var(--accent)}
+.v3 .pf-bars .range{background:#bfe6da;overflow:hidden}
+.v3 .pf-bars .range u{position:absolute;left:0;top:0;bottom:0;background:var(--accent)}
+.v3 .pf-bars em{position:absolute;left:8px;top:50%;transform:translateY(-50%);font-style:normal;font-size:12px;line-height:1;white-space:nowrap;color:#1c2a24}
+.v3 .pf-bars .now em,.v3 .pf-bars .range em{color:#fff}
+.v3 .pf-delta{margin:12px 0 0;display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--accent);flex-wrap:wrap}
+.v3 .pf-bars + .pf-delta::before{content:"↓";}
+.v3 .pf:nth-child(3) .pf-delta::before{content:"";}
+.v3 .pf small{margin-top:auto;padding-top:10px}
+.v3 .pf-dots{margin-top:14px;display:grid;grid-template-columns:repeat(12,1fr);gap:5px;max-width:260px}
+.v3 .pf-dots i{aspect-ratio:1;border-radius:50%;background:var(--accent)}
+.v3 .pf-dots i.p5{background:#e30613}
+.v3 .pf-delta .k{width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block}
+.v3 .pf-delta .k.p5{background:#e30613;margin-left:6px}
+.v3 .proof strong{font-size:clamp(1.8rem,2.6vw,2.4rem);white-space:nowrap}
+.v3 .pf-bars .now em,.v3 .pf-bars .range em{color:#fff}
+.v3 .pf-bars .now em{left:calc(100% + 8px);color:var(--accent);font-weight:600}
+.v3 .pf-bars .now{overflow:visible}
+@media(max-width:1100px){.v3 .proof strong{font-size:2rem}}
+.v3 .pf:nth-child(3) .pf-delta::before{display:none}
