@@ -2228,3 +2228,47 @@ body.theme-site .case-card .quote .author {
     width: 100%;
   }
 }
+
+/* Превью: кейс Евроопт + ЯМИГОМ по центру, отзыв клиента выделен */
+#cases .case-card--featured{
+  grid-column:1/-1;width:100%;max-width:920px;margin-inline:auto;
+  padding:32px;gap:18px;border-color:#0e7a62;
+  box-shadow:0 12px 40px rgba(14,122,98,.14);
+}
+#cases .case-card--featured .case-card__head{justify-content:center;flex-direction:column;align-items:center;text-align:center;gap:10px}
+#cases .case-card--featured .case-card__title,
+#cases .case-card--featured .case-card__lead{text-align:center}
+#cases .case-card--featured .case-card__title{font-size:clamp(24px,3vw,34px)}
+#cases .case-card--featured .case-card__text{text-align:center;max-width:720px;margin-inline:auto}
+#cases .case-card--featured .case-card__foot{justify-content:center;text-align:center;flex-direction:column;gap:12px}
+
+.case-review{
+  position:relative;margin:8px 0;padding:34px 36px 28px;border-radius:18px;
+  background:linear-gradient(135deg,#0e7a62 0%,#0a5646 100%);color:#fff;overflow:hidden;
+}
+.case-review::before{
+  content:"\201C";position:absolute;top:-18px;left:22px;font:700 150px/1 Georgia,"Times New Roman",serif;
+  color:rgba(255,255,255,.16);pointer-events:none;
+}
+.case-review__badge{
+  position:relative;display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:999px;
+  background:#fff;color:#0a5646;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+}
+.case-review__text{margin:16px 0 0;padding:0;border:0;background:none;position:relative}
+.case-review__text p{margin:0;font-size:clamp(20px,2.4vw,26px);line-height:1.4;font-weight:600;color:#fff;font-style:italic}
+.case-review__who{
+  position:relative;display:flex;align-items:center;gap:16px;margin-top:22px;padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.28);
+}
+.case-review__logo{background:#fff;border-radius:10px;padding:8px 12px;height:auto;width:96px;flex:none;object-fit:contain}
+.case-review__author{display:flex;flex-direction:column;gap:2px;font-size:14px;line-height:1.4;color:rgba(255,255,255,.88)}
+.case-review__author strong{font-size:16px;color:#fff}
+@media (max-width:599px){
+  #cases .case-card--featured{padding:20px}
+  .case-review{padding:28px 20px 22px}
+  .case-review__who{flex-direction:column;align-items:flex-start;gap:12px}
+}
+
+/* лишний вертикальный отступ в шапке (flex-grow у ctx в колонке) */
+#cases .case-card--featured .case-card__ctx{flex:none}
+#cases .case-card--featured .case-card__lead{max-width:720px;margin-inline:auto}
