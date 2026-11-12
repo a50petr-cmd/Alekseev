@@ -103,3 +103,18 @@ node tools/verify-release.mjs
 ## Коммит
 
 Хэш сборки: `d32bef8`. HEAD ветки: `37230e3` (хэш в этом README).
+
+## Еженедельная сводка
+
+`node tools/weekly-report.mjs` собирает Search Console, GA4, Метрику, счётчик статей и открытые страницы Telegram, TenChat и Дзена в один JSON. На сайт скрипт не попадает. По умолчанию берутся семь полных дней до вчера; предыдущий период той же длины считается сам.
+
+```
+node tools/weekly-report.mjs
+node tools/weekly-report.mjs --from 2026-11-04 --to 2026-11-10
+```
+
+В `.env` (образец — `.env.example`): `GOOGLE_SA_KEY_PATH`, `YANDEX_OAUTH_TOKEN`, `YANDEX_METRIKA_COUNTER_ID`.
+
+Сервисному аккаунту нужен доступ в Search Console к `https://petr-alekseev.ru/` или к `sc-domain:petr-alekseev.ru` (достаточно одного) и роль «Читатель» в GA4, property `562175495`.
+
+Результат: `.seo-reports/weekly/YYYY-MM-DD.json` (папка в `.gitignore`) и копия в `01_Консалтинг\Аналитические отчеты\weekly\`.
