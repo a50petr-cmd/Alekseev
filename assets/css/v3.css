@@ -339,3 +339,13 @@ body.v3 .btn.btn-tg:hover { background: var(--tg-deep); color: #fff; }
 .v3 .brands-list{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 44px}
 .v3 .brands-list li{flex:0 0 auto}
 .v3 .cases-grid .case:last-child:nth-child(odd){grid-column:1/-1}
+
+/* логотипы опыта: крупнее, цвет при наведении */
+.v3 .brands-list li{height:48px}
+.v3 .brands-list img{max-height:40px;transition:filter .2s,opacity .2s}
+.v3 .brands-list li:hover img,.v3 .brands-list li:focus-within img{filter:none;opacity:1}
+.v3 .brands-list .logo-word{font-size:1.3rem;transition:color .2s}
+.v3 .brands-list li:hover .logo-word{color:#111a16}
+.v3 .brands-list img[alt="Евроопт"]{max-height:40px}
+.v3 .brands-list li:hover img[alt="Евроопт"]{filter:none;opacity:1}
+@media(hover:none){.v3 .brands-list img{filter:none;opacity:.95}}
