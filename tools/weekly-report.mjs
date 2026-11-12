@@ -20,6 +20,7 @@ const report = {
   ga4: null,
   metrika: null,
   yandex_business: null,
+  manual: null,
   article_views: null,
   social: { telegram: null, tenchat: null, dzen: null },
   errors: [],
@@ -514,21 +515,27 @@ async function runMetrika(period) {
 }
 
 async function metrikaGet(url, token) {
-  const response = await fetch(url, {
-    headers: { Authorization: `OAuth ${token}`, Accept: "application/json" },
-    signal: AbortSignal.timeout(45000),
-  });
-  const text = await response.text();
-  let body = {};
-  try {
-    body = JSON.parse(text);
-  } catch {
-    body = {};
+  for (let attempt = 0; ; attempt++) {
+    const response = await fetch(url, {
+      headers: { Authorization: `OAuth ${token}`, Accept: "application/json" },
+      signal: AbortSignal.timeout(45000),
+    });
+    const text = await response.text();
+    let body = {};
+    try {
+      body = JSON.parse(text);
+    } catch {
+      body = {};
+    }
+    if (response.ok) return body;
+    const message = String(body.message || body.errors?.[0]?.message || `HTTP ${response.status}`);
+    // Яндекс ограничивает число параллельных запросов одного пользователя: ждём и повторяем
+    if ((response.status === 429 || /Quota exceeded/i.test(message)) && attempt < 4) {
+      await new Promise((resolve) => setTimeout(resolve, 2000 * (attempt + 1)));
+      continue;
+    }
+    throw new Error(message);
   }
-  if (!response.ok) {
-    throw new Error(String(body.message || body.errors?.[0]?.message || `HTTP ${response.status}`));
-  }
-  return body;
 }
 
 // Карточка организации на Яндекс Картах (Яндекс Бизнес): отдельный счётчик Метрики «онлайн-организация».
@@ -576,10 +583,8 @@ async function runYandexBusiness(period) {
       token,
     );
     const goals = (goalsBody.goals || []).map((goal) => ({ id: goal.id, name: goal.name }));
-    const [current, previous] = await Promise.all([
-      businessSlice(counterId, token, goals, period.from, period.to),
-      businessSlice(counterId, token, goals, period.previous_from, period.previous_to),
-    ]);
+    const current = await businessSlice(counterId, token, goals, period.from, period.to);
+    const previous = await businessSlice(counterId, token, goals, period.previous_from, period.previous_to);
     const actions = goals
       .map((goal) => ({
         action: goal.name,
@@ -1004,6 +1009,44 @@ function buildPeriod() {
   };
 }
 
+// Ручные данные недели (воронка, просмотры карточки из кабинета Яндекс Бизнеса, выводы) лежат отдельно
+// в weekly/manual/ГГГГ-ММ-ДД.json, чтобы перезапуск скрипта их не стирал. Нет файла: создаём шаблон
+// и переносим цели и статус клиента из последней прошлой недели.
+function loadManual(period) {
+  try {
+    const dir = path.join(COPY_DIR, "manual");
+    fs.mkdirSync(dir, { recursive: true });
+    const file = path.join(dir, `${period.to}.json`);
+    if (fs.existsSync(file)) {
+      report.manual = JSON.parse(fs.readFileSync(file, "utf8"));
+      return;
+    }
+    const earlier = fs
+      .readdirSync(dir)
+      .filter((name) => /^\d{4}-\d{2}-\d{2}\.json$/.test(name) && name < `${period.to}.json`)
+      .sort()
+      .pop();
+    const prev = earlier ? JSON.parse(fs.readFileSync(path.join(dir, earlier), "utf8")) : {};
+    report.manual = {
+      note: "Шаблон создан скриптом. Воронку заполняет Пётр; просмотры карточки из кабинета yandex.ru/sprav вносит Claude; выводы недели пишет Claude в commentary.",
+      funnel: {
+        new_inquiries: null,
+        intro_calls: null,
+        offers_sent: null,
+        payments_rub: 0,
+        how_found: null,
+        bonzo: prev.funnel?.bonzo ?? "",
+      },
+      goals_november: prev.goals_november ?? { payment_stage1_rub: 35000, new_inquiries: 2, new_acquaintances: 3 },
+      yandex_business_cabinet: null,
+      commentary: [],
+    };
+    fs.writeFileSync(file, `${JSON.stringify(report.manual, null, 2)}\n`, "utf8");
+  } catch (error) {
+    note("Ручные данные", error);
+  }
+}
+
 function writeReports(period) {
   const json = `${JSON.stringify(report, null, 2)}\n`;
   const localDir = path.join(ROOT, ".seo-reports", "weekly");
@@ -1065,11 +1108,11 @@ async function main() {
   await Promise.all([
     runGoogle(report.period),
     runGa4(report.period),
-    runMetrika(report.period),
-    runYandexBusiness(report.period),
+    runMetrika(report.period).then(() => runYandexBusiness(report.period)),
     runArticles(),
     runSocial(report.period),
   ]);
+  loadManual(report.period);
   const paths = writeReports(report.period);
   printSummary(paths);
 }
