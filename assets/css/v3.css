@@ -336,3 +336,6 @@ body.v3 .btn.btn-tg:hover { background: var(--tg-deep); color: #fff; }
 .v3 .pf-bars .now{overflow:visible}
 @media(max-width:1100px){.v3 .proof strong{font-size:2rem}}
 .v3 .pf:nth-child(3) .pf-delta::before{display:none}
+.v3 .brands-list{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 44px}
+.v3 .brands-list li{flex:0 0 auto}
+.v3 .cases-grid .case:last-child:nth-child(odd){grid-column:1/-1}
