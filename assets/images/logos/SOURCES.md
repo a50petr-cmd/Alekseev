@@ -9,5 +9,6 @@
 | `kuper.png` | [Wikimedia Commons — Kupersberlogo2.png](https://commons.wikimedia.org/wiki/File:Kupersberlogo2.png) (kuper.ru, с 01.07.2024) |
 | `komus.svg` | [komus.ru](https://media.komus.ru/medias/sys_master/root/h09/hb3/14504840101918/logo-ai.svg) |
 | `modi.svg` | [modi.ru](https://modi.ru/local/templates/main/img/logo.svg) |
+| `pyaterochka.svg` | [x5.ru](https://www.x5.ru/wp-content/uploads/2021/12/pyaterochka-1.svg) |
 
 Товарные знаки принадлежат правообладателям. Использование на сайте — для указания опыта работы.
