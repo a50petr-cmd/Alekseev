@@ -47,7 +47,13 @@ const jsonPath =
   path.join(WEEKLY, fs.readdirSync(WEEKLY).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort().pop());
 const r = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
 const P = r.period;
-const manual = r.manual || {};
+let manual = r.manual || {};
+try {
+  const manualFile = path.join(path.dirname(jsonPath), "manual", `${P.to}.json`);
+  if (fs.existsSync(manualFile)) manual = JSON.parse(fs.readFileSync(manualFile, "utf8"));
+} catch {
+  // оставляем блок manual из самого JSON
+}
 const articles = r.article_views?.articles || [];
 const titleBySlug = new Map(articles.map((a) => [a.slug, String(a.title || "").replace(/\s+—\s+Пётр Алексеев$/, "")]));
 const STATIC = {
@@ -157,7 +163,7 @@ if (yb && !yb.error) {
   const actPrev = sum(act.map((a) => a.previous));
   const rows = [];
   if (cab) {
-    rows.push(["Просмотры профиля (кабинет)", num(cab.profile_views), num(cab.previous_week ?? 0)]);
+    rows.push(["Просмотры профиля (кабинет)", num(cab.profile_views), cab.previous_week == null ? "—" : num(cab.previous_week)]);
     for (const [svc, v] of Object.entries(cab.by_service || {})) rows.push([`из сервиса: ${svc.replace(/: веб версия/, "")}`, num(v), "—"]);
   }
   rows.push(["Визиты по счётчику карточки (Метрика)", num(yb.current.visits), num(yb.previous.visits)]);
