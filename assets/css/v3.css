@@ -284,3 +284,27 @@ body.v3 .btn.btn-tg:hover { background: var(--tg-deep); color: #fff; }
 .v3 .form-card .lead-form .check { flex-wrap: nowrap; }
 .v3 .form-card .lead-form .check > span:not(.field-error) { flex: 1; min-width: 0; }
 .v3 .brands-list img[alt="Евроопт"] { filter: grayscale(1) brightness(.5) contrast(1.4); opacity: .9; }
+
+/* footer (inner pages) */
+.v3 .site-footer h2{font-size:15px;font-weight:600;letter-spacing:0;margin:0 0 12px;line-height:1.3}
+.v3 .site-footer li,.v3 .site-footer li a{font-size:15px;line-height:1.5}
+.v3 .site-footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.v3 .site-footer .lead{font-size:15px;line-height:1.5;max-width:320px}
+
+/* case charts */
+.v3 .fx-bars{padding:22px 24px;display:grid;gap:20px}
+.v3 .fx-bars__label{margin-bottom:8px;font-size:15px;color:var(--muted,#4a5a52)}
+.v3 .fx-fig{overflow:hidden}
+/* prose docs (privacy, consent) */
+.v3 .prose-doc{background:#fff;border:1px solid var(--line,#dfe6e2);border-radius:20px;padding:36px 40px}
+.v3 .prose-doc h2{font-size:24px;line-height:1.25;margin:36px 0 14px}
+.v3 .prose-doc h2:first-child{margin-top:0}
+.v3 .prose-doc p{margin:0 0 14px;line-height:1.65}
+.v3 .prose-doc ul{margin:0 0 16px;padding-left:22px;list-style:disc}
+.v3 .prose-doc li{margin:0 0 6px;line-height:1.6}
+/* 404 */
+.v3 .page-404{text-align:center}
+.v3 .page-404 .eyebrow{justify-content:center;display:flex}
+.v3 .page-404 .lead{margin-left:auto;margin-right:auto}
+@media(max-width:640px){.v3 .prose-doc{padding:24px 18px}.v3 .fx-bars{padding:18px 16px}}
+.v3 .fx-flow{padding:18px 20px;gap:14px}
