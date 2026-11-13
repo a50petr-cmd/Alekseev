@@ -35,6 +35,8 @@ RewriteRule ^services\.html$ /#offers [R=301,L,NE]
 RewriteRule ^cases\.html$ /#cases [R=301,L,NE]
 RewriteRule ^about\.html$ /#about [R=301,L,NE]
 RewriteRule ^contacts\.html$ /#contact [R=301,L,NE]
+# Адреса без .html (Google уже проиндексировал /operations-director)
+RewriteRule ^(operations-director|audit-biznes-processov)/?$ /$1.html [R=301,L]
 RewriteRule ^dark-store\.html$ /operations-director.html [R=301,L]
 RewriteRule ^franchise\.html$ / [R=301,L]
 RewriteRule ^materials\.html$ /blog/ [R=301,L]
