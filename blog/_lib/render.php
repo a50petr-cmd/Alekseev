@@ -155,6 +155,7 @@ function bj_render_article_page(array $post, array $opts = []): string
         </div>
       </section>
       ' . $relatedBlock . '
+      <div class="related">Связанные услуги<a href="/operations-director.html">Операционный директор на аутсорсе</a><a href="/audit-biznes-processov.html">Аудит бизнес-процессов розничной сети</a></div>
     </div>
   </main>
   <footer class="site-footer">
@@ -168,8 +169,13 @@ function bj_render_article_page(array $post, array $opts = []): string
         <ul>
           <li><a href="/#offers">Услуги</a></li>
           <li><a href="/operations-director.html">Операционный директор на аутсорсе</a></li>
+          <li><a href="/audit-biznes-processov.html">Аудит бизнес-процессов</a></li>
           <li><a href="/case-euroopt.html">Кейс Евроопт</a></li>
           <li><a href="/case-fasol.html">Кейс «Фасоль»</a></li>
+          <li><a href="/case-pyaterochka.html">Кейс «Пятёрочка»</a></li>
+          <li><a href="/case-x5.html">Кейс X5 Import</a></li>
+          <li><a href="/case-komus.html">Кейс Комус</a></li>
+          <li><a href="/case-modi.html">Кейс МОДИ</a></li>
           <li><a href="/blog/">Блог</a></li>
           <li><a href="/#contact">Связаться</a></li>
         </ul>
