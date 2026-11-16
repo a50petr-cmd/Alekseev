@@ -36,11 +36,13 @@ RewriteRule ^cases\.html$ /#cases [R=301,L,NE]
 RewriteRule ^about\.html$ /#about [R=301,L,NE]
 RewriteRule ^contacts\.html$ /#contact [R=301,L,NE]
 # Адреса без .html (Google уже проиндексировал /operations-director)
-RewriteRule ^(operations-director|audit-biznes-processov)/?$ /$1.html [R=301,L]
-RewriteRule ^dark-store\.html$ /operations-director.html [R=301,L]
-RewriteRule ^franchise\.html$ / [R=301,L]
+RewriteRule ^(operations-director|audit-biznes-processov|upakovka-franshizy|zapusk-darkstora|chek-list-magazina)/?$ /$1.html [R=301,L]
+RewriteRule ^dark-store\.html$ /zapusk-darkstora.html [R=301,L]
+RewriteRule ^franchise\.html$ /upakovka-franshizy.html [R=301,L]
 RewriteRule ^materials\.html$ /blog/ [R=301,L]
-RewriteRule ^checklists/(franchise|import|kpi|logistics)\.html$ /blog/ [R=301,L]
+RewriteRule ^checklists/kpi\.html$ /chek-list-magazina.html [R=301,L]
+RewriteRule ^checklists/franchise\.html$ /upakovka-franshizy.html [R=301,L]
+RewriteRule ^checklists/(import|logistics)\.html$ /blog/ [R=301,L]
 </IfModule>
 
 # Закрыть служебные файлы (robots.txt и blog/posts.json доступны)
