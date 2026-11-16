@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Почему проект не взлетает: что решить до запуска — Пётр Алексеев</title>
+  <meta name="description" content="Проект сделан, платформа работает, а заказов в десятки раз меньше плана. Разбор запуска сервиса за 12 млн ₽ и пять вопросов, которые нужно закрыть до старта.">
+  <link rel="canonical" href="https://petr-alekseev.ru/blog/pochemu-proekt-ne-vzletel.html">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Почему новый проект не взлетает: что решить до запуска">
+  <meta property="og:description" content="Проект сделан, платформа работает, а заказов в десятки раз меньше плана. Разбор запуска сервиса за 12 млн ₽ и пять вопросов, которые нужно закрыть до старта.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://petr-alekseev.ru/blog/pochemu-proekt-ne-vzletel.html">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Пётр Алексеев">
+  <meta property="og:image" content="https://petr-alekseev.ru/assets/images/blog/pochemu-proekt-ne-vzletel.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Почему новый проект не взлетает: что решить до запуска">
+  <meta name="twitter:description" content="Проект сделан, платформа работает, а заказов в десятки раз меньше плана. Разбор запуска сервиса за 12 млн ₽ и пять вопросов, которые нужно закрыть до старта.">
+  <meta name="twitter:image" content="https://petr-alekseev.ru/assets/images/blog/pochemu-proekt-ne-vzletel.jpg">
+  <meta name="yandex-verification" content="36d2c01f5201e09b">
+  <meta name="theme-color" content="#0f1411">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261108b">
+  <link rel="stylesheet" href="/assets/css/site.css?v=20261108b">
+  <link rel="stylesheet" href="/assets/css/blog.css?v=20261102a">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Главная",
+            "item": "https://petr-alekseev.ru/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Блог",
+            "item": "https://petr-alekseev.ru/blog/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Почему новый проект не взлетает: что решить до запуска",
+            "item": "https://petr-alekseev.ru/blog/pochemu-proekt-ne-vzletel.html"
+          }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": "Почему новый проект не взлетает: что решить до запуска",
+        "datePublished": "2026-11-16",
+        "dateModified": "2026-11-16",
+        "image": "https://petr-alekseev.ru/assets/images/blog/pochemu-proekt-ne-vzletel.jpg",
+        "author": {
+          "@type": "Person",
+          "name": "Пётр Алексеев",
+          "url": "https://petr-alekseev.ru/",
+          "jobTitle": "Операционный директор на аутсорсе"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Пётр Алексеев",
+          "url": "https://petr-alekseev.ru/"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://petr-alekseev.ru/blog/pochemu-proekt-ne-vzletel.html"
+        },
+        "description": "Проект сделан, платформа работает, а заказов в десятки раз меньше плана. Разбор запуска сервиса за 12 млн ₽ и пять вопросов, которые нужно закрыть до старта."
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="theme-site" data-page="blog-article">
+  <a class="skip" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="wrap site-header-inner">
+      <a class="logo" href="/"><span class="logo-mark" aria-hidden="true"></span><span class="logo-text"><strong>Пётр Алексеев</strong><small>Операционный директор на аутсорсе</small></span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Открыть меню"><span></span></button>
+      <nav id="nav" class="nav">
+        <a href="/#offers">Услуги</a>
+        <a href="/#cases">Кейсы</a>
+        <a href="/#method">Метод</a>
+        <a href="/#about">О проекте</a>
+        <a href="/blog/">Блог</a>
+        <a class="btn btn-primary btn-small nav-cta" href="/#contact" data-goal="click_primary_cta">Связаться</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="bj-wrap">
+      <ul class="bj-crumbs">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/blog/">Блог</a></li>
+        <li aria-current="page">Проект не взлетел</li>
+      </ul>
+      <header class="a-head">
+        <div class="kicker">Практика <i>· 4 минуты чтения</i></div>
+        <h1>Почему новый проект не взлетает: что решить до запуска</h1>
+        <p class="dek">Проект сделан, платформа работает, а заказов в десятки раз меньше плана. Разбор запуска сервиса за 12 млн ₽ и пять вопросов, которые нужно закрыть до старта.</p>
+        <div class="byline">
+          <img class="ava" src="/assets/images/petr-alekseev.jpg" width="72" height="72" alt="Пётр Алексеев">
+          <div><strong>Пётр Алексеев</strong>Операционный директор на аутсорсе · 16 ноября 2026</div>
+        </div>
+      </header>
+      <article class="prose">
+        <figure class="fx-fig" style="margin:0 0 28px">
+          <img src="/assets/images/blog/pochemu-proekt-ne-vzletel.jpg" alt="Руководитель показывает на картину с золотым деревом и говорит команде «Хочу шикарно. Денег не дам»; на столе сохнет росток" width="1200" height="630">
+        </figure>
+        <p>Проект готов. Платформа работает, тесты пройдены, заказы доезжают. Ждали несколько сотен заказов в день, а приходит 5–6. На совещаниях все спрашивают, почему так мало. Хотя спрашивать надо было до запуска: на какие деньги этот проект будет расти, когда выйдет в мир.</p>
+        <p>Расскажу, как это выглядело на запуске сервиса доставки из гипермаркетов в офис в одной из компаний, где я работал, и какие вопросы теперь прошу закрыть до старта любого нового проекта.</p>
+        <h2>Что мы запустили</h2>
+        <p>Сервис по схеме white label: сайт под брендом компании, а склад, курьеры и IT у партнёра. Бюджет на запуск 10 млн ₽, срок 4 месяца. Нас было трое плюс команда партнёра. В крупных компаниях такие проекты делает огромный штат.</p>
+        <p>Продукт получился рабочим. Ассортимент вырос с 700 до 3 500 позиций, конверсия в заказ с 0,3% до 1,3%. Потенциал сервиса мы оценивали в 300–400 заказов в день, но он раскрывается только с инвестициями в масштабирование. Мы получали 5–6 заказов в день.</p>
+        <h2>Почему заказов не было</h2>
+        <p>О сервисе никто не знал. Рекламное место на основном сайте компании занимали другие проекты, а лучшие места отдают тем сервисам, которые приносят больше денег. С точки зрения большого бизнеса это логично. Наш сервис зарабатывал на комиссии меньше, чем собственная доставка компании, и мог забрать часть заказов у направлений, которые уже работали. Рассылки по существующей клиентской базе тоже не было.</p>
+        <p>На совещаниях получался такой круг. Мне говорили: заказов мало. Я отвечал: о сервисе никто не знает, нужна реклама. Мне отвечали: ресурсов на рекламу нет. Сервис без продвижения похож на кафе без вывески: внутри хорошо, очереди нет.</p>
+        <h2>Что случилось с бюджетом</h2>
+        <p>Бюджет на проект закладывали около 100 млн ₽ на 3 года. Через год работы над проектом бюджетирование пересмотрели, в том числе из-за экономической ситуации в компании: финансирование снизили до нуля и приняли решение закрыть проект. Всего потратили 12 млн ₽: 10 на запуск и 2 на поддержку. Проект закрыли, другой команде его не передавали.</p>
+        <h2>Что решить до запуска</h2>
+        <p>Это пять вопросов, которые я теперь задаю до старта любого проекта. Ответы на них нужны руководителю, а не исполнителю.</p>
+        <ol>
+          <li><strong>Сколько стоит весь путь, а не только запуск.</strong> Деньги по этапам, сроки и профит, который проект может принести. Продвижение и масштабирование идут отдельной строкой бюджета: без них готовый продукт никто не увидит.</li>
+          <li><strong>Не противоречит ли проект стратегии компании.</strong> Если новый сервис зарабатывает меньше работающих направлений или забирает у них заказы, ему не дадут ни рекламных мест, ни людей. Лучше узнать это заранее.</li>
+          <li><strong>Кто принимает риски.</strong> Решение «запускаем или нет» принимает руководитель на основе данных и карты рисков и берёт риски на себя. Если не готов брать, лучше не запускать: деньги будут потеряны.</li>
+          <li><strong>Какой горизонт.</strong> Если запускаем, нужен план минимум на 5 лет. «Запустим что-нибудь, посмотрим, вдруг пойдёт» планом не является. В российском бизнесе так, к сожалению, делают часто.</li>
+          <li><strong>Кому доверяет руководитель.</strong> Если он не знает отрасль, самое полезное, что можно сделать, это довериться тем, кого нанял. Иначе экспертов можно было не нанимать. У нас было еженедельное совещание с курсом «сегодня бежим туда, завтра сюда». Курс менялся каждую неделю. Число заказов держалось стабильнее.</li>
+        </ol>
+        <h2>Что бы я сделал иначе</h2>
+        <p>Не брался бы за проект, зная, что он обречён. Но я взялся: хотел получить опыт. Теперь я знаю, как устроена доставка из гипермаркетов и как живут сложные проекты. Хороший результат без вложений не получается. Чудес не бывает.</p>
+        <h2>Коротко</h2>
+        <ul>
+          <li>Готовый продукт без бюджета на продвижение остаётся незамеченным.</li>
+          <li>Бюджет на масштабирование и продвижение закладывается до запуска, а не после.</li>
+          <li>Решение о запуске принимает руководитель вместе с данными и берёт риски на себя.</li>
+        </ul>
+        <p>Если вы готовите новый проект и хотите заранее посчитать риски и бюджет, напишите мне в Telegram <a href="https://t.me/PetroAlekseev">@PetroAlekseev</a> или оставьте <a href="/#contact">заявку на сайте</a>. Первые 30 минут знакомства бесплатно. Если нужно понять, как устроены процессы до запуска, посмотрите страницу <a href="/audit-biznes-processov.html">«Аудит бизнес-процессов»</a>. Новые истории из опыта выходят в моём Telegram-канале: <a href="https://t.me/Alekseev_Petr_consult">t.me/Alekseev_Petr_consult</a>.</p>
+      </article>
+
+      <section class="author">
+        <img class="ava" src="/assets/images/petr-alekseev.jpg" width="72" height="72" alt="Пётр Алексеев">
+        <div>
+          <h4>Пётр Алексеев</h4>
+          <p>18 лет в операционном управлении ритейла и доставки: X5, METRO, Купер, Комус, Евроопт. Беру операционку на 3–6 месяцев и довожу изменения до результата.</p>
+          <a class="bj-btn" href="/operations-director.html#contact" data-goal="click_primary_cta">Обсудить задачу</a>
+          <a class="bj-btn-ghost" href="/operations-director.html#contact">Первые 30 минут бесплатно →</a>
+        </div>
+      </section>
+      <div class="related">Читайте также<a href="/blog/operations-director-outsourcing-when-needed.html">Операционный директор на аутсорсе: когда нужен</a><a href="/blog/nastavnik-dlya-predprinimatelya.html">Бизнес есть, наставника нет: что делать молодому собственнику</a></div>
+      <div class="related">Связанные услуги<a href="/operations-director.html">Операционный директор на аутсорсе: внедрим процессы за вас</a><a href="/audit-biznes-processov.html">Аудит бизнес-процессов: карта узких мест за 5–7 дней</a></div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="logo" href="/"><span class="logo-mark" aria-hidden="true"></span><span class="logo-text"><strong>Пётр Алексеев</strong><small>Операционный директор на аутсорсе</small></span></a>
+        <p class="lead" style="margin-top:12px">Беру на себя операционку и довожу изменения до результата.</p>
+      </div>
+      <div>
+        <h2>Навигация</h2>
+        <ul>
+          <li><a href="/#offers">Услуги</a></li>
+          <li><a href="/operations-director.html">Операционный директор на аутсорсе</a></li>
+          <li><a href="/audit-biznes-processov.html">Аудит бизнес-процессов</a></li>
+          <li><a href="/case-euroopt.html">Кейс Евроопт</a></li>
+          <li><a href="/case-fasol.html">Кейс «Фасоль»</a></li>
+          <li><a href="/case-pyaterochka.html">Кейс «Пятёрочка»</a></li>
+          <li><a href="/case-x5.html">Кейс X5 Import</a></li>
+          <li><a href="/case-komus.html">Кейс Комус</a></li>
+          <li><a href="/case-modi.html">Кейс МОДИ</a></li>
+          <li><a href="/blog/">Блог</a></li>
+          <li><a href="/#contact">Связаться</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Связь</h2>
+        <ul>
+          <li><a href="tel:+79269232929">+7 (926) 923-29-29</a></li>
+          <li><a href="https://t.me/PetroAlekseev">@PetroAlekseev</a></li>
+          <li><a href="mailto:a50petro@yandex.ru">a50petro@yandex.ru</a></li>
+          <li><a href="https://t.me/Alekseev_Petr_consult" data-goal="click_telegram_channel">Канал</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap legal">
+      <p><a href="/privacy.html">Политика конфиденциальности</a> · <a href="/consent.html">Согласие на обработку данных</a> · © <span data-year>2026</span> Пётр Алексеев</p>
+      <p>Самозанятый Алексеев Пётр, ИНН 505311612168 · Москва</p>
+    </div>
+  </footer>
+  <a class="float-chat" href="https://t.me/PetroAlekseev" target="_blank" rel="noopener" aria-label="Написать в Telegram @PetroAlekseev"></a>
+  <script src="/assets/js/consent.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(113335579, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113335579" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-14HYCZP7RD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-14HYCZP7RD');
+</script>
+
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/goals.js"></script>
+  <script src="/assets/js/views.js" defer></script>
+</body>
+</html>
